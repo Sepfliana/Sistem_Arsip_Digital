@@ -1,0 +1,2 @@
+ALTER TABLE perkara
+ADD COLUMN IF NOT EXISTS cover_file TEXT;

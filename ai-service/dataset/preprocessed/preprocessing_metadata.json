@@ -1,0 +1,22 @@
+{
+  "dataset_rows": 15000,
+  "feature_count": 9,
+  "feature_names": [
+    "user_id",
+    "activity",
+    "status",
+    "device",
+    "ip_address",
+    "duration_ms",
+    "object_count",
+    "hour",
+    "day_of_week"
+  ],
+  "scaler": "StandardScaler",
+  "encoder_columns": [
+    "activity",
+    "status",
+    "device"
+  ],
+  "created_at": "2026-07-27T14:53:32.169313"
+}

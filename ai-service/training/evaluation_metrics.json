@@ -1,0 +1,47 @@
+{
+    "generated_at": "2026-07-13T09:10:56.983697+00:00",
+    "evaluation_rows": 50,
+    "normal_rows": 25,
+    "anomaly_rows": 25,
+    "threshold": 10.908896327018738,
+    "confusion_matrix": {
+        "labels": [
+            "NORMAL",
+            "ANOMALY"
+        ],
+        "matrix": [
+            [
+                14,
+                11
+            ],
+            [
+                0,
+                25
+            ]
+        ]
+    },
+    "precision": 0.6944444444444444,
+    "recall": 1.0,
+    "f1_score": 0.819672131147541,
+    "roc": {
+        "false_positive_rate": [
+            0.0,
+            0.0,
+            0.0,
+            1.0
+        ],
+        "true_positive_rate": [
+            0.0,
+            0.04,
+            1.0,
+            1.0
+        ],
+        "thresholds": [
+            null,
+            40.495323181152344,
+            33.19161605834961,
+            8.952476501464844
+        ]
+    },
+    "auc": 1.0
+}

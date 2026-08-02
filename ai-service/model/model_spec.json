@@ -1,0 +1,53 @@
+{
+  "model_type": "variational_autoencoder",
+  "purpose": "audit_log_anomaly_detection",
+  "input_features": [
+    "user_id",
+    "aksi",
+    "target_tipe",
+    "status",
+    "device",
+    "ip_address",
+    "durasi_ms",
+    "jumlah_objek",
+    "hour",
+    "day_of_week"
+  ],
+  "input_feature_count": 10,
+  "excluded_features": [],
+  "latent_dimension": 8,
+  "hidden_layers": {
+    "encoder": [64, 32],
+    "decoder": [32, 64]
+  },
+  "activation": "relu",
+  "dropout": 0.2,
+  "batch_normalization": true,
+  "output_activation": "linear",
+  "optimizer": "adam",
+  "loss": {
+    "reconstruction": "mean_squared_error",
+    "regularization": "kl_divergence",
+    "total": "reconstruction_loss + kl_divergence"
+  },
+  "batch_size": 32,
+  "epochs": 100,
+  "validation_split": 0.2,
+  "learning_rate": 0.001,
+  "random_seed": 42,
+  "model_version": "1.0",
+  "training_rows": 25,
+  "last_training_date": "2026-07-01T04:59:10Z",
+  "threshold_strategy": {
+    "status": "computed",
+    "formula": "mean + 3*std",
+    "threshold_file": "model/threshold.json"
+  },
+  "sprint_status": {
+    "sprint_2": "architecture_blueprint_only",
+    "tensorflow_execution": true,
+    "training_execution": true,
+    "keras_model_created": true,
+    "sprint_4": "completed"
+  }
+}

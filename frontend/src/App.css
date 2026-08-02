@@ -1,0 +1,191 @@
+/* Detail Page & PDF Viewer Styles - Modern Enterprise Theme */
+
+.detail-page-heading {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 24px;
+}
+
+/* Combined Layout for Cover & Detail Perkara (Rule 9) */
+.combined-perkara-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr);
+  gap: 24px;
+  margin-bottom: 32px;
+}
+
+.perkara-information,
+.cover-panel,
+.berkas-stage-card {
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-md);
+  padding: 24px;
+}
+
+.detail-grid {
+  display: grid;
+  gap: 0;
+  margin: 0;
+  padding: 4px 0 0;
+}
+
+.detail-row {
+  display: grid;
+  grid-template-columns: 180px minmax(0, 1fr);
+  gap: 16px;
+  padding: 12px 0;
+  align-items: baseline;
+  border-bottom: 1px solid var(--line-subtle);
+}
+
+.detail-row:last-child {
+  border-bottom: 0;
+}
+
+.detail-row dt {
+  color: var(--text-muted);
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.detail-row dd {
+  margin: 0;
+  color: var(--text);
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.5;
+  overflow-wrap: anywhere;
+  word-break: break-word;
+}
+
+.cover-panel {
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.pdf-toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  align-items: center;
+  padding: 12px 16px;
+  background: #F8FAFC;
+  border-bottom: 1px solid var(--line);
+}
+
+.pdf-page-indicator {
+  min-width: 100px;
+  color: var(--text-muted);
+  font-size: 12px;
+  font-weight: 400;
+}
+
+.pdf-viewer-frame {
+  min-height: 400px;
+  max-height: 540px;
+  overflow: auto;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 16px;
+  background: #F1F5F9;
+  border-radius: var(--radius-md);
+}
+
+.pdf-viewer-frame .react-pdf__Page {
+  box-shadow: var(--shadow-md);
+  border-radius: 4px;
+}
+
+.pdf-loading {
+  color: var(--text-muted);
+  font-weight: 500;
+  font-size: 14px;
+  padding: 24px;
+}
+
+.cover-empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  min-height: 320px;
+  padding: 24px;
+  text-align: center;
+  background: #F8FAFC;
+  border-radius: var(--radius-md);
+}
+
+.cover-placeholder-icon {
+  display: grid;
+  place-items: center;
+  width: 56px;
+  height: 56px;
+  border-radius: var(--radius-lg);
+  background: #E2E8F0;
+  color: var(--primary);
+  font-size: 1.5rem;
+  line-height: 1;
+}
+
+.berkas-stage-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  margin-top: 20px;
+}
+
+.berkas-stage-card {
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  margin-bottom: 24px;
+}
+
+.berkas-stage-header {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  align-items: flex-start;
+  margin-bottom: 16px;
+}
+
+.berkas-stage-header h3 {
+  margin: 0;
+  font-size: 17px;
+  font-weight: 600;
+}
+
+.compact-detail-grid .detail-row {
+  grid-template-columns: 160px minmax(0, 1fr);
+  gap: 12px;
+  padding: 10px 0;
+}
+
+.berkas-pdf-button {
+  width: 100%;
+  margin-top: auto;
+}
+
+@media (max-width: 1024px) {
+  .combined-perkara-layout {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 640px) {
+  .detail-page-heading {
+    justify-content: stretch;
+  }
+
+  .detail-row,
+  .compact-detail-grid .detail-row {
+    grid-template-columns: 1fr;
+    gap: 4px;
+  }
+}

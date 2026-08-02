@@ -1,0 +1,242 @@
+.login-container,
+.auth-page {
+    width: 100vw;
+    min-height: 100vh;
+    display: grid;
+    place-items: center;
+    padding: 32px;
+    background: #FFFFFF;
+}
+
+.login-card {
+    width: min(430px, 100%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 38px;
+    border-radius: 8px;
+    border: 1px solid #E5E7EB;
+    background: #FFFFFF;
+    box-shadow: 0 18px 48px rgba(7, 81, 43, 0.12);
+}
+
+.logo {
+    width: 96px;
+    height: 96px;
+    object-fit: contain;
+    margin-bottom: 18px;
+}
+
+.title {
+    color: #07512B;
+    font-size: 24px;
+    line-height: 1.2;
+    text-align: center;
+    margin-bottom: 8px;
+}
+
+.subtitle {
+    color: #667085;
+    margin-bottom: 26px;
+    text-align: center;
+}
+
+.login-field {
+    width: 100%;
+    display: grid;
+    gap: 7px;
+    margin-bottom: 14px;
+    color: #667085;
+    font-size: 13px;
+    font-weight: 700;
+}
+
+.input {
+    width: 100%;
+    height: 46px;
+    padding: 10px 12px;
+    border: 1px solid #D0D5DD;
+    border-radius: 8px;
+    background: #FFFFFF;
+    color: #172033;
+    outline: none;
+    transition: border-color 160ms ease, box-shadow 160ms ease;
+}
+
+.input:focus {
+    border-color: #0B6B3A;
+    box-shadow: 0 0 0 4px rgba(11, 107, 58, 0.12);
+}
+
+.login-password-field {
+    position: relative;
+}
+
+.login-password-field .input {
+    padding-right: 72px;
+}
+
+.login-password-toggle {
+    position: absolute;
+    right: 8px;
+    bottom: 7px;
+    min-width: 56px;
+    height: 32px;
+    border: 1px solid #D0D5DD;
+    border-radius: 8px;
+    background: #F8FAFC;
+    color: #0B6B3A;
+    font-size: 12px;
+    font-weight: 800;
+    cursor: pointer;
+}
+
+.login-button {
+    width: 100%;
+    height: 46px;
+    margin-top: 4px;
+    border: none;
+    border-radius: 8px;
+    background: linear-gradient(180deg, #0B6B3A, #07512B);
+    color: white;
+    font-weight: 800;
+    cursor: pointer;
+    transition: transform 160ms ease, box-shadow 160ms ease, opacity 160ms ease;
+}
+
+.login-button:hover:not(:disabled) {
+    transform: translateY(-1px);
+    box-shadow: 0 12px 24px rgba(11, 107, 58, 0.22);
+}
+
+.login-button:disabled {
+    cursor: not-allowed;
+    opacity: 0.55;
+}
+
+.forgot-password {
+    margin-top: 16px;
+    color: #0B6B3A;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 700;
+}
+
+.login-error {
+    width: 100%;
+    margin-bottom: 14px;
+    padding: 10px 12px;
+    border-radius: 8px;
+    border: 1px solid #FECACA;
+    background: #FEF2F2;
+    color: #B91C1C;
+    font-size: 13px;
+}
+
+.login-success {
+    width: 100%;
+    margin-bottom: 14px;
+    padding: 10px 12px;
+    border-radius: 8px;
+    border: 1px solid #BBF7D0;
+    background: #F0FDF4;
+    color: #166534;
+    font-size: 13px;
+}
+
+.setup-shell {
+    width: min(1040px, 100%);
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 430px;
+    gap: 22px;
+}
+
+.setup-guide,
+.setup-panel {
+    border-radius: 8px;
+    border: 1px solid #E5E7EB;
+    background: #FFFFFF;
+    box-shadow: 0 18px 48px rgba(7, 81, 43, 0.12);
+    padding: 30px;
+}
+
+.setup-logo {
+    width: 70px;
+    height: 70px;
+    object-fit: contain;
+    margin-bottom: 18px;
+}
+
+.auth-kicker {
+    display: inline-flex;
+    margin-bottom: 10px;
+    color: #0B6B3A;
+    font-size: 12px;
+    font-weight: 900;
+    text-transform: uppercase;
+}
+
+.setup-guide h1 {
+    color: #07512B;
+    font-size: 30px;
+    margin-bottom: 10px;
+}
+
+.setup-guide p {
+    color: #667085;
+    margin-bottom: 22px;
+}
+
+.setup-steps {
+    display: grid;
+    gap: 12px;
+}
+
+.setup-step {
+    display: grid;
+    gap: 5px;
+    padding: 14px;
+    border-radius: 8px;
+    border: 1px solid #D8E7DD;
+    background: #F8FAFC;
+}
+
+.setup-step strong {
+    color: #0B6B3A;
+}
+
+.setup-step span {
+    color: #667085;
+}
+
+.qr-frame {
+    display: grid;
+    place-items: center;
+    min-height: 240px;
+    margin-bottom: 16px;
+    border-radius: 8px;
+    border: 1px dashed #C9A227;
+    background: #F8FAFC;
+}
+
+.qr-frame img {
+    width: 210px;
+    height: 210px;
+}
+
+.secret-box {
+    display: block;
+    min-height: 44px;
+    padding: 12px;
+    border-radius: 8px;
+    background: #F8FAFC;
+    border: 1px solid #E5E7EB;
+    word-break: break-all;
+}
+
+.otp-code-input {
+    text-align: center;
+    font-size: 24px;
+    letter-spacing: 0;
+    font-weight: 800;
+}
