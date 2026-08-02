@@ -8,7 +8,7 @@ function User() {
             endpoint="/users"
             columns={[
                 { key: "username", label: "Username" },
-                { key: "nama", label: "Nama" },
+                { key: "nama_lengkap", label: "Nama" },
                 { key: "email", label: "Email" },
                 { key: "nip", label: "NIP" },
                 { key: "nama_peran", label: "Role" },
@@ -17,7 +17,7 @@ function User() {
             fields={[
                 { name: "username", label: "Username", required: true },
                 { name: "password", label: "Password / Reset Password", type: "password" },
-                { name: "nama", label: "Nama", required: true },
+                { name: "nama_lengkap", label: "Nama", required: true },
                 { name: "email", label: "Email", type: "email" },
                 { name: "nip", label: "NIP" },
                 {

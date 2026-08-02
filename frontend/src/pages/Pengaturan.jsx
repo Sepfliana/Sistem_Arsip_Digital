@@ -107,7 +107,7 @@ function Pengaturan() {
                 </div>
                 <dl>
                     <dt>Nama Lengkap</dt>
-                    <dd>{profile?.nama || username || "-"}</dd>
+                    <dd>{profile?.nama_lengkap || username || "-"}</dd>
                     <dt>NIP</dt>
                     <dd>{profile?.nip || "-"}</dd>
                     <dt>Username</dt>
