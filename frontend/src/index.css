@@ -1067,3 +1067,74 @@ tbody tr:last-child td {
 .anomaly-decision-actions .is-selected { outline: 2px solid currentColor; outline-offset: 2px; }
 @media (max-width: 800px) { .anomaly-table-panel .filter-vertical-container { grid-template-columns: repeat(2, minmax(0, 1fr)); } .readable-detail-grid { grid-template-columns: 1fr; } .readable-detail-grid > div:nth-last-child(2) { border-bottom: 1px solid var(--border-color, #d9e2dc); } }
 @media (max-width: 520px) { .anomaly-table-panel .filter-vertical-container { grid-template-columns: 1fr; } .readable-detail-grid > div { grid-template-columns: 1fr; gap: 4px; } .anomaly-decision-actions { flex-direction: column; align-items: stretch; } }
+
+/* Lemari Detail Grid Alignment */
+.lemari-detail-grid .detail-row {
+  display: grid;
+  grid-template-columns: 160px minmax(0, 1fr);
+  gap: 16px;
+  padding: 10px 0;
+  align-items: center;
+  border-bottom: 1px solid var(--line-subtle, #e2e8f0);
+}
+
+.lemari-detail-grid .detail-row:last-child {
+  border-bottom: none;
+}
+
+.lemari-detail-grid dt {
+  color: var(--text-muted, #64748b);
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.lemari-detail-grid dd {
+  margin: 0;
+  color: var(--text, #0f172a);
+  font-size: 14px;
+  font-weight: 400;
+  display: flex;
+  align-items: center;
+}
+
+/* Perkara Horizontal Grid Filter */
+.perkara-filter-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px 20px;
+  margin-bottom: 24px;
+  width: 100%;
+}
+
+.perkara-filter-grid .field-tahun {
+  grid-column: span 1;
+}
+
+.perkara-filter-grid .filter-actions-row {
+  grid-column: span 2;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 16px;
+  margin-top: 0;
+  padding-top: 0;
+  border-top: none;
+}
+
+@media (max-width: 900px) {
+  .perkara-filter-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .perkara-filter-grid .filter-actions-row {
+    grid-column: span 2;
+  }
+}
+
+@media (max-width: 600px) {
+  .perkara-filter-grid {
+    grid-template-columns: 1fr;
+  }
+  .perkara-filter-grid .filter-actions-row {
+    grid-column: span 1;
+  }
+}

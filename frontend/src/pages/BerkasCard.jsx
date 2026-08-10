@@ -115,6 +115,76 @@ function PdfViewer({ berkas }) {
     );
 }
 
+export function BerkasDetailModal({ berkas, canVerify = false, verifying = false, onClose, onOpenPdf, onVerifyIntegrity }) {
+    if (!berkas) return null;
+
+    const badge = integrityBadge(berkas.status_integritas);
+    const formattedDate = formatDate(berkas.created_at || berkas.tanggal_berkas);
+
+    const fields = [
+        ["Nama Berkas", berkas.jenis_berkas || berkas.nama_berkas],
+        ["Nomor Berkas", berkas.nomor_berkas],
+        ["Tanggal Upload", formattedDate],
+        ["Status Integritas", badge.label, badge.className],
+        ["Retensi Aktif", berkas.masa_retensi_aktif ? `${berkas.masa_retensi_aktif} tahun` : "-"],
+        ["Retensi Inaktif", berkas.masa_retensi_inaktif ? `${berkas.masa_retensi_inaktif} tahun` : "-"]
+    ];
+
+    if (berkas.keterangan) {
+        fields.push(["Keterangan", berkas.keterangan]);
+    }
+
+    return (
+        <div className="modal-backdrop" onClick={onClose}>
+            <div className="modal-card berkas-detail-modal" onClick={(e) => e.stopPropagation()}>
+                <div className="modal-header">
+                    <h2>Detail Berkas - {berkas.jenis_berkas || berkas.nama_berkas || "Berkas"}</h2>
+                    <button className="close-button" type="button" onClick={onClose} aria-label="Tutup modal">✕</button>
+                </div>
+
+                <div className="berkas-detail-grid-layout">
+                    {/* AREA KIRI: PREVIEW PDF */}
+                    <div className="berkas-detail-preview-col">
+                        <PdfViewer berkas={berkas} />
+                    </div>
+
+                    {/* AREA KANAN: INFORMASI BERKAS */}
+                    <div className="berkas-detail-info-col">
+                        <div className="berkas-info-card">
+                            <h3>Informasi Berkas</h3>
+                            <dl className="detail-grid berkas-horizontal-grid">
+                                {fields.map(([label, value, className]) => (
+                                    <div className="detail-row" key={label}>
+                                        <dt className="detail-label">{label}</dt>
+                                        <span className="detail-colon">:</span>
+                                        <dd className="detail-value">
+                                            {className ? <span className={`badge ${className}`}>{value}</span> : value || "-"}
+                                        </dd>
+                                    </div>
+                                ))}
+                            </dl>
+
+                            {/* AKSI */}
+                            <div className="berkas-detail-actions">
+                                {onOpenPdf && (
+                                    <button className="primary-button" type="button" onClick={() => onOpenPdf(berkas)}>
+                                        Buka PDF
+                                    </button>
+                                )}
+                                {canVerify && normalizeIntegrityStatus(berkas.status_integritas) === "BELUM_DIVERIFIKASI" && (
+                                    <button className="secondary-button" type="button" disabled={verifying} onClick={() => onVerifyIntegrity?.(berkas)}>
+                                        {verifying ? "Memverifikasi..." : "Verifikasi Integritas"}
+                                    </button>
+                                )}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    );
+}
+
 function BerkasCard({ title, berkas, readOnly = false, canVerify = false, verifying = false, onOpenPdf, onVerifyIntegrity }) {
     if (!berkas) {
         return (
@@ -148,29 +218,33 @@ function BerkasCard({ title, berkas, readOnly = false, canVerify = false, verify
                 <p>{berkas.nama_berkas} <span>•</span> {berkas.nomor_berkas} <span>•</span> Diunggah {formatDate(berkas.created_at || berkas.tanggal_berkas)}</p>
             </header>
 
-            <PdfViewer berkas={berkas} />
-
-            <section className="berkas-metadata-card">
-                <div className="berkas-metadata-heading">
-                    <h3>Detail Berkas</h3>
-                    {onOpenPdf && <button className="secondary-button" type="button" onClick={() => onOpenPdf(berkas)}>Buka PDF</button>}
+            <div className="berkas-detail-grid-layout" style={{ padding: 0 }}>
+                <div className="berkas-detail-preview-col">
+                    <PdfViewer berkas={berkas} />
                 </div>
-                <dl className="berkas-metadata-grid">
-                    {fields.map(([label, value, className]) => (
-                        <div className="berkas-metadata-item" key={label}>
-                            <dt>{label}</dt>
-                            <dd>{className ? <span className={`badge ${className}`}>{value}</span> : value || "-"}</dd>
+                <div className="berkas-detail-info-col">
+                    <div className="berkas-info-card">
+                        <h3>Informasi Berkas</h3>
+                        <dl className="detail-grid berkas-horizontal-grid">
+                            {fields.map(([label, value, className]) => (
+                                <div className="detail-row" key={label}>
+                                    <dt className="detail-label">{label}</dt>
+                                    <span className="detail-colon">:</span>
+                                    <dd className="detail-value">{className ? <span className={`badge ${className}`}>{value}</span> : value || "-"}</dd>
+                                </div>
+                            ))}
+                        </dl>
+                        <div className="berkas-detail-actions">
+                            {onOpenPdf && <button className="primary-button" type="button" onClick={() => onOpenPdf(berkas)}>Buka PDF</button>}
+                            {canVerify && normalizeIntegrityStatus(berkas.status_integritas) === "BELUM_DIVERIFIKASI" && (
+                                <button className="secondary-button" type="button" disabled={verifying} onClick={() => onVerifyIntegrity?.(berkas)}>
+                                    {verifying ? "Memverifikasi..." : "Verifikasi Integritas"}
+                                </button>
+                            )}
                         </div>
-                    ))}
-                </dl>
-                {canVerify && normalizeIntegrityStatus(berkas.status_integritas) === "BELUM_DIVERIFIKASI" && (
-                    <div className="berkas-integrity-action">
-                        <button className="secondary-button" type="button" disabled={verifying} onClick={() => onVerifyIntegrity?.(berkas)}>
-                            {verifying ? "Memverifikasi..." : "Verifikasi Integritas"}
-                        </button>
                     </div>
-                )}
-            </section>
+                </div>
+            </div>
         </article>
     );
 }

@@ -4,52 +4,57 @@ import { api, openAuthenticatedPdf } from "../services/apiService";
 import "react-pdf/dist/Page/AnnotationLayer.css";
 import "react-pdf/dist/Page/TextLayer.css";
 
-pdfjs.GlobalWorkerOptions.workerSrc = new URL(
-    "pdfjs-dist/build/pdf.worker.min.mjs",
-    import.meta.url
-).toString();
+import pdfWorker from "pdfjs-dist/build/pdf.worker.min.mjs?url";
+
+pdfjs.GlobalWorkerOptions.workerSrc = pdfWorker;
 
 const MAX_COVER_SIZE = 25 * 1024 * 1024;
 
-function CoverViewer({ perkara, canManageCover = false, onCoverUpdated }) {
+function CoverViewer({ perkara, berkas = [], canManageCover = false, onCoverUpdated }) {
     const covers = perkara?.covers || [];
-    const [coverIndex, setCoverIndex] = useState(0);
-    const [numPages, setNumPages] = useState(0);
-    const [pageNumber, setPageNumber] = useState(1);
+    const primaryCover = covers[0] || (perkara?.cover_url ? { url: perkara.cover_url } : null);
+    const fallbackBerkas = !primaryCover && Array.isArray(berkas)
+        ? berkas.find((b) => b.file_path || b.url)
+        : null;
+    const selectedCover = primaryCover || (fallbackBerkas ? { url: fallbackBerkas.file_path || fallbackBerkas.url, file_name: fallbackBerkas.nama_berkas || fallbackBerkas.jenis_berkas } : null);
+
     const [objectUrl, setObjectUrl] = useState("");
+    const [numPages, setNumPages] = useState(null);
+    const [pageNumber, setPageNumber] = useState(1);
+    const [loadingPdf, setLoadingPdf] = useState(false);
     const [error, setError] = useState("");
     const [uploading, setUploading] = useState(false);
     const inputRef = useRef(null);
-    const selectedCover = covers[coverIndex] || null;
-
-    useEffect(() => {
-        // eslint-disable-next-line react-hooks/set-state-in-effect
-        setCoverIndex(0);
-    }, [perkara?.id, covers.length]);
 
     useEffect(() => {
         let active = true;
         let nextObjectUrl = "";
 
         if (!selectedCover?.url) {
+            setObjectUrl("");
+            setNumPages(null);
+            setPageNumber(1);
+            setLoadingPdf(false);
+            setError("");
             return undefined;
         }
+
+        setLoadingPdf(true);
+        setError("");
+        setNumPages(null);
+        setPageNumber(1);
 
         api.get(selectedCover.url, { responseType: "blob" })
             .then((response) => {
                 if (!active) return;
                 nextObjectUrl = URL.createObjectURL(response.data);
                 setObjectUrl(nextObjectUrl);
-                setNumPages(0);
-                setPageNumber(1);
-                setError("");
             })
             .catch((requestError) => {
                 if (!active) return;
-                setError(requestError.response?.data?.message || "Cover PDF gagal dimuat");
+                setError("PDF tidak dapat ditampilkan.");
+                setLoadingPdf(false);
                 setObjectUrl("");
-                setNumPages(0);
-                setPageNumber(1);
             });
 
         return () => {
@@ -60,10 +65,41 @@ function CoverViewer({ perkara, canManageCover = false, onCoverUpdated }) {
         };
     }, [selectedCover?.url]);
 
-    const pageWidth = useMemo(() => 560, []);
+    const containerRef = useRef(null);
+    const [containerWidth, setContainerWidth] = useState(380);
 
-    const goPrevious = () => setCoverIndex((current) => Math.max(0, current - 1));
-    const goNext = () => setCoverIndex((current) => Math.min(covers.length - 1, current + 1));
+    useEffect(() => {
+        if (!containerRef.current) return undefined;
+        const el = containerRef.current;
+        const observer = new ResizeObserver((entries) => {
+            if (entries[0]?.contentRect?.width > 0) {
+                setContainerWidth(entries[0].contentRect.width);
+            }
+        });
+        observer.observe(el);
+        return () => observer.disconnect();
+    }, []);
+
+    const pageWidth = useMemo(() => {
+        const calculated = containerWidth - 36;
+        return Math.max(240, Math.min(calculated, 460));
+    }, [containerWidth]);
+
+    const onDocumentLoadSuccess = ({ numPages: total }) => {
+        setNumPages(total);
+        setPageNumber(1);
+        setLoadingPdf(false);
+        setError("");
+    };
+
+    const onDocumentLoadError = (err) => {
+        console.error("Gagal memuat dokumen PDF:", err);
+        setError("PDF tidak dapat ditampilkan.");
+        setLoadingPdf(false);
+    };
+
+    const goPrevious = () => setPageNumber((current) => Math.max(1, current - 1));
+    const goNext = () => setPageNumber((current) => Math.min(numPages || 1, current + 1));
 
     const triggerUpload = () => {
         inputRef.current?.click();
@@ -128,12 +164,12 @@ function CoverViewer({ perkara, canManageCover = false, onCoverUpdated }) {
                 <h2>Cover Perkara</h2>
                 <div className="action-cell">
                     {canManageCover && (
-                        <button className="secondary-button" type="button" disabled={uploading} onClick={triggerUpload}>
-                            {selectedCover ? "Ganti Cover" : "Upload Cover Perkara"}
+                        <button className="secondary-button compact-button" type="button" disabled={uploading} onClick={triggerUpload}>
+                            {selectedCover ? "Ganti Cover" : "Upload Cover"}
                         </button>
                     )}
                     {selectedCover && (
-                        <button className="secondary-button" type="button" onClick={openCoverPdf}>
+                        <button className="secondary-button compact-button" type="button" onClick={openCoverPdf}>
                             Buka PDF
                         </button>
                     )}
@@ -150,46 +186,59 @@ function CoverViewer({ perkara, canManageCover = false, onCoverUpdated }) {
                 />
             )}
 
-            {error && <div className="notice error">{error}</div>}
-
             {selectedCover ? (
                 <>
-                    <div className="pdf-viewer-frame">
-                        {objectUrl && (
+                    <div className="pdf-viewer-frame" ref={containerRef}>
+                        {objectUrl ? (
                             <Document
                                 file={objectUrl}
-                                loading={<div className="pdf-loading">Memuat cover...</div>}
-                                error={<div className="pdf-loading">Cover PDF tidak dapat ditampilkan.</div>}
-                                onLoadSuccess={({ numPages: detectedPages }) => {
-                                    setNumPages(detectedPages);
-                                    setPageNumber(1);
-                                }}
+                                onLoadSuccess={onDocumentLoadSuccess}
+                                onLoadError={onDocumentLoadError}
+                                loading={<div className="pdf-loading">Memuat dokumen...</div>}
+                                error={<div className="pdf-error-state">PDF tidak dapat ditampilkan.</div>}
                             >
-                                <Page pageNumber={pageNumber} width={pageWidth} renderAnnotationLayer renderTextLayer />
+                                <Page
+                                    pageNumber={pageNumber}
+                                    width={pageWidth}
+                                    renderAnnotationLayer={false}
+                                    renderTextLayer={false}
+                                />
                             </Document>
+                        ) : error ? (
+                            <div className="pdf-error-state">{error}</div>
+                        ) : (
+                            <div className="pdf-loading">Memuat dokumen...</div>
                         )}
                     </div>
 
-                    {numPages > 1 && (
-                        <div className="pdf-toolbar">
-                            <button className="secondary-button" type="button" disabled={pageNumber <= 1} onClick={() => setPageNumber((current) => Math.max(1, current - 1))}>Previous</button>
-                            <span className="pdf-page-indicator">Halaman {pageNumber} / {numPages}</span>
-                            <button className="secondary-button" type="button" disabled={pageNumber >= numPages} onClick={() => setPageNumber((current) => Math.min(numPages, current + 1))}>Next</button>
-                        </div>
-                    )}
-
-                    <div className="panel-heading compact-heading"><h2>Carousel Cover</h2></div>
-                    <div className="pdf-toolbar">
-                        <button className="secondary-button" type="button" disabled={coverIndex === 0} onClick={goPrevious}>Previous</button>
-                        <span className="pdf-page-indicator">{covers.length ? `${coverIndex + 1} / ${covers.length}` : "0 / 0"}</span>
-                        <button className="secondary-button" type="button" disabled={coverIndex >= covers.length - 1} onClick={goNext}>Next</button>
+                    <div className="pdf-toolbar cover-carousel-toolbar">
+                        <button
+                            className="secondary-button compact-button"
+                            type="button"
+                            disabled={pageNumber <= 1 || loadingPdf || !numPages}
+                            onClick={goPrevious}
+                        >
+                            Previous
+                        </button>
+                        <span className="pdf-page-indicator">
+                            {loadingPdf ? "Memuat..." : `${pageNumber} / ${numPages || 1}`}
+                        </span>
+                        <button
+                            className="secondary-button compact-button"
+                            type="button"
+                            disabled={!numPages || pageNumber >= numPages || loadingPdf}
+                            onClick={goNext}
+                        >
+                            Next
+                        </button>
                     </div>
                 </>
             ) : (
-                <div className="cover-empty-state">
+                <div className="cover-empty-state" ref={containerRef}>
                     <div className="cover-placeholder-icon" aria-hidden="true">📄</div>
                     <strong>Cover perkara belum tersedia.</strong>
                     <p>{canManageCover ? "Upload cover PDF untuk menampilkan preview di halaman ini." : "Cover PDF belum diunggah untuk perkara ini."}</p>
+                    {error && <div className="notice error">{error}</div>}
                     {canManageCover && (
                         <button className="primary-button" type="button" disabled={uploading} onClick={triggerUpload}>Upload Cover Perkara</button>
                     )}
@@ -200,4 +249,3 @@ function CoverViewer({ perkara, canManageCover = false, onCoverUpdated }) {
 }
 
 export default CoverViewer;
-

@@ -1,8 +1,8 @@
-import { useCallback, useEffect, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { FiFileText, FiShield } from "react-icons/fi";
 import AppShell from "./AppShell";
 import { api, fetchData } from "../services/apiService";
-import { integrityBadge, normalizeIntegrityStatus } from "./BerkasCard";
+import { BerkasDetailModal, integrityBadge, normalizeIntegrityStatus } from "./BerkasCard";
 
 const formatDate = (value) => value ? value.slice(0, 10) : "-";
 const formatDateTime = (value) => value ? value.slice(0, 19).replace("T", " ") : "-";
@@ -11,6 +11,7 @@ function VerifikasiIntegritas() {
     const [berkas, setBerkas] = useState([]);
     const [history, setHistory] = useState([]);
     const [verifyingId, setVerifyingId] = useState("");
+    const [previewPdfBerkas, setPreviewPdfBerkas] = useState(null);
     const [notice, setNotice] = useState("");
     const [error, setError] = useState("");
 
@@ -44,25 +45,63 @@ function VerifikasiIntegritas() {
 
     const unverifiedItems = useMemo(() => berkas.filter((item) => normalizeIntegrityStatus(item.status_integritas) === "BELUM_DIVERIFIKASI"), [berkas]);
 
+    const noticeTimerRef = useRef(null);
+
+    const showNotice = useCallback((message) => {
+        if (noticeTimerRef.current) clearTimeout(noticeTimerRef.current);
+        setNotice(message);
+        noticeTimerRef.current = setTimeout(() => {
+            setNotice("");
+        }, 2000);
+    }, []);
+
+    useEffect(() => {
+        return () => {
+            if (noticeTimerRef.current) clearTimeout(noticeTimerRef.current);
+        };
+    }, []);
+
     const verifyItem = async (item) => {
         if (!item?.id) return;
 
         setVerifyingId(String(item.id));
         setNotice("");
+        setError("");
         try {
             const response = await api.post(`/berkas/${item.id}/verify`);
             const nextStatus = response.data?.integrity_status || response.data?.status || item.status_integritas;
             const verifiedAt = response.data?.verified_at || new Date().toISOString();
+            
+            // Update berkas state in memory immediately
             setBerkas((current) => current.map((currentItem) => String(currentItem.id) === String(item.id)
                 ? { ...currentItem, status_integritas: nextStatus, tanggal_verifikasi_terakhir: verifiedAt }
                 : currentItem));
-            setNotice(response.data?.message || "Verifikasi integritas selesai.");
-            await loadData();
+
+            // Update verification history in memory immediately
+            setHistory((current) => [
+                {
+                    id: Date.now(),
+                    nomor_perkara: item.nomor_perkara || "-",
+                    jenis_berkas: item.jenis_berkas || item.nama_berkas || "Berkas",
+                    nama_berkas: item.nama_berkas || item.jenis_berkas || "Berkas",
+                    status: nextStatus,
+                    tanggal_verifikasi: verifiedAt,
+                    diverifikasi_oleh_nama: localStorage.getItem("username") || "User"
+                },
+                ...current
+            ]);
+
+            showNotice(response.data?.message || "✓ Verifikasi integritas selesai.");
         } catch (requestError) {
             setError(requestError.response?.data?.message || "Verifikasi integritas gagal");
         } finally {
             setVerifyingId("");
         }
+    };
+
+    const handleViewPdf = (item) => {
+        if (!item?.id) return;
+        setPreviewPdfBerkas(item);
     };
 
     return (
@@ -84,23 +123,51 @@ function VerifikasiIntegritas() {
                     <div className="verification-work-list">
                         {unverifiedItems.map((item) => {
                             const badge = integrityBadge(item.status_integritas);
+                            const namaTerdakwa = item.nama_terdakwa || (Array.isArray(item.terdakwa) ? item.terdakwa.map((t) => t.nama_terdakwa).filter(Boolean).join(", ") : "") || "-";
+
                             return (
-                                <article className="verification-work-item" key={item.id}>
-                                    <span className="activity-feed-icon"><FiFileText aria-hidden="true" /></span>
-                                    <div className="activity-feed-content">
-                                        <div className="activity-feed-header">
-                                            <strong>{item.jenis_berkas || "Berkas"}</strong>
+                                <article className="verification-card-compact" key={item.id}>
+                                    {/* Bagian Kiri: Ikon dokumen + nama berkas + badge status */}
+                                    <div className="verification-card-left">
+                                        <div className="doc-icon-wrap">
+                                            <FiFileText aria-hidden="true" />
+                                        </div>
+                                        <div className="doc-identity">
+                                            <strong className="doc-name">{item.jenis_berkas || item.nama_berkas || "Berkas"}</strong>
                                             <span className={`badge ${badge.className}`}>{badge.label}</span>
                                         </div>
-                                        <dl className="activity-feed-meta">
-                                            <div><dt>Nomor Perkara</dt><dd>{item.nomor_perkara || "-"}</dd></div>
-                                            <div><dt>Nama Berkas</dt><dd>{item.nama_berkas || "-"}</dd></div>
-                                            <div><dt>Tanggal Upload</dt><dd>{formatDate(item.tanggal_mulai_aktif || item.tanggal_berkas || item.created_at)}</dd></div>
-                                        </dl>
                                     </div>
-                                    <button className="primary-button" type="button" disabled={String(verifyingId) === String(item.id)} onClick={() => verifyItem(item)}>
-                                        {String(verifyingId) === String(item.id) ? "Memverifikasi..." : "Verifikasi"}
-                                    </button>
+
+                                    {/* Bagian Tengah: Nomor Perkara & Nama Terdakwa */}
+                                    <div className="verification-card-center">
+                                        <div className="perkara-info-item">
+                                            <span className="info-label">Nomor Perkara:</span>
+                                            <span className="info-value">{item.nomor_perkara || "-"}</span>
+                                        </div>
+                                        <div className="perkara-info-item">
+                                            <span className="info-label">Nama Terdakwa:</span>
+                                            <span className="info-value">{namaTerdakwa}</span>
+                                        </div>
+                                    </div>
+
+                                    {/* Bagian Kanan: Tombol "Lihat PDF" (Sekunder) & "Verifikasi Integritas" (Primer) */}
+                                    <div className="verification-card-right">
+                                        <button
+                                            className="secondary-button compact-button"
+                                            type="button"
+                                            onClick={() => handleViewPdf(item)}
+                                        >
+                                            Lihat PDF
+                                        </button>
+                                        <button
+                                            className="primary-button compact-button"
+                                            type="button"
+                                            disabled={String(verifyingId) === String(item.id)}
+                                            onClick={() => verifyItem(item)}
+                                        >
+                                            {String(verifyingId) === String(item.id) ? "Memverifikasi..." : "Verifikasi Integritas"}
+                                        </button>
+                                    </div>
                                 </article>
                             );
                         })}
@@ -144,6 +211,25 @@ function VerifikasiIntegritas() {
                     </div>
                 )}
             </section>
+
+            {/* PREVIEW PDF MODAL */}
+            {previewPdfBerkas && (
+                <BerkasDetailModal
+                    berkas={previewPdfBerkas}
+                    canVerify={true}
+                    verifying={String(verifyingId) === String(previewPdfBerkas?.id)}
+                    onClose={() => setPreviewPdfBerkas(null)}
+                    onOpenPdf={(b) => {
+                        api.get(`/berkas/${b.id}/file`, { responseType: "blob" })
+                            .then((res) => window.open(URL.createObjectURL(res.data), "_blank"))
+                            .catch(() => window.open(`/api/berkas/${b.id}/file`, "_blank"));
+                    }}
+                    onVerifyIntegrity={(b) => {
+                        setPreviewPdfBerkas(null);
+                        verifyItem(b);
+                    }}
+                />
+            )}
         </AppShell>
     );
 }

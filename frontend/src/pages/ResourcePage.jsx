@@ -15,35 +15,39 @@ function ResourcePage({
     onOpen,
     queryParams = EMPTY_OBJECT,
     initialForm = EMPTY_OBJECT,
-    addLabel = "Tambah Data"
+    addLabel = "Tambah Data",
+    searchPlaceholder = "Cari data...",
+    searchFields
 }) {
     const [items, setItems] = useState([]);
     const [form, setForm] = useState({});
     const [editingId, setEditingId] = useState(null);
     const [search, setSearch] = useState("");
-    const [filterColumn, setFilterColumn] = useState(columns[0]?.key || "");
-    const [filterValue, setFilterValue] = useState("");
     const [page, setPage] = useState(1);
     const [modalOpen, setModalOpen] = useState(false);
     const [deleteTarget, setDeleteTarget] = useState(null);
     const [loading, setLoading] = useState(false);
+    const [submitting, setSubmitting] = useState(false);
+    const [deleting, setDeleting] = useState(false);
     const [notice, setNotice] = useState("");
     const [error, setError] = useState("");
     const pageSize = 8;
 
     const visibleItems = useMemo(() => {
-        const term = search.toLowerCase();
-        const filterTerm = filterValue.toLowerCase();
+        const term = search.toLowerCase().trim();
+        if (!term) return items;
 
-        return items.filter((item) =>
-            (!term ||
-                Object.values(item).some((value) =>
-                    String(value || "").toLowerCase().includes(term)
-                )) &&
-            (!filterTerm ||
-                String(item[filterColumn] || "").toLowerCase().includes(filterTerm))
-        );
-    }, [filterColumn, filterValue, items, search]);
+        return items.filter((item) => {
+            if (Array.isArray(searchFields) && searchFields.length > 0) {
+                return searchFields.some((field) =>
+                    String(item[field] || "").toLowerCase().includes(term)
+                );
+            }
+            return Object.values(item).some((value) =>
+                String(value || "").toLowerCase().includes(term)
+            );
+        });
+    }, [items, search, searchFields]);
 
     const totalPages = Math.max(1, Math.ceil(visibleItems.length / pageSize));
     const pagedItems = visibleItems.slice((page - 1) * pageSize, page * pageSize);
@@ -52,14 +56,18 @@ function ResourcePage({
         setLoading(true);
 
         try {
-            const data = await fetchData(endpoint, queryParams);
+            const params = { ...queryParams };
+            if (search) {
+                params.search = search;
+            }
+            const data = await fetchData(endpoint, params);
             setItems(Array.isArray(data) ? data : []);
         } catch (error) {
             setError(error.response?.data?.message || `Gagal memuat ${title}`);
         } finally {
             setLoading(false);
         }
-    }, [endpoint, queryParams, title]);
+    }, [endpoint, queryParams, search, title]);
 
     useEffect(() => {
         Promise.resolve().then(loadItems);
@@ -99,21 +107,24 @@ function ResourcePage({
 
     const handleSubmit = async (event) => {
         event.preventDefault();
+        setSubmitting(true);
+        setError("");
 
         try {
             if (editingId) {
                 await updateData(endpoint, editingId, form);
-                setNotice("Data berhasil diperbarui.");
+                setNotice("✓ Data berhasil diperbarui.");
             } else {
                 await createData(endpoint, form);
-                setNotice("Data berhasil ditambahkan.");
+                setNotice("✓ Data berhasil ditambahkan.");
             }
 
-            setError("");
             resetForm();
             loadItems();
         } catch (error) {
             setError(error.response?.data?.message || "Data gagal disimpan");
+        } finally {
+            setSubmitting(false);
         }
     };
 
@@ -130,14 +141,18 @@ function ResourcePage({
     };
 
     const handleDelete = async () => {
+        setDeleting(true);
+        setError("");
+
         try {
             await deleteData(endpoint, deleteTarget);
-            setNotice("Data berhasil dihapus.");
-            setError("");
+            setNotice("✓ Data berhasil dihapus.");
             setDeleteTarget(null);
             loadItems();
         } catch (error) {
             setError(error.response?.data?.message || "Data gagal dihapus");
+        } finally {
+            setDeleting(false);
         }
     };
 
@@ -161,35 +176,10 @@ function ResourcePage({
                             <span>Pencarian Data</span>
                             <input
                                 className="search-input"
-                                placeholder="Cari data..."
+                                placeholder={searchPlaceholder}
                                 value={search}
                                 onChange={(event) => {
                                     setSearch(event.target.value);
-                                    setPage(1);
-                                }}
-                            />
-                        </label>
-                        <label className="field">
-                            <span>Kategori Filter</span>
-                            <select
-                                value={filterColumn}
-                                onChange={(event) => setFilterColumn(event.target.value)}
-                            >
-                                {columns.map((column) => (
-                                    <option key={column.key} value={column.key}>
-                                        Filter {column.label}
-                                    </option>
-                                ))}
-                            </select>
-                        </label>
-                        <label className="field">
-                            <span>Nilai Filter</span>
-                            <input
-                                className="search-input"
-                                placeholder="Nilai filter..."
-                                value={filterValue}
-                                onChange={(event) => {
-                                    setFilterValue(event.target.value);
                                     setPage(1);
                                 }}
                             />
@@ -260,7 +250,7 @@ function ResourcePage({
                     <form className="modal-card" onSubmit={handleSubmit}>
                         <div className="panel-heading">
                             <h2>{editingId ? "Edit Data" : "Tambah Data"}</h2>
-                            <button type="button" className="secondary-button" onClick={resetForm}>
+                            <button type="button" className="secondary-button" disabled={submitting} onClick={resetForm}>
                                 Tutup
                             </button>
                         </div>
@@ -321,11 +311,11 @@ function ResourcePage({
                         </div>
 
                         <div className="modal-actions">
-                            <button className="secondary-button" type="button" onClick={resetForm}>
+                            <button className="secondary-button" type="button" disabled={submitting} onClick={resetForm}>
                                 Batal
                             </button>
-                            <button className="primary-button" type="submit">
-                                {editingId ? "Simpan Perubahan" : "Tambah"}
+                            <button className="primary-button" type="submit" disabled={submitting}>
+                                {submitting ? "Menyimpan..." : editingId ? "Simpan Perubahan" : "Tambah"}
                             </button>
                         </div>
                     </form>
@@ -338,11 +328,11 @@ function ResourcePage({
                         <h2>Konfirmasi Hapus</h2>
                         <p>Data yang dihapus tidak dapat dikembalikan dari halaman ini.</p>
                         <div className="modal-actions">
-                            <button className="secondary-button" onClick={() => setDeleteTarget(null)}>
+                            <button className="secondary-button" disabled={deleting} onClick={() => setDeleteTarget(null)}>
                                 Batal
                             </button>
-                            <button className="danger-button" onClick={handleDelete}>
-                                Hapus
+                            <button className="danger-button" disabled={deleting} onClick={handleDelete}>
+                                {deleting ? "Menghapus..." : "Hapus"}
                             </button>
                         </div>
                     </div>

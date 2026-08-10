@@ -37,7 +37,10 @@ const normalizePositiveInteger = (value) => {
 // GET semua lemari
 const getAllLemari = async (req, res) => {
     try {
-        const result = await pool.query(`
+        const { search, q } = req.query;
+        const searchTerm = normalizeText(search || q);
+
+        let sql = `
             SELECT
                 id,
                 nama_lemari,
@@ -47,8 +50,17 @@ const getAllLemari = async (req, res) => {
                 jumlah_terpakai,
                 status
             FROM lemari
-            ORDER BY id
-        `);
+        `;
+        const params = [];
+
+        if (searchTerm) {
+            sql += ` WHERE LOWER(nama_lemari) LIKE $1 OR LOWER(lokasi) LIKE $1`;
+            params.push(`%${searchTerm.toLowerCase()}%`);
+        }
+
+        sql += ` ORDER BY id`;
+
+        const result = await pool.query(sql, params);
 
         res.status(200).json(result.rows);
 

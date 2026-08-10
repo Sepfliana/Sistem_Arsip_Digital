@@ -105,18 +105,40 @@ function Pengaturan() {
                         {profileError && <p className="status-danger">{profileError}</p>}
                     </div>
                 </div>
-                <dl>
-                    <dt>Nama Lengkap</dt>
-                    <dd>{profile?.nama_lengkap || username || "-"}</dd>
-                    <dt>NIP</dt>
-                    <dd>{profile?.nip || "-"}</dd>
-                    <dt>Username</dt>
-                    <dd>{profile?.username || username || "-"}</dd>
-                    <dt>Jabatan</dt>
-                    <dd>{profile?.jabatan || profile?.nama_peran || role || "-"}</dd>
-                    <dt>Role</dt>
-                    <dd>{profile?.nama_peran || role || "-"}</dd>
-                </dl>
+                <div className="profile-info-grid">
+                    {/* Kolom Kiri: Nama Lengkap, Username, Role */}
+                    <div className="profile-info-column">
+                        <div className="profile-info-row">
+                            <span className="profile-info-label">Nama Lengkap</span>
+                            <span className="profile-info-colon">:</span>
+                            <strong className="profile-info-value">{profile?.nama_lengkap || username || "-"}</strong>
+                        </div>
+                        <div className="profile-info-row">
+                            <span className="profile-info-label">Username</span>
+                            <span className="profile-info-colon">:</span>
+                            <strong className="profile-info-value">{profile?.username || username || "-"}</strong>
+                        </div>
+                        <div className="profile-info-row">
+                            <span className="profile-info-label">Role</span>
+                            <span className="profile-info-colon">:</span>
+                            <strong className="profile-info-value">{profile?.nama_peran || role || "-"}</strong>
+                        </div>
+                    </div>
+
+                    {/* Kolom Kanan: NIP, Jabatan */}
+                    <div className="profile-info-column">
+                        <div className="profile-info-row">
+                            <span className="profile-info-label">NIP</span>
+                            <span className="profile-info-colon">:</span>
+                            <strong className="profile-info-value">{profile?.nip || "-"}</strong>
+                        </div>
+                        <div className="profile-info-row">
+                            <span className="profile-info-label">Jabatan</span>
+                            <span className="profile-info-colon">:</span>
+                            <strong className="profile-info-value">{profile?.jabatan || profile?.nama_peran || role || "-"}</strong>
+                        </div>
+                    </div>
+                </div>
             </section>
 
             {isAdmin && (

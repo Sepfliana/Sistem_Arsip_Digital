@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { FiAlertTriangle, FiCheckCircle, FiClock, FiEye, FiRefreshCw, FiShield } from "react-icons/fi";
 import AppShell from "../AppShell";
 import { api, fetchData } from "../../services/apiService";
@@ -30,6 +30,7 @@ const normalizeAction = (value) => {
 };
 
 const getRiskCategory = (item) => {
+    if (!item) return "Normal";
     const risk = String(item.tingkat_risiko || "").toUpperCase();
     const score = Number(item.skor_anomali || 0);
 
@@ -87,11 +88,29 @@ function Anomali() {
     const [overrideReason, setOverrideReason] = useState("");
     const [decisionError, setDecisionError] = useState("");
     const [loading, setLoading] = useState(false);
+    const [actionLoading, setActionLoading] = useState("");
     const [error, setError] = useState("");
+    const [toastMessage, setToastMessage] = useState("");
     const [activeFilter, setActiveFilter] = useState("Semua");
     const [startDate, setStartDate] = useState("");
     const [endDate, setEndDate] = useState("");
     const [userSearch, setUserSearch] = useState("");
+
+    const toastTimerRef = useRef(null);
+
+    const showToast = useCallback((message) => {
+        if (toastTimerRef.current) clearTimeout(toastTimerRef.current);
+        setToastMessage(message);
+        toastTimerRef.current = setTimeout(() => {
+            setToastMessage("");
+        }, 2000);
+    }, []);
+
+    useEffect(() => {
+        return () => {
+            if (toastTimerRef.current) clearTimeout(toastTimerRef.current);
+        };
+    }, []);
 
     const analysisRows = useMemo(() => {
         const reportByAuditId = new Map(reports.map((report) => [Number(report.sumber_audit_log_id), report]));
@@ -184,42 +203,79 @@ function Anomali() {
         Promise.resolve().then(loadReports);
     }, [loadReports]);
 
-    const closeDetail = () => {
+    const closeDetail = useCallback(() => {
         setSelectedReport(null);
         setDecisionMode("");
         setOverrideReason("");
         setDecisionError("");
-    };
+    }, []);
 
-    const saveDecision = async () => {
-        if (!decisionMode) return;
+    const openDetail = useCallback((report) => {
+        setSelectedReport(report);
+        const status = String(report?.status_keputusan || "").toUpperCase();
+        if (status === "DITERIMA") setDecisionMode("accept");
+        else if (status === "SELESAI" || status === "OVERRIDE") setDecisionMode("override");
+        else setDecisionMode("");
+
+        setDecisionError("");
+        setOverrideReason(report.anomalyId ? localStorage.getItem(getReviewNoteKey(report.anomalyId)) || "" : "");
+    }, []);
+
+    const handleAction = async (targetMode) => {
+        if (!selectedReport || !selectedReport.anomalyId) return;
 
         const isHighRisk = getRiskCategory(selectedReport) === "High Risk";
-        if (decisionMode === "override" && isHighRisk && !overrideReason.trim()) {
+        const modeToUse = targetMode === "save" ? decisionMode : (targetMode || decisionMode);
+
+        if (!modeToUse) {
+            setDecisionError("Pilih salah satu keputusan terlebih dahulu.");
+            return;
+        }
+
+        if (modeToUse === "override" && isHighRisk && !overrideReason.trim()) {
             setDecisionError("Keterangan pemeriksaan wajib diisi sebelum aktivitas dapat ditandai selesai.");
             return;
         }
 
-        const decision = decisionMode === "override" ? "OVERRIDE" : "DITERIMA";
+        const decision = modeToUse === "override" ? "OVERRIDE" : "DITERIMA";
+
+        setActionLoading(targetMode);
+        setDecisionError("");
+        setError("");
 
         try {
             await api.put(`/audit-log/anomali/${selectedReport.anomalyId}/decision`, {
                 decision,
                 reason: overrideReason.trim()
             });
-            localStorage.setItem(getReviewNoteKey(selectedReport.anomalyId), overrideReason.trim());
-            await loadReports();
-            closeDetail();
+
+            if (overrideReason.trim()) {
+                localStorage.setItem(getReviewNoteKey(selectedReport.anomalyId), overrideReason.trim());
+            }
+
+            // Update reports local state immediately without full page reload
+            setReports((prevReports) =>
+                prevReports.map((item) =>
+                    Number(item.id) === Number(selectedReport.anomalyId)
+                        ? { ...item, status_keputusan: decision, reason: overrideReason.trim() }
+                        : item
+                )
+            );
+
+            setSelectedReport((prev) => (prev ? { ...prev, status_keputusan: decision } : null));
+            setDecisionMode(modeToUse);
+
+            // Show success toast for 2 seconds
+            showToast("✓ Tinjauan selesai dan keputusan berhasil disimpan.");
+
+            if (targetMode === "save") {
+                closeDetail();
+            }
         } catch (requestError) {
             setError(requestError.response?.data?.message || "Gagal menyimpan keputusan anomali");
+        } finally {
+            setActionLoading("");
         }
-    };
-
-    const openDetail = (report) => {
-        setSelectedReport(report);
-        setDecisionMode("");
-        setDecisionError("");
-        setOverrideReason(report.anomalyId ? localStorage.getItem(getReviewNoteKey(report.anomalyId)) || "" : "");
     };
 
     const progressItems = [
@@ -231,7 +287,8 @@ function Anomali() {
 
     return (
         <AppShell title="Deteksi Anomali" subtitle="Ringkasan aktivitas yang perlu perhatian dan tindak lanjut">
-            {error && <div className="toast error">{error}</div>}
+            {toastMessage && <div className="toast success" role="status" aria-live="polite">{toastMessage}</div>}
+            {error && <div className="toast error" role="alert">{error}</div>}
 
             <section className="summary-grid">
                 <div className="metric-card"><span>Total Aktivitas Dianalisis</span><strong>{stats.total}</strong></div>
@@ -275,7 +332,10 @@ function Anomali() {
                         <h2>Daftar Aktivitas dan Anomali</h2>
                         <p className="panel-subtitle">Menampilkan {filteredRows.length} dari {analysisRows.length} aktivitas.</p>
                     </div>
-                    <button className="secondary-button" onClick={loadReports}><FiRefreshCw aria-hidden="true" />Muat Ulang</button>
+                    <button className="secondary-button" disabled={loading} onClick={loadReports}>
+                        <FiRefreshCw className={loading ? "spinner-rotate" : ""} aria-hidden="true" />
+                        {loading ? "Memuat..." : "Muat Ulang"}
+                    </button>
                 </div>
 
                 <div className="filter-vertical-container">
@@ -347,8 +407,8 @@ function Anomali() {
             </section>
 
             {selectedReport && (
-                <div className="modal-backdrop">
-                    <div className="modal-card anomaly-detail-modal">
+                <div className="modal-backdrop" onClick={closeDetail}>
+                    <div className="modal-card anomaly-detail-modal" onClick={(e) => e.stopPropagation()}>
                         <div className="panel-heading">
                             <h2>Detail Anomali</h2>
                             <button className="secondary-button" onClick={closeDetail}>Tutup</button>
@@ -401,9 +461,49 @@ function Anomali() {
                         <div className="modal-actions anomaly-decision-actions">
                             {selectedReport.anomalyId ? (
                                 <>
-                                    <button className={`secondary-button ${decisionMode === "accept" ? "is-selected" : ""}`} onClick={() => { setDecisionMode("accept"); setDecisionError(""); }}><FiClock aria-hidden="true" />Tandai Sedang Ditinjau</button>
-                                    <button className={`danger-button ${decisionMode === "override" ? "is-selected" : ""}`} disabled={getRiskCategory(selectedReport) === "High Risk" && !overrideReason.trim()} onClick={() => { setDecisionMode("override"); setDecisionError(""); }}><FiShield aria-hidden="true" />Tandai Selesai</button>
-                                    <button className="primary-button" disabled={!decisionMode} onClick={saveDecision}>Simpan Keputusan</button>
+                                    <button
+                                        className={`secondary-button ${decisionMode === "accept" ? "is-selected" : ""}`}
+                                        disabled={Boolean(actionLoading)}
+                                        onClick={() => handleAction("accept")}
+                                    >
+                                        {actionLoading === "accept" ? (
+                                            <>
+                                                <span className="spinner-sm" aria-hidden="true" /> Memproses...
+                                            </>
+                                        ) : (
+                                            <>
+                                                <FiClock aria-hidden="true" /> Tandai Sedang Ditinjau
+                                            </>
+                                        )}
+                                    </button>
+                                    <button
+                                        className={`danger-button ${decisionMode === "override" ? "is-selected" : ""}`}
+                                        disabled={Boolean(actionLoading) || (getRiskCategory(selectedReport) === "High Risk" && !overrideReason.trim())}
+                                        onClick={() => handleAction("override")}
+                                    >
+                                        {actionLoading === "override" ? (
+                                            <>
+                                                <span className="spinner-sm" aria-hidden="true" /> Memproses...
+                                            </>
+                                        ) : (
+                                            <>
+                                                <FiShield aria-hidden="true" /> Tandai Selesai
+                                            </>
+                                        )}
+                                    </button>
+                                    <button
+                                        className="primary-button"
+                                        disabled={Boolean(actionLoading) || !decisionMode}
+                                        onClick={() => handleAction("save")}
+                                    >
+                                        {actionLoading === "save" ? (
+                                            <>
+                                                <span className="spinner-sm" aria-hidden="true" /> Menyimpan...
+                                            </>
+                                        ) : (
+                                            "Simpan Keputusan"
+                                        )}
+                                    </button>
                                 </>
                             ) : (
                                 <button className="primary-button" onClick={closeDetail}>Mengerti</button>
@@ -417,3 +517,4 @@ function Anomali() {
 }
 
 export default Anomali;
+

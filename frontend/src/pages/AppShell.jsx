@@ -1,6 +1,6 @@
-﻿import { Link, useLocation, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { FiArchive, FiBarChart2, FiBookOpen, FiCheckCircle, FiClock, FiFileText, FiGrid, FiLogOut, FiSettings, FiShield, FiUsers } from "react-icons/fi";
+import { FiArchive, FiBarChart2, FiBookOpen, FiCheckCircle, FiClock, FiFileText, FiGrid, FiLogOut, FiMenu, FiSettings, FiShield, FiUsers, FiX } from "react-icons/fi";
 import logoKejaksaan from "../assets/logo-kejaksaan.png";
 import { api } from "../services/apiService";
 
@@ -33,6 +33,8 @@ const menusByRole = {
 
 const normalizeRole = (role) => (role || "").toLowerCase();
 
+let anomalyBadgeCache = { count: null, timestamp: 0 };
+
 function AppShell({ title, subtitle, children }) {
     const navigate = useNavigate();
     const location = useLocation();
@@ -41,9 +43,20 @@ function AppShell({ title, subtitle, children }) {
     const normalizedRole = normalizeRole(role);
     const menus = menusByRole[normalizedRole] || menusByRole.user;
     const [highRiskCount, setHighRiskCount] = useState(0);
+    const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+
+    useEffect(() => {
+        setMobileMenuOpen(false);
+    }, [location.pathname]);
 
     useEffect(() => {
         if (normalizedRole !== "admin") {
+            return undefined;
+        }
+
+        const now = Date.now();
+        if (anomalyBadgeCache.count !== null && now - anomalyBadgeCache.timestamp < 30000) {
+            setHighRiskCount(anomalyBadgeCache.count);
             return undefined;
         }
 
@@ -52,7 +65,9 @@ function AppShell({ title, subtitle, children }) {
             .then((response) => {
                 if (!mounted) return;
                 const data = Array.isArray(response.data) ? response.data : [];
-                setHighRiskCount(data.filter((item) => ["SEDANG", "TINGGI", "MEDIUM", "HIGH"].includes(String(item.tingkat_risiko || "").toUpperCase())).length);
+                const count = data.filter((item) => ["SEDANG", "TINGGI", "MEDIUM", "HIGH"].includes(String(item.tingkat_risiko || "").toUpperCase())).length;
+                anomalyBadgeCache = { count, timestamp: Date.now() };
+                setHighRiskCount(count);
             })
             .catch(() => setHighRiskCount(0));
 
@@ -74,40 +89,67 @@ function AppShell({ title, subtitle, children }) {
 
     return (
         <div className="app-shell">
-            <aside className="sidebar">
+            {mobileMenuOpen && (
+                <div
+                    className="sidebar-backdrop"
+                    onClick={() => setMobileMenuOpen(false)}
+                    aria-hidden="true"
+                />
+            )}
+
+            <aside className={`sidebar ${mobileMenuOpen ? "is-mobile-open" : ""}`}>
                 <div className="brand">
                     <img src={logoKejaksaan} alt="Logo Kejaksaan" />
                     <div>
                         <strong>Sistem Arsip Digital</strong>
                         <span>Kejaksaan Negeri Pariaman</span>
                     </div>
+                    <button
+                        type="button"
+                        className="mobile-close-button"
+                        onClick={() => setMobileMenuOpen(false)}
+                        aria-label="Tutup Menu"
+                    >
+                        <FiX aria-hidden="true" />
+                    </button>
                 </div>
 
                 <nav className="side-nav">
                     {menus.map((menu) => {
                         const Icon = menu.icon || FiFileText;
                         return (
-                        <Link
-                            key={menu.path}
-                            className={location.pathname === menu.path ? "active" : ""}
-                            to={menu.path}
-                        >
-                            <Icon aria-hidden="true" />
-                            <span>{menu.label}</span>
-                            {menu.badge === "anomali" && highRiskCount > 0 && (
-                                <em className="menu-badge">{highRiskCount}</em>
-                            )}
-                        </Link>
-                    );
+                            <Link
+                                key={menu.path}
+                                className={location.pathname === menu.path ? "active" : ""}
+                                to={menu.path}
+                                onClick={() => setMobileMenuOpen(false)}
+                            >
+                                <Icon aria-hidden="true" />
+                                <span>{menu.label}</span>
+                                {menu.badge === "anomali" && highRiskCount > 0 && (
+                                    <em className="menu-badge">{highRiskCount}</em>
+                                )}
+                            </Link>
+                        );
                     })}
                 </nav>
             </aside>
 
             <main className="workspace">
                 <header className="topbar">
-                    <div>
-                        <h1>{title}</h1>
-                        {subtitle && <p>{subtitle}</p>}
+                    <div className="topbar-left">
+                        <button
+                            type="button"
+                            className="mobile-menu-toggle"
+                            onClick={() => setMobileMenuOpen(true)}
+                            aria-label="Buka Menu"
+                        >
+                            <FiMenu aria-hidden="true" />
+                        </button>
+                        <div>
+                            <h1>{title}</h1>
+                            {subtitle && <p>{subtitle}</p>}
+                        </div>
                     </div>
                     <div className="account-chip">
                         <span>{username}</span>

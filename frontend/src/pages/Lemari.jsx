@@ -101,6 +101,8 @@ function Lemari() {
                 openLabel="Buka Rak"
                 addLabel="Tambah Lemari"
                 canDelete={canDelete}
+                searchPlaceholder="Cari nama atau lokasi lemari..."
+                searchFields={["nama_lemari", "lokasi"]}
                 columns={[
                     { key: "nama_lemari", label: "Nama Lemari" },
                     { key: "lokasi", label: "Lokasi" },
@@ -130,25 +132,29 @@ function Lemari() {
                     <h2>{selectedLemari?.nama_lemari || "Lemari"}</h2>
                     <button className="secondary-button" onClick={() => navigate("/lemari")}>Kembali</button>
                 </div>
-                <dl className="detail-grid">
+                <dl className="detail-grid lemari-detail-grid">
                     <div className="detail-row">
-                        <dt>Lokasi</dt>
+                        <dt>Nama Lemari:</dt>
+                        <dd>{selectedLemari?.nama_lemari || "-"}</dd>
+                    </div>
+                    <div className="detail-row">
+                        <dt>Lokasi:</dt>
                         <dd>{selectedLemari?.lokasi || "-"}</dd>
                     </div>
                     <div className="detail-row">
-                        <dt>Status</dt>
+                        <dt>Status:</dt>
                         <dd><span className={`badge ${statusBadge(selectedLemari?.status)}`}>{selectedLemari?.status || "Kosong"}</span></dd>
                     </div>
                     <div className="detail-row">
-                        <dt>Jumlah Rak</dt>
+                        <dt>Jumlah Rak:</dt>
                         <dd>{selectedLemari?.jumlah_rak ?? rak.length}</dd>
                     </div>
                     <div className="detail-row">
-                        <dt>Rak Terpakai</dt>
+                        <dt>Rak Terpakai:</dt>
                         <dd>{selectedLemari?.jumlah_terpakai ?? 0}</dd>
                     </div>
                     <div className="detail-row">
-                        <dt>Kapasitas Total</dt>
+                        <dt>Kapasitas Total:</dt>
                         <dd>{selectedLemari?.kapasitas_total ?? "-"}</dd>
                     </div>
                 </dl>

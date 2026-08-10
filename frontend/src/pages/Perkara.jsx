@@ -700,14 +700,14 @@ function Perkara() {
                         {!readOnly && <button className="primary-button" disabled={rakTersedia.length === 0} onClick={openAdd}>Tambah Perkara</button>}
                     </div>
                 </div>
-                <div className="filter-vertical-container">
+                <div className="perkara-filter-grid">
                     <label className="field"><span>Nomor Perkara</span><input value={filters.nomor_perkara} onChange={(event) => updateFilter("nomor_perkara", event.target.value)} placeholder="Nomor perkara" /></label>
                     <label className="field"><span>Nama Terdakwa</span><input value={filters.nama_terdakwa} onChange={(event) => updateFilter("nama_terdakwa", event.target.value)} placeholder="Nama terdakwa" /></label>
                     <SearchableDropdown label="Jaksa" value={filters.jaksa_id} options={jaksaOptions.map((item) => makeOption(item, "nama_jaksa"))} onChange={(value) => updateFilter("jaksa_id", value)} loading={masterLoading} placeholder="Semua jaksa" />
                     <SearchableDropdown label="Jenis Pidana" value={filters.jenis_pidana_id} options={jenisPidanaOptions.map((item) => makeOption(item, "nama_jenis_pidana"))} onChange={(value) => updateFilter("jenis_pidana_id", value)} loading={masterLoading} placeholder="Semua jenis pidana" />
                     <SearchableDropdown label="Jenis Perkara" value={filters.jenis_perkara_id} options={filterJenisPerkaraOptions.map((item) => makeOption(item, "nama_jenis_perkara"))} onChange={(value) => updateFilter("jenis_perkara_id", value)} disabled={!filters.jenis_pidana_id} loading={filterJenisPerkaraLoading} placeholder="Pilih jenis pidana dulu" />
                     <SearchableDropdown label="Instansi Penyidik" value={filters.instansi_penyidik_id} options={instansiOptions.map((item) => makeOption(item, "nama_instansi"))} onChange={(value) => updateFilter("instansi_penyidik_id", value)} loading={masterLoading} placeholder="Semua instansi" />
-                    <label className="field"><span>Tahun</span><input value={filters.tahun} onChange={(event) => updateFilter("tahun", event.target.value)} placeholder="2026" inputMode="numeric" /></label>
+                    <label className="field field-tahun"><span>Tahun</span><input value={filters.tahun} onChange={(event) => updateFilter("tahun", event.target.value)} placeholder="2026" inputMode="numeric" /></label>
                     <div className="filter-actions-row">
                         <button className="secondary-button" type="button" onClick={resetFilters}>Reset Filter</button>
                         <span className="table-count">{items.length} data</span>
