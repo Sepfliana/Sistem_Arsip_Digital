@@ -4,9 +4,10 @@ import { api, openAuthenticatedPdf } from "../services/apiService";
 import "react-pdf/dist/Page/AnnotationLayer.css";
 import "react-pdf/dist/Page/TextLayer.css";
 
-import pdfWorker from "pdfjs-dist/build/pdf.worker.min.mjs?url";
-
-pdfjs.GlobalWorkerOptions.workerSrc = pdfWorker;
+pdfjs.GlobalWorkerOptions.workerSrc = new URL(
+    "pdfjs-dist/build/pdf.worker.min.mjs",
+    import.meta.url
+).toString();
 
 const MAX_COVER_SIZE = 25 * 1024 * 1024;
 
@@ -18,7 +19,7 @@ function CoverViewer({ perkara, berkas = [], canManageCover = false, onCoverUpda
         : null;
     const selectedCover = primaryCover || (fallbackBerkas ? { url: fallbackBerkas.file_path || fallbackBerkas.url, file_name: fallbackBerkas.nama_berkas || fallbackBerkas.jenis_berkas } : null);
 
-    const [objectUrl, setObjectUrl] = useState("");
+    const [pdfBlob, setPdfBlob] = useState(null);
     const [numPages, setNumPages] = useState(null);
     const [pageNumber, setPageNumber] = useState(1);
     const [loadingPdf, setLoadingPdf] = useState(false);
@@ -26,12 +27,13 @@ function CoverViewer({ perkara, berkas = [], canManageCover = false, onCoverUpda
     const [uploading, setUploading] = useState(false);
     const inputRef = useRef(null);
 
-    useEffect(() => {
-        let active = true;
-        let nextObjectUrl = "";
+    const targetUrl = selectedCover?.url || "";
 
-        if (!selectedCover?.url) {
-            setObjectUrl("");
+    useEffect(() => {
+        let isCancelled = false;
+
+        if (!targetUrl) {
+            setPdfBlob(null);
             setNumPages(null);
             setPageNumber(1);
             setLoadingPdf(false);
@@ -41,29 +43,52 @@ function CoverViewer({ perkara, berkas = [], canManageCover = false, onCoverUpda
 
         setLoadingPdf(true);
         setError("");
-        setNumPages(null);
-        setPageNumber(1);
 
-        api.get(selectedCover.url, { responseType: "blob" })
-            .then((response) => {
-                if (!active) return;
-                nextObjectUrl = URL.createObjectURL(response.data);
-                setObjectUrl(nextObjectUrl);
+        api.get(targetUrl, { responseType: "blob" })
+            .then(async (response) => {
+                if (isCancelled) return;
+
+                const blob = response.data;
+                if (!(blob instanceof Blob)) {
+                    console.error("[CoverViewer] Response data is not a Blob:", blob);
+                    setError("PDF tidak dapat ditampilkan.");
+                    setLoadingPdf(false);
+                    setPdfBlob(null);
+                    return;
+                }
+
+                try {
+                    const headerBuffer = await blob.slice(0, 8).arrayBuffer();
+                    const headerStr = new TextDecoder().decode(headerBuffer);
+                    if (!headerStr.startsWith("%PDF-")) {
+                        console.error("[CoverViewer] Invalid PDF signature:", headerStr);
+                        setError("File bukan dokumen PDF yang valid.");
+                        setLoadingPdf(false);
+                        setPdfBlob(null);
+                        return;
+                    }
+                } catch (sigErr) {
+                    console.warn("[CoverViewer] Could not verify PDF magic header:", sigErr);
+                }
+
+                setPdfBlob(blob);
+                setPageNumber(1);
+                setNumPages(null);
+                setError("");
+                setLoadingPdf(false);
             })
             .catch((requestError) => {
-                if (!active) return;
-                setError("PDF tidak dapat ditampilkan.");
+                if (isCancelled) return;
+                console.error("[CoverViewer] HTTP GET Blob error:", requestError);
+                setError(requestError.response?.data?.message || "PDF tidak dapat ditampilkan.");
                 setLoadingPdf(false);
-                setObjectUrl("");
+                setPdfBlob(null);
             });
 
         return () => {
-            active = false;
-            if (nextObjectUrl) {
-                URL.revokeObjectURL(nextObjectUrl);
-            }
+            isCancelled = true;
         };
-    }, [selectedCover?.url]);
+    }, [targetUrl]);
 
     const containerRef = useRef(null);
     const [containerWidth, setContainerWidth] = useState(380);
@@ -81,11 +106,13 @@ function CoverViewer({ perkara, berkas = [], canManageCover = false, onCoverUpda
     }, []);
 
     const pageWidth = useMemo(() => {
-        const calculated = containerWidth - 36;
-        return Math.max(240, Math.min(calculated, 460));
+        const calculated = containerWidth - 32;
+        return Math.max(240, Math.min(calculated, 540));
     }, [containerWidth]);
 
-    const onDocumentLoadSuccess = ({ numPages: total }) => {
+    const onDocumentLoadSuccess = (pdf) => {
+        const total = pdf?.numPages || 1;
+        console.log("[CoverViewer] PDF LOAD SUCCESS", { numPages: total });
         setNumPages(total);
         setPageNumber(1);
         setLoadingPdf(false);
@@ -93,8 +120,13 @@ function CoverViewer({ perkara, berkas = [], canManageCover = false, onCoverUpda
     };
 
     const onDocumentLoadError = (err) => {
-        console.error("Gagal memuat dokumen PDF:", err);
-        setError("PDF tidak dapat ditampilkan.");
+        console.error("[CoverViewer] PDF LOAD ERROR:", {
+            name: err?.name,
+            message: err?.message,
+            stack: err?.stack,
+            fullError: err
+        });
+        setError(`PDF tidak dapat ditampilkan. (${err?.message || "Error PDF.js"})`);
         setLoadingPdf(false);
     };
 
@@ -160,21 +192,22 @@ function CoverViewer({ perkara, berkas = [], canManageCover = false, onCoverUpda
 
     return (
         <section className="panel cover-panel">
-            <div className="panel-heading">
-                <h2>Cover Perkara</h2>
-                <div className="action-cell">
-                    {canManageCover && (
-                        <button className="secondary-button compact-button" type="button" disabled={uploading} onClick={triggerUpload}>
-                            {selectedCover ? "Ganti Cover" : "Upload Cover"}
-                        </button>
-                    )}
-                    {selectedCover && (
-                        <button className="secondary-button compact-button" type="button" onClick={openCoverPdf}>
-                            Buka PDF
-                        </button>
-                    )}
+            {(canManageCover || selectedCover) && (
+                <div className="pdf-viewer-header">
+                    <div className="action-cell">
+                        {canManageCover && (
+                            <button className="secondary-button compact-button" type="button" disabled={uploading} onClick={triggerUpload}>
+                                {selectedCover ? "Ganti Cover" : "Upload Cover"}
+                            </button>
+                        )}
+                        {selectedCover && (
+                            <button className="secondary-button compact-button" type="button" onClick={openCoverPdf}>
+                                Buka PDF
+                            </button>
+                        )}
+                    </div>
                 </div>
-            </div>
+            )}
 
             {canManageCover && (
                 <input
@@ -187,11 +220,11 @@ function CoverViewer({ perkara, berkas = [], canManageCover = false, onCoverUpda
             )}
 
             {selectedCover ? (
-                <>
+                <div className="pdf-viewer-container">
                     <div className="pdf-viewer-frame" ref={containerRef}>
-                        {objectUrl ? (
+                        {pdfBlob ? (
                             <Document
-                                file={objectUrl}
+                                file={pdfBlob}
                                 onLoadSuccess={onDocumentLoadSuccess}
                                 onLoadError={onDocumentLoadError}
                                 loading={<div className="pdf-loading">Memuat dokumen...</div>}
@@ -200,8 +233,8 @@ function CoverViewer({ perkara, berkas = [], canManageCover = false, onCoverUpda
                                 <Page
                                     pageNumber={pageNumber}
                                     width={pageWidth}
-                                    renderAnnotationLayer={false}
-                                    renderTextLayer={false}
+                                    renderAnnotationLayer
+                                    renderTextLayer
                                 />
                             </Document>
                         ) : error ? (
@@ -213,26 +246,26 @@ function CoverViewer({ perkara, berkas = [], canManageCover = false, onCoverUpda
 
                     <div className="pdf-toolbar cover-carousel-toolbar">
                         <button
-                            className="secondary-button compact-button"
+                            className="secondary-button compact-button pdf-nav-btn"
                             type="button"
                             disabled={pageNumber <= 1 || loadingPdf || !numPages}
                             onClick={goPrevious}
                         >
-                            Previous
+                            ‹ Previous
                         </button>
                         <span className="pdf-page-indicator">
                             {loadingPdf ? "Memuat..." : `${pageNumber} / ${numPages || 1}`}
                         </span>
                         <button
-                            className="secondary-button compact-button"
+                            className="secondary-button compact-button pdf-nav-btn"
                             type="button"
                             disabled={!numPages || pageNumber >= numPages || loadingPdf}
                             onClick={goNext}
                         >
-                            Next
+                            Next ›
                         </button>
                     </div>
-                </>
+                </div>
             ) : (
                 <div className="cover-empty-state" ref={containerRef}>
                     <div className="cover-placeholder-icon" aria-hidden="true">📄</div>

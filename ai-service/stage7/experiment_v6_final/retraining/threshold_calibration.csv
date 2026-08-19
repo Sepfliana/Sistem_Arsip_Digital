@@ -1,0 +1,8 @@
+threshold_name,threshold_value,test_recall,localhost_fpr
+validation_f1_optimal,0.209528,0.89,0.5859
+safe_p95,0.038997,0.994,0.8889
+safe_p99,0.203553,0.892,0.596
+safe_p995,0.305531,0.81,0.0
+max_val_normal,1.975722,0.002,0.0
+production,3.149629,0.0,0.0
+SELECTED,0.296394,0.814,0.0

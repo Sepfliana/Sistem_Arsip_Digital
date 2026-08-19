@@ -1,0 +1,14 @@
+{
+  "synthetic_pool_after_exclusion": 12500,
+  "synthetic_train_mixed": 536,
+  "synthetic_val": 5982,
+  "synthetic_test": 5982,
+  "localhost_total": 329,
+  "localhost_train": 230,
+  "localhost_eval": 99,
+  "train_normal_v7_total": 766,
+  "train_composition": "70% synthetic + 30% localhost",
+  "val_anomaly": 500,
+  "test_anomaly": 500,
+  "assertions": "ALL PASS"
+}

@@ -1,0 +1,120 @@
+{
+  "per_feature": [
+    {
+      "feature": "user_id",
+      "train_mse": 0.003606,
+      "val_anomaly_mse": 0.048662,
+      "test_anomaly_mse": 0.044459,
+      "localhost_mse": 0.127758,
+      "localhost_contribution_pct": 0.58,
+      "train_contribution_pct": 18.36,
+      "localhost_to_train_ratio": 35.43
+    },
+    {
+      "feature": "activity",
+      "train_mse": 0.001739,
+      "val_anomaly_mse": 0.087344,
+      "test_anomaly_mse": 0.104095,
+      "localhost_mse": 0.288646,
+      "localhost_contribution_pct": 1.31,
+      "train_contribution_pct": 8.85,
+      "localhost_to_train_ratio": 165.98
+    },
+    {
+      "feature": "status",
+      "train_mse": 0.000684,
+      "val_anomaly_mse": 0.106348,
+      "test_anomaly_mse": 0.098287,
+      "localhost_mse": 18.026039,
+      "localhost_contribution_pct": 81.52,
+      "train_contribution_pct": 3.48,
+      "localhost_to_train_ratio": 26360.91
+    },
+    {
+      "feature": "device",
+      "train_mse": 0.000367,
+      "val_anomaly_mse": 2.761747,
+      "test_anomaly_mse": 3.042273,
+      "localhost_mse": 0.091963,
+      "localhost_contribution_pct": 0.42,
+      "train_contribution_pct": 1.87,
+      "localhost_to_train_ratio": 250.48
+    },
+    {
+      "feature": "ip_address",
+      "train_mse": 0.0,
+      "val_anomaly_mse": 0.999765,
+      "test_anomaly_mse": 0.999756,
+      "localhost_mse": 0.988434,
+      "localhost_contribution_pct": 4.47,
+      "train_contribution_pct": 0.0,
+      "localhost_to_train_ratio": 3608910.75
+    },
+    {
+      "feature": "duration_ms",
+      "train_mse": 1e-06,
+      "val_anomaly_mse": 1e-06,
+      "test_anomaly_mse": 1e-06,
+      "localhost_mse": 1.002155,
+      "localhost_contribution_pct": 4.53,
+      "train_contribution_pct": 0.0,
+      "localhost_to_train_ratio": 1731078.62
+    },
+    {
+      "feature": "object_count",
+      "train_mse": 0.00234,
+      "val_anomaly_mse": 0.143248,
+      "test_anomaly_mse": 0.117251,
+      "localhost_mse": 0.48823,
+      "localhost_contribution_pct": 2.21,
+      "train_contribution_pct": 11.91,
+      "localhost_to_train_ratio": 208.62
+    },
+    {
+      "feature": "hour",
+      "train_mse": 0.000649,
+      "val_anomaly_mse": 2.435211,
+      "test_anomaly_mse": 2.485219,
+      "localhost_mse": 1.045355,
+      "localhost_contribution_pct": 4.73,
+      "train_contribution_pct": 3.3,
+      "localhost_to_train_ratio": 1611.4
+    },
+    {
+      "feature": "day_of_week",
+      "train_mse": 0.010257,
+      "val_anomaly_mse": 0.095752,
+      "test_anomaly_mse": 0.094927,
+      "localhost_mse": 0.053776,
+      "localhost_contribution_pct": 0.24,
+      "train_contribution_pct": 52.22,
+      "localhost_to_train_ratio": 5.24
+    }
+  ],
+  "ranked_by_localhost_mse": [
+    "status",
+    "hour",
+    "duration_ms",
+    "ip_address",
+    "object_count",
+    "activity",
+    "user_id",
+    "device",
+    "day_of_week"
+  ],
+  "top3_contributors": [
+    "status",
+    "hour",
+    "duration_ms"
+  ],
+  "total_train_mse": 0.019642,
+  "total_localhost_mse": 22.112354,
+  "overall_ratio": 1125.75,
+  "stage7_6_hypothesis_check": {
+    "ip_address_rank": 4,
+    "duration_ms_rank": 3,
+    "device_rank": 8,
+    "hour_rank": 2,
+    "activity_rank": 6
+  }
+}

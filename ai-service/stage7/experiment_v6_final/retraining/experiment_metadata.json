@@ -1,0 +1,80 @@
+{
+  "stage": "8",
+  "version": "V8.1",
+  "iteration": "final",
+  "seed": 42,
+  "checkpoint_sha256": "556e165acc86ae268625a7d149f2578566e2840db9de8d3404d0cf19b9e6307a",
+  "checkpoint_reload": "PASS",
+  "metrics": {
+    "roc_auc": 0.9961,
+    "pr_auc": 0.95,
+    "f1": 0.8918,
+    "precision": 0.8936,
+    "recall": 0.89,
+    "fpr": 0.0088,
+    "threshold_f1_optimal": 0.209528,
+    "threshold_safe_p95": 0.038997,
+    "threshold_safe_p99": 0.203553,
+    "threshold_safe_p995": 0.305531,
+    "threshold_max_val_normal": 1.975722
+  },
+  "localhost_safety": {
+    "validation_f1_optimal": {
+      "threshold": 0.209528,
+      "localhost_eval_fp": 58,
+      "localhost_eval_fpr": 0.5859,
+      "localhost_eval_n": 99
+    },
+    "safe_p95": {
+      "threshold": 0.038997,
+      "localhost_eval_fp": 88,
+      "localhost_eval_fpr": 0.8889,
+      "localhost_eval_n": 99
+    },
+    "safe_p99": {
+      "threshold": 0.203553,
+      "localhost_eval_fp": 59,
+      "localhost_eval_fpr": 0.596,
+      "localhost_eval_n": 99
+    },
+    "safe_p995": {
+      "threshold": 0.305531,
+      "localhost_eval_fp": 0,
+      "localhost_eval_fpr": 0.0,
+      "localhost_eval_n": 99
+    },
+    "max_val_normal": {
+      "threshold": 1.975722,
+      "localhost_eval_fp": 0,
+      "localhost_eval_fpr": 0.0,
+      "localhost_eval_n": 99
+    },
+    "production": {
+      "threshold": 3.149629,
+      "localhost_eval_fp": 0,
+      "localhost_eval_fpr": 0.0,
+      "localhost_eval_n": 99
+    }
+  },
+  "domain_gap": {
+    "localhost_eval_min": 0.0009040712611749768,
+    "localhost_eval_max": 0.29166877269744873,
+    "localhost_eval_p95": 0.2853475511074066,
+    "normal_max": 1.975721836090088,
+    "gap": -1.974817764828913
+  },
+  "production_before": {
+    "models\\vae_model.pth": "405c2b27356a6793a511fb352c87f72ec29b1218b128cd3c4f6f4ea1f3f448f2",
+    "models\\deployment_config.json": "89f1ca58d0f838dc4e9c0047c05263441c07bad845155e85094483b59654f461",
+    "dataset\\preprocessed\\scaler.pkl": "0857de037e4f8d615daeaf14193b25b3eec011424387779783d4d07292951772",
+    "dataset\\preprocessed\\label_encoders.pkl": "5809f4fc5bbba2741a61839e050cf88952b72d3592dcc725bcae8c36e329d6ef",
+    "dataset\\preprocessed\\X_train.npy": "aa7c81da3938c5e1b64a132aac5ff8aa4ea8341325f2be1c7e4cd9c97a43252b"
+  },
+  "production_after": {
+    "models\\vae_model.pth": "405c2b27356a6793a511fb352c87f72ec29b1218b128cd3c4f6f4ea1f3f448f2",
+    "models\\deployment_config.json": "89f1ca58d0f838dc4e9c0047c05263441c07bad845155e85094483b59654f461",
+    "dataset\\preprocessed\\scaler.pkl": "0857de037e4f8d615daeaf14193b25b3eec011424387779783d4d07292951772",
+    "dataset\\preprocessed\\label_encoders.pkl": "5809f4fc5bbba2741a61839e050cf88952b72d3592dcc725bcae8c36e329d6ef",
+    "dataset\\preprocessed\\X_train.npy": "aa7c81da3938c5e1b64a132aac5ff8aa4ea8341325f2be1c7e4cd9c97a43252b"
+  }
+}

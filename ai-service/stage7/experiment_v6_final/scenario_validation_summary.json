@@ -1,0 +1,209 @@
+{
+  "threshold": 0.296394,
+  "monitored_low": 0.2371152,
+  "monitored_high": 0.296394,
+  "total": 19,
+  "correct": 15,
+  "accuracy_pct": 78.9,
+  "false_positives": 0,
+  "false_negatives": 0,
+  "verdict": "NEEDS REVIEW",
+  "per_category": {
+    "NORMAL": {
+      "total": 4,
+      "correct": 4,
+      "accuracy": 100.0
+    },
+    "MONITORED": {
+      "total": 6,
+      "correct": 3,
+      "accuracy": 50.0
+    },
+    "BORDERLINE": {
+      "total": 4,
+      "correct": 3,
+      "accuracy": 75.0
+    },
+    "ANOMALY": {
+      "total": 5,
+      "correct": 5,
+      "accuracy": 100.0
+    }
+  },
+  "mse_distribution": {
+    "NORMAL": {
+      "min": 0.079092,
+      "max": 0.212167,
+      "mean": 0.122216
+    },
+    "MONITORED": {
+      "min": 0.085531,
+      "max": 0.867177,
+      "mean": 0.372109
+    },
+    "BORDERLINE": {
+      "min": 0.113306,
+      "max": 1.653175,
+      "mean": 0.749337
+    },
+    "ANOMALY": {
+      "min": 1.226638,
+      "max": 2.128955,
+      "mean": 1.588634
+    }
+  },
+  "results": [
+    {
+      "name": "N1: Login 10:00 internal PC",
+      "category": "NORMAL",
+      "mse": 0.108419,
+      "predicted": "NORMAL",
+      "expected_class": "NORMAL",
+      "match": "YES"
+    },
+    {
+      "name": "N2: File access 14:00 internal",
+      "category": "NORMAL",
+      "mse": 0.079092,
+      "predicted": "NORMAL",
+      "expected_class": "NORMAL",
+      "match": "YES"
+    },
+    {
+      "name": "N3: Logout 17:30 internal",
+      "category": "NORMAL",
+      "mse": 0.089188,
+      "predicted": "NORMAL",
+      "expected_class": "NORMAL",
+      "match": "YES"
+    },
+    {
+      "name": "N4: Kelola Perkara 09:00 internal",
+      "category": "NORMAL",
+      "mse": 0.212167,
+      "predicted": "NORMAL",
+      "expected_class": "NORMAL",
+      "match": "YES"
+    },
+    {
+      "name": "M1: Login 02:00 (night)",
+      "category": "MONITORED",
+      "mse": 0.085531,
+      "predicted": "NORMAL",
+      "expected_class": "MONITORED",
+      "match": "YES"
+    },
+    {
+      "name": "M2: Weekend login 11:00",
+      "category": "MONITORED",
+      "mse": 0.114046,
+      "predicted": "NORMAL",
+      "expected_class": "MONITORED",
+      "match": "YES"
+    },
+    {
+      "name": "M3: External IP login",
+      "category": "MONITORED",
+      "mse": 0.180932,
+      "predicted": "NORMAL",
+      "expected_class": "MONITORED",
+      "match": "YES"
+    },
+    {
+      "name": "M4: Android device access",
+      "category": "MONITORED",
+      "mse": 0.867177,
+      "predicted": "ANOMALY",
+      "expected_class": "MONITORED",
+      "match": "NO"
+    },
+    {
+      "name": "M5: Virtual Machine login",
+      "category": "MONITORED",
+      "mse": 0.539459,
+      "predicted": "ANOMALY",
+      "expected_class": "MONITORED",
+      "match": "NO"
+    },
+    {
+      "name": "M6: Gagal status work hours",
+      "category": "MONITORED",
+      "mse": 0.44551,
+      "predicted": "ANOMALY",
+      "expected_class": "MONITORED",
+      "match": "NO"
+    },
+    {
+      "name": "B1: Night + external IP",
+      "category": "BORDERLINE",
+      "mse": 0.113306,
+      "predicted": "NORMAL",
+      "expected_class": "BORDERLINE",
+      "match": "NO"
+    },
+    {
+      "name": "B2: Unknown status + internal",
+      "category": "BORDERLINE",
+      "mse": 0.603978,
+      "predicted": "ANOMALY",
+      "expected_class": "BORDERLINE",
+      "match": "YES"
+    },
+    {
+      "name": "B3: VM + external IP",
+      "category": "BORDERLINE",
+      "mse": 0.626891,
+      "predicted": "ANOMALY",
+      "expected_class": "BORDERLINE",
+      "match": "YES"
+    },
+    {
+      "name": "B4: Gagal + night + internal",
+      "category": "BORDERLINE",
+      "mse": 1.653175,
+      "predicted": "ANOMALY",
+      "expected_class": "BORDERLINE",
+      "match": "YES"
+    },
+    {
+      "name": "A1: Gagal + external + VM",
+      "category": "ANOMALY",
+      "mse": 1.443153,
+      "predicted": "ANOMALY",
+      "expected_class": "ANOMALY",
+      "match": "YES"
+    },
+    {
+      "name": "A2: Unknown + night + external",
+      "category": "ANOMALY",
+      "mse": 1.28924,
+      "predicted": "ANOMALY",
+      "expected_class": "ANOMALY",
+      "match": "YES"
+    },
+    {
+      "name": "A3: Admin 03:00 external VM Gagal",
+      "category": "ANOMALY",
+      "mse": 2.128955,
+      "predicted": "ANOMALY",
+      "expected_class": "ANOMALY",
+      "match": "YES"
+    },
+    {
+      "name": "A4: Gagal + night + external + VM",
+      "category": "ANOMALY",
+      "mse": 1.855184,
+      "predicted": "ANOMALY",
+      "expected_class": "ANOMALY",
+      "match": "YES"
+    },
+    {
+      "name": "A5: Unknown + weekend + external",
+      "category": "ANOMALY",
+      "mse": 1.226638,
+      "predicted": "ANOMALY",
+      "expected_class": "ANOMALY",
+      "match": "YES"
+    }
+  ]
+}

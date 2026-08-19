@@ -1,0 +1,5 @@
+threshold_name,threshold_value,test_recall,test_f1,test_precision,localhost_fpr,localhost_fp,localhost_n,score
+P95_val_normal,0.085619,1.0,0.7722,0.6289,0.8889,88,99,-0.7778
+P99_val_normal,0.285894,0.674,0.7573,0.8641,0.2222,22,99,0.22960000000000003
+P99.5_val_normal,0.286381,0.674,0.7573,0.8641,0.2222,22,99,0.22960000000000003
+max_val_normal,1.172608,0.052,0.0981,0.8667,0.0,0,99,0.052

@@ -1,0 +1,10 @@
+{
+  "mass_archive_access": {
+    "implementation": "aksi=Akses Berkas; jumlah_objek=P95 of BERKAS-like normals; durasi_ms=P95 of same pool",
+    "evidence": "P95 object count is 10, the normal operational ceiling; therefore object mutation normally remains in an already common bucket."
+  },
+  "offhours_privileged_access": {
+    "implementation": "WIB hour 0-5 plus aksi=Kelola User; IP/device/duration/status preserved from source",
+    "evidence": "Only two fields change; retained private IP/device makes much of the joint vector normal-like."
+  }
+}

@@ -1,0 +1,17 @@
+feature,group,unique_count,top_category,top_frequency,categories_only_in_group_vs_train,categories_only_in_train_vs_group
+activity,train_normal,8,Logout,0.24765714285714285,[],[]
+activity,validation_normal,8,Kelola Perkara,0.2501333333333333,[],[]
+activity,test_normal,8,Logout,0.2650666666666667,[],[]
+activity,localhost,11,Login,0.17933130699088146,"[""Keamanan & 2FA"", ""Kelola Sarana"", ""Peminjaman""]",[]
+status,train_normal,2,Berhasil,0.9726857142857143,[],[]
+status,validation_normal,2,Berhasil,0.9717333333333333,[],[]
+status,test_normal,2,Berhasil,0.9754666666666667,[],[]
+status,localhost,1,Berhasil,1.0,[],"[""Gagal""]"
+device,train_normal,3,PC Windows,0.7146285714285714,[],[]
+device,validation_normal,3,PC Windows,0.7242666666666666,[],[]
+device,test_normal,3,PC Windows,0.7162666666666667,[],[]
+device,localhost,3,Unknown Device,0.9878419452887538,"[""Unknown Device""]","[""Android""]"
+ip_address,train_normal,1,Private Network 192.168.x.x,1.0,[],[]
+ip_address,validation_normal,1,Private Network 192.168.x.x,1.0,[],[]
+ip_address,test_normal,1,Private Network 192.168.x.x,1.0,[],[]
+ip_address,localhost,1,Localhost / Loopback,1.0,"[""Localhost / Loopback""]","[""Private Network 192.168.x.x""]"

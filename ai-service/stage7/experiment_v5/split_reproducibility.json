@@ -1,0 +1,15 @@
+{
+  "seed": 42,
+  "manifest_hashes": {
+    "train_normal_manifest.csv": "9fec2bbb86dbcf39781bb684a473487657d97fa05645c52b651e3d2b3898a96f",
+    "validation_normal_manifest.csv": "04e51412dbed475efd81590ce0d082ba5b8d3f1e45184ab4c59f8c1af183d0e2",
+    "test_normal_manifest.csv": "ed892a2a87f92e81fd8ea9e15b2bea9d1b84b04ac6696cfe9e16aac27c06d681",
+    "validation_anomaly_manifest.csv": "614b5f8b541ece9745f01f7e2e70297345a5cd88a6a4a87f2f7323b6875c6923",
+    "test_anomaly_manifest.csv": "18025ab971cab773efa2c7626cea2ea015a60d20e69f52f5ea85396bc4352b20",
+    "source_lineage.csv": "d05a0e304f0a61eeaefc2d04c8e225059c9327575e37bdd39b3fe848960bb262",
+    "excluded_normal_sources.csv": "28d501d9bbf6db330565d9d38484e98dce9eebcd2c65a098b71bd46dbc7a4607",
+    "label_encoders_v5_experiment.pkl": "9f48dee937dca5fa508f03b91cecb9aa6c86f31f41f1073053c51c08f9eabd58",
+    "scaler_v5_experiment.pkl": "08c1ec354da2c0e991eded9461959134603c8c17a291a50bfdc88d12c86a41ed"
+  },
+  "deterministic_rerun_required": true
+}

@@ -1,0 +1,49 @@
+{
+  "v8_anomaly_count": 1000,
+  "v8_mse_stats": {
+    "min": 8895.744141,
+    "mean": 10038.666016,
+    "max": 11203.907227,
+    "p50": 10017.949219,
+    "p95": 11017.275391
+  },
+  "localhost_mse_stats": {
+    "min": 0.00232,
+    "mean": 0.210407,
+    "max": 0.345284,
+    "p95": 0.290903,
+    "p99": 0.345284
+  },
+  "val_normal_mse_stats": {
+    "min": 0.000353,
+    "mean": 0.01874,
+    "max": 1.172608
+  },
+  "separation": {
+    "v8_min_vs_lh_p95": 8895.453238,
+    "v8_mean_vs_lh_p95": 10038.375113,
+    "overlap_count": 0,
+    "overlap_pct": 0.0,
+    "pass": true
+  },
+  "per_type_mse": {
+    "impossible_credential_shift": {
+      "count": 334,
+      "min": 9059.477539,
+      "mean": 10099.362305,
+      "max": 11203.907227
+    },
+    "admin_breach_compound": {
+      "count": 333,
+      "min": 8995.019531,
+      "mean": 10067.086914,
+      "max": 11156.476562
+    },
+    "silent_data_exfiltration": {
+      "count": 333,
+      "min": 8895.744141,
+      "mean": 9949.366211,
+      "max": 11050.925781
+    }
+  }
+}

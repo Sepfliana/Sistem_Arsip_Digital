@@ -1,0 +1,58 @@
+{
+  "primary_cause": "B",
+  "primary_cause_name": "Distribution shift (synthetic vs real data mismatch)",
+  "contributing_causes": [
+    "B"
+  ],
+  "evidence": {
+    "encoding_match": {
+      "ip_both_internal": false,
+      "duration_telemetry_similar": false,
+      "verdict": "MISMATCH"
+    },
+    "distribution_shift": {
+      "ip_192_pct_diff": 100.0,
+      "ip_127_pct_diff": 0.0,
+      "duration_zero_pct_diff": 100.0,
+      "novel_activities_in_localhost": [],
+      "ip_structural_mismatch": true,
+      "verdict": "SHIFT_DETECTED"
+    },
+    "model_capacity": {
+      "final_train_loss": 0.011038,
+      "final_val_loss": 0.006089,
+      "overfit_ratio": 0.5516,
+      "converged": true,
+      "verdict": "ADEQUATE"
+    },
+    "training_objective": {
+      "final_reconstruction_loss": 0.007875,
+      "final_kl_loss": 3.163196,
+      "kl_to_reconstruction_ratio": 401.6672,
+      "beta_kl": 0.001,
+      "verdict": "KL_DOMINANT"
+    }
+  },
+  "detailed_reasons": [
+    "Training data is 100% SYNTHETIC with 192.168.x.x IPs and synthetic patterns. Localhost is 100% REAL_DB with 127.0.0.1 IPs and real operational patterns. The VAE learned to reconstruct synthetic distributions, not real ones.",
+    "Model capacity is adequate (converged, no overfitting)."
+  ],
+  "classification_rationale": {
+    "A_encoding_mismatch": {
+      "selected": false,
+      "reason": "V6 encoding is consistent between train and localhost (both Internal, both has_telemetry=1). The encoding itself is not the problem."
+    },
+    "B_distribution_shift": {
+      "selected": true,
+      "reason": "Training data is 100% SYNTHETIC with 192.168.x.x IPs. Localhost is 100% REAL_DB with 127.0.0.1 IPs. The VAE learned synthetic patterns that do not generalize to real operational data."
+    },
+    "C_model_capacity": {
+      "selected": false,
+      "reason": "Model converged (train loss=0.011038), no overfitting (val/train ratio=0.55). Architecture 9-64-32-8-32-64-9 is adequate for the task."
+    },
+    "D_training_objective": {
+      "selected": false,
+      "reason": "KL/reconstruction ratio=401.6672 (balanced). Beta=0.001 is appropriate. Training objective is not the issue."
+    }
+  }
+}

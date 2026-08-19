@@ -1,0 +1,10 @@
+{
+  "roc_auc": 1.0,
+  "pr_auc": 0.9999,
+  "f1": 0.999,
+  "precision": 0.998,
+  "recall": 1.0,
+  "fpr": 0.0005,
+  "threshold_f1_optimal": 0.112091,
+  "threshold_safe_p99": 0.013887
+}

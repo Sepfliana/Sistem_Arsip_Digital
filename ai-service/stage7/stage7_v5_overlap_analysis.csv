@@ -1,0 +1,4 @@
+threshold,value,count_le,pct_le
+normal_p95,0.011473989114165304,0,0.0
+normal_p99,0.032997030615806555,0,0.0
+normal_max,0.1402665078639984,0,0.0

@@ -1,0 +1,3 @@
+# Deterministic Verification
+
+PASS: True

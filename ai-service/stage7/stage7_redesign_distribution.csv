@@ -1,0 +1,8 @@
+Anomaly Type,Count,Share %
+offhours_sensitive_access,250,16.67%
+offhours_external_login,250,16.67%
+scripted_rapid_failure,250,16.67%
+mass_exfiltration_scraping,225,15.00%
+credential_takeover_compound,225,15.00%
+external_ip_single_probe,150,10.00%
+unusual_device_single,150,10.00%

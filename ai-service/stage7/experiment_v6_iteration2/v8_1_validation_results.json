@@ -1,0 +1,60 @@
+{
+  "v8_1_anomaly_count": 1000,
+  "v8_1_mse_stats": {
+    "min": 0.061569,
+    "p25": 0.464516,
+    "mean": 0.785421,
+    "max": 2.65978
+  },
+  "localhost_mse_stats": {
+    "min": 0.00232,
+    "mean": 0.210407,
+    "p95": 0.290903,
+    "p99": 0.345284,
+    "max": 0.345284
+  },
+  "separation": {
+    "overlap_count": 98,
+    "overlap_pct": 9.8,
+    "mean_ratio": 3.73,
+    "max_ratio": 7.7
+  },
+  "target_metrics": {
+    "p25_gt_p95": {
+      "value": 0.464516,
+      "threshold": 0.290903,
+      "pass": true
+    },
+    "mean_2x_5x": {
+      "value": 3.73,
+      "range": "2.0-5.0",
+      "pass": true
+    },
+    "max_lt_10x": {
+      "value": 7.7,
+      "threshold": 10.0,
+      "pass": true
+    }
+  },
+  "all_pass": true,
+  "per_type_mse": {
+    "failed_offhours_access": {
+      "count": 334,
+      "min": 0.061569,
+      "mean": 0.654352,
+      "max": 2.65978
+    },
+    "unknown_external_access": {
+      "count": 333,
+      "min": 0.20114,
+      "mean": 0.607603,
+      "max": 2.133133
+    },
+    "failed_vm_access": {
+      "count": 333,
+      "min": 0.644903,
+      "mean": 1.094703,
+      "max": 1.945656
+    }
+  }
+}

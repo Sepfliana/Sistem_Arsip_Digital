@@ -1,0 +1,4 @@
+artifact_set,scaled_mean_l2_distance_from_origin,scaled_max_abs_feature_mean,scaled_ip_address_mean,scaled_device_mean,note
+experiment_v5,9.7944974899292,8.829903602600098,-3.0,0.49022987484931946,
+candidate,11.996835708618164,11.883528709411621,-11.883484840393066,-0.12551459670066833,
+production_legacy,,,,,production label_encoders.pkl has only activity/status/device; ip_address not in legacy encoder artifact

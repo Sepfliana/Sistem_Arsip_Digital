@@ -1,0 +1,17 @@
+{
+  "before": {
+    "models\\vae_model.pth": "405c2b27356a6793a511fb352c87f72ec29b1218b128cd3c4f6f4ea1f3f448f2",
+    "models\\deployment_config.json": "89f1ca58d0f838dc4e9c0047c05263441c07bad845155e85094483b59654f461",
+    "dataset\\preprocessed\\scaler.pkl": "0857de037e4f8d615daeaf14193b25b3eec011424387779783d4d07292951772",
+    "dataset\\preprocessed\\label_encoders.pkl": "5809f4fc5bbba2741a61839e050cf88952b72d3592dcc725bcae8c36e329d6ef",
+    "dataset\\preprocessed\\X_train.npy": "aa7c81da3938c5e1b64a132aac5ff8aa4ea8341325f2be1c7e4cd9c97a43252b"
+  },
+  "after": {
+    "models\\vae_model.pth": "405c2b27356a6793a511fb352c87f72ec29b1218b128cd3c4f6f4ea1f3f448f2",
+    "models\\deployment_config.json": "89f1ca58d0f838dc4e9c0047c05263441c07bad845155e85094483b59654f461",
+    "dataset\\preprocessed\\scaler.pkl": "0857de037e4f8d615daeaf14193b25b3eec011424387779783d4d07292951772",
+    "dataset\\preprocessed\\label_encoders.pkl": "5809f4fc5bbba2741a61839e050cf88952b72d3592dcc725bcae8c36e329d6ef",
+    "dataset\\preprocessed\\X_train.npy": "aa7c81da3938c5e1b64a132aac5ff8aa4ea8341325f2be1c7e4cd9c97a43252b"
+  },
+  "match": true
+}

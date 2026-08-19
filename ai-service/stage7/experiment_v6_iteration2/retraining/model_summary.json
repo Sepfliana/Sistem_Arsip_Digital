@@ -1,0 +1,16 @@
+{
+  "architecture": "9-64-32-8-32-64-9 ReLU Dropout(0.2)",
+  "input_features": [
+    "user_id",
+    "activity",
+    "status",
+    "device",
+    "ip_address",
+    "duration_ms",
+    "object_count",
+    "hour",
+    "day_of_week"
+  ],
+  "training_rows": 766,
+  "training_composition": "70% synthetic + 30% localhost"
+}

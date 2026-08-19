@@ -1,0 +1,13 @@
+{
+  "single_feature_sufficient": false,
+  "fpr_significantly_reduced": false,
+  "fpr_before": 1.0,
+  "fpr_after": 1.0,
+  "records_reduced": 0,
+  "anomaly_detection_preserved": false,
+  "ava_recall_before": 1.0,
+  "ava_recall_after": 0.726,
+  "ate_recall_before": 0.992,
+  "ate_recall_after": 0.74,
+  "conclusion": "MULTI_FEATURE_REDESIGN_REQUIRED"
+}

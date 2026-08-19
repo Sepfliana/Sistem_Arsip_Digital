@@ -1,0 +1,19 @@
+{
+  "seed": 42,
+  "row_count": 1300,
+  "dataset_hash": "e5cfdad73a42677ded5f7f4ef53e6fbdc696bbc7abe5853316f16ef66efb8670",
+  "generator_run_1_hash": "e5cfdad73a42677ded5f7f4ef53e6fbdc696bbc7abe5853316f16ef66efb8670",
+  "generator_run_2_hash": "e5cfdad73a42677ded5f7f4ef53e6fbdc696bbc7abe5853316f16ef66efb8670",
+  "deterministic_hash_match": true,
+  "candidate_hash": "58a70b94ef32e685491920d4534f3ef9ed16cf36a2bde8ddee429f7cd0aab11e",
+  "production_hashes_after": {
+    "models\\vae_model.pth": "405c2b27356a6793a511fb352c87f72ec29b1218b128cd3c4f6f4ea1f3f448f2",
+    "models\\deployment_config.json": "89f1ca58d0f838dc4e9c0047c05263441c07bad845155e85094483b59654f461",
+    "dataset\\preprocessed\\scaler.pkl": "0857de037e4f8d615daeaf14193b25b3eec011424387779783d4d07292951772",
+    "dataset\\preprocessed\\label_encoders.pkl": "5809f4fc5bbba2741a61839e050cf88952b72d3592dcc725bcae8c36e329d6ef",
+    "dataset\\preprocessed\\X_train.npy": "aa7c81da3938c5e1b64a132aac5ff8aa4ea8341325f2be1c7e4cd9c97a43252b"
+  },
+  "candidate_train_hash": "3dfcfdd21b21cf8f57e35357b39bb333c6b0f1fd8e8bf81b5053c5e174e0de92",
+  "duplicate_rate": 0.0,
+  "contamination": "0 synthetic V4 rows written to X_train_candidate"
+}

@@ -1,0 +1,73 @@
+{
+  "v5_baseline": {
+    "gap_canonical_level": null,
+    "gap_scaled_space": 9.7945,
+    "localhost_mean_mse": 2.987341,
+    "localhost_fpr_val": 1.0
+  },
+  "v6_shadow": {
+    "gap_canonical_level": 0.3251,
+    "gap_scaled_space": 12.2955,
+    "overlap_pct": 63.63
+  },
+  "improvement": {
+    "gap_reduction_pct": -25.53,
+    "scaled_gap_reduction_pct": -25.53
+  },
+  "per_feature_gap": [
+    {
+      "feature": "user_id",
+      "localhost_gap": 0.2478,
+      "v6_anomaly_gap": 0.014,
+      "v5_anomaly_gap": 0.034
+    },
+    {
+      "feature": "activity",
+      "localhost_gap": 0.0,
+      "v6_anomaly_gap": 0.2,
+      "v5_anomaly_gap": 0.2
+    },
+    {
+      "feature": "status",
+      "localhost_gap": 1.0,
+      "v6_anomaly_gap": 0.0,
+      "v5_anomaly_gap": 0.0
+    },
+    {
+      "feature": "device",
+      "localhost_gap": 0.0,
+      "v6_anomaly_gap": 0.3333,
+      "v5_anomaly_gap": 0.3333
+    },
+    {
+      "feature": "ip_address",
+      "localhost_gap": 0.0,
+      "v6_anomaly_gap": 0.0,
+      "v5_anomaly_gap": 0.0
+    },
+    {
+      "feature": "duration_ms",
+      "localhost_gap": 1.0,
+      "v6_anomaly_gap": 0.0,
+      "v5_anomaly_gap": 0.0
+    },
+    {
+      "feature": "object_count",
+      "localhost_gap": 0.3996,
+      "v6_anomaly_gap": 0.0258,
+      "v5_anomaly_gap": 0.0264
+    },
+    {
+      "feature": "hour",
+      "localhost_gap": 0.25,
+      "v6_anomaly_gap": 0.25,
+      "v5_anomaly_gap": 0.0
+    },
+    {
+      "feature": "day_of_week",
+      "localhost_gap": 0.0284,
+      "v6_anomaly_gap": 0.0147,
+      "v5_anomaly_gap": 0.0126
+    }
+  ]
+}

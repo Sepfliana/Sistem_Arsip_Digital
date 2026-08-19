@@ -1,0 +1,115 @@
+{
+  "seed": 42,
+  "candidate_sha256": "58a70b94ef32e685491920d4534f3ef9ed16cf36a2bde8ddee429f7cd0aab11e",
+  "raw_normal_count": 13500,
+  "localhost_count": 329,
+  "normal_mse": {
+    "min": 0.00025109885609708726,
+    "p25": 0.0022515300661325455,
+    "median": 0.00347991194576025,
+    "p75": 0.005310149863362312,
+    "p95": 0.011473985388875008,
+    "p99": 0.03299706056714058,
+    "max": 0.1402665078639984,
+    "mean": 0.004880368709564209,
+    "std": 0.006851712707430124
+  },
+  "localhost_mse": {
+    "min": 0.0005232472904026508,
+    "p25": 0.0053765070624649525,
+    "median": 0.009691814891994,
+    "p75": 0.01547438744455576,
+    "p95": 0.03797222673892975,
+    "p99": 0.08623509854078293,
+    "max": 0.17246811091899872,
+    "mean": 0.01381031982600689,
+    "std": 0.01704682782292366
+  },
+  "joint_frequency_summary": [
+    {
+      "combination": "activity_object_duration",
+      "unique_combinations": 80,
+      "min_frequency": 7.407407407407407e-05,
+      "median_frequency": 0.002851851851851852,
+      "p5_frequency": 0.00014444444444444446,
+      "p10_frequency": 0.00021481481481481484,
+      "p25_frequency": 0.0010925925925925925,
+      "p50_frequency": 0.002851851851851852,
+      "p75_frequency": 0.020555555555555556,
+      "p90_frequency": 0.037311111111111114,
+      "p95_frequency": 0.039855555555555554,
+      "p99_frequency": 0.04146074074074073
+    },
+    {
+      "combination": "hour_activity_device",
+      "unique_combinations": 42,
+      "min_frequency": 7.407407407407407e-05,
+      "median_frequency": 0.009481481481481483,
+      "p5_frequency": 0.00014814814814814815,
+      "p10_frequency": 0.00022222222222222223,
+      "p25_frequency": 0.0028888888888888888,
+      "p50_frequency": 0.009481481481481483,
+      "p75_frequency": 0.02377777777777778,
+      "p90_frequency": 0.0592,
+      "p95_frequency": 0.08982222222222218,
+      "p99_frequency": 0.09449555555555553
+    },
+    {
+      "combination": "hour_activity_ip",
+      "unique_combinations": 21,
+      "min_frequency": 0.00022222222222222223,
+      "median_frequency": 0.0064444444444444445,
+      "p5_frequency": 0.00022222222222222223,
+      "p10_frequency": 0.00044444444444444447,
+      "p25_frequency": 0.0028148148148148147,
+      "p50_frequency": 0.0064444444444444445,
+      "p75_frequency": 0.08481481481481482,
+      "p90_frequency": 0.1288888888888889,
+      "p95_frequency": 0.13007407407407406,
+      "p99_frequency": 0.13635555555555556
+    },
+    {
+      "combination": "device_ip",
+      "unique_combinations": 3,
+      "min_frequency": 0.09244444444444444,
+      "median_frequency": 0.1648888888888889,
+      "p5_frequency": 0.09968888888888888,
+      "p10_frequency": 0.10693333333333332,
+      "p25_frequency": 0.12866666666666665,
+      "p50_frequency": 0.1648888888888889,
+      "p75_frequency": 0.4032222222222222,
+      "p90_frequency": 0.5462222222222223,
+      "p95_frequency": 0.5938888888888888,
+      "p99_frequency": 0.6320222222222222
+    },
+    {
+      "combination": "hour_activity_device_ip",
+      "unique_combinations": 42,
+      "min_frequency": 7.407407407407407e-05,
+      "median_frequency": 0.009481481481481483,
+      "p5_frequency": 0.00014814814814814815,
+      "p10_frequency": 0.00022222222222222223,
+      "p25_frequency": 0.0028888888888888888,
+      "p50_frequency": 0.009481481481481483,
+      "p75_frequency": 0.02377777777777778,
+      "p90_frequency": 0.0592,
+      "p95_frequency": 0.08982222222222218,
+      "p99_frequency": 0.09449555555555553
+    }
+  ],
+  "production_before": {
+    "models\\vae_model.pth": "405c2b27356a6793a511fb352c87f72ec29b1218b128cd3c4f6f4ea1f3f448f2",
+    "models\\deployment_config.json": "89f1ca58d0f838dc4e9c0047c05263441c07bad845155e85094483b59654f461",
+    "dataset\\preprocessed\\scaler.pkl": "0857de037e4f8d615daeaf14193b25b3eec011424387779783d4d07292951772",
+    "dataset\\preprocessed\\label_encoders.pkl": "5809f4fc5bbba2741a61839e050cf88952b72d3592dcc725bcae8c36e329d6ef",
+    "dataset\\preprocessed\\X_train.npy": "aa7c81da3938c5e1b64a132aac5ff8aa4ea8341325f2be1c7e4cd9c97a43252b"
+  },
+  "production_after": {
+    "models\\vae_model.pth": "405c2b27356a6793a511fb352c87f72ec29b1218b128cd3c4f6f4ea1f3f448f2",
+    "models\\deployment_config.json": "89f1ca58d0f838dc4e9c0047c05263441c07bad845155e85094483b59654f461",
+    "dataset\\preprocessed\\scaler.pkl": "0857de037e4f8d615daeaf14193b25b3eec011424387779783d4d07292951772",
+    "dataset\\preprocessed\\label_encoders.pkl": "5809f4fc5bbba2741a61839e050cf88952b72d3592dcc725bcae8c36e329d6ef",
+    "dataset\\preprocessed\\X_train.npy": "aa7c81da3938c5e1b64a132aac5ff8aa4ea8341325f2be1c7e4cd9c97a43252b"
+  },
+  "production_integrity": true
+}

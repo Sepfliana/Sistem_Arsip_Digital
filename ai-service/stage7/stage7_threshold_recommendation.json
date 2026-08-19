@@ -1,0 +1,23 @@
+{
+  "Rec_A_Optimal_Zero_FPR": {
+    "name": "Optimal Zero-FPR Candidate Threshold",
+    "threshold": 0.11718709021806717,
+    "val_f1": 0.5521,
+    "val_fpr": 0.0,
+    "val_recall": 0.3813
+  },
+  "Rec_B_Production_Threshold": {
+    "name": "Production Unchanged Threshold",
+    "threshold": 3.1496288776397705,
+    "val_f1": 0.0027,
+    "val_fpr": 0.0,
+    "val_recall": 0.0013
+  },
+  "Rec_C_P99_Val_Normal": {
+    "name": "P99 Validation Normal Threshold",
+    "threshold": 0.039032258093357086,
+    "val_f1": 0.748,
+    "val_fpr": 0.0096,
+    "val_recall": 0.6133
+  }
+}

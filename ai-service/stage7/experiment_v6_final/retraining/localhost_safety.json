@@ -1,0 +1,38 @@
+{
+  "validation_f1_optimal": {
+    "threshold": 0.209528,
+    "localhost_eval_fp": 58,
+    "localhost_eval_fpr": 0.5859,
+    "localhost_eval_n": 99
+  },
+  "safe_p95": {
+    "threshold": 0.038997,
+    "localhost_eval_fp": 88,
+    "localhost_eval_fpr": 0.8889,
+    "localhost_eval_n": 99
+  },
+  "safe_p99": {
+    "threshold": 0.203553,
+    "localhost_eval_fp": 59,
+    "localhost_eval_fpr": 0.596,
+    "localhost_eval_n": 99
+  },
+  "safe_p995": {
+    "threshold": 0.305531,
+    "localhost_eval_fp": 0,
+    "localhost_eval_fpr": 0.0,
+    "localhost_eval_n": 99
+  },
+  "max_val_normal": {
+    "threshold": 1.975722,
+    "localhost_eval_fp": 0,
+    "localhost_eval_fpr": 0.0,
+    "localhost_eval_n": 99
+  },
+  "production": {
+    "threshold": 3.149629,
+    "localhost_eval_fp": 0,
+    "localhost_eval_fpr": 0.0,
+    "localhost_eval_n": 99
+  }
+}

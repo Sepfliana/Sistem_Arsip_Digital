@@ -1,0 +1,47 @@
+{
+  "version": "V6",
+  "seed": 42,
+  "features": {
+    "ip_address": {
+      "v5_encoding": "6-category LabelEncoder (Localhost, Private 192.168, Private 10, Private 172, Public, UNKNOWN)",
+      "v6_encoding": "Binary {Internal, External}",
+      "transformation": "map_network_scope() \u2014 all private/loopback \u2192 Internal, public/unknown \u2192 External",
+      "expected_mse_reduction": "301% \u2192 ~0% (eliminates dominant domain shift)",
+      "root_cause_addressed": "AD (representation mismatch + feature design)"
+    },
+    "duration_ms": {
+      "v5_encoding": "log1p(continuous) [0, 9.4]",
+      "v6_encoding": "Binary {0.0, 1.0} (has_telemetry)",
+      "transformation": "map_has_telemetry() \u2014 0 if duration==0, else 1",
+      "expected_mse_reduction": "532% \u2192 ~0% (eliminates systematic zero shift)",
+      "root_cause_addressed": "CB (logging artifact + behavioral shift)"
+    },
+    "hour": {
+      "v5_encoding": "Raw integer 0-23",
+      "v6_encoding": "4-period categorical: Morning(0), Afternoon(1), Evening(2), Night(3)",
+      "transformation": "map_time_period(hour) \u2014 6-11\u21920, 12-17\u21921, 18-23\u21922, 0-5\u21923",
+      "expected_mse_reduction": "29% \u2192 ~5% (absorbs fine-grained shift)",
+      "root_cause_addressed": "B (behavioral shift)"
+    },
+    "device": {
+      "v5_encoding": "7-category LabelEncoder",
+      "v6_encoding": "7-category LabelEncoder (same categories)",
+      "transformation": "Fallback: 'Unknown Device' \u2192 'PC Windows' when User-Agent absent",
+      "expected_mse_reduction": "14% \u2192 ~2%",
+      "root_cause_addressed": "C (logging artifact)"
+    },
+    "activity": {
+      "v5_encoding": "12-category LabelEncoder",
+      "v6_encoding": "8-category LabelEncoder (merge rare \u2192 'Administrasi')",
+      "transformation": "map_activity_v6() \u2014 Keamanan & 2FA, Kelola Sarana, Peminjaman, Verifikasi \u2192 Administrasi",
+      "expected_mse_reduction": "13% \u2192 ~3% (eliminates unseen categories)",
+      "root_cause_addressed": "C (logging artifact)"
+    }
+  },
+  "summary": {
+    "total_expected_mse_reduction": "~85-90% of current localhost MSE",
+    "architecture_change_required": false,
+    "input_dimension_preserved": true,
+    "retraining_required": true
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "input_features": 9,
+  "latent_dimension": 8,
+  "architecture": "PyTorch VAE 9 -> 64 -> 32 -> 8 -> 32 -> 64 -> 9",
+  "epochs": 100,
+  "batch_size": 64,
+  "learning_rate": 0.001,
+  "beta_kl": 0.001,
+  "training_samples": 9680,
+  "final_train_loss": 0.018476783952190858,
+  "final_recon_loss": 0.014746286707722451,
+  "final_kl_loss": 3.730497039448131,
+  "final_val_loss": 0.13019909210524208,
+  "training_time_seconds": 732.44
+}

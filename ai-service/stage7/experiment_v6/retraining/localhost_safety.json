@@ -1,0 +1,32 @@
+{
+  "validation_f1_optimal": {
+    "threshold": 0.112091,
+    "localhost_fp": 329,
+    "localhost_fpr": 1.0,
+    "localhost_n": 329
+  },
+  "safe_p99": {
+    "threshold": 0.013887,
+    "localhost_fp": 329,
+    "localhost_fpr": 1.0,
+    "localhost_n": 329
+  },
+  "production": {
+    "threshold": 3.149629,
+    "localhost_fp": 0,
+    "localhost_fpr": 0.0,
+    "localhost_n": 329
+  },
+  "p95_val_normal": {
+    "threshold": 0.006456,
+    "localhost_fp": 329,
+    "localhost_fpr": 1.0,
+    "localhost_n": 329
+  },
+  "max_val_normal": {
+    "threshold": 0.188254,
+    "localhost_fp": 329,
+    "localhost_fpr": 1.0,
+    "localhost_n": 329
+  }
+}

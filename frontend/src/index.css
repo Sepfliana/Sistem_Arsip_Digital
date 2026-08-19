@@ -1138,3 +1138,269 @@ tbody tr:last-child td {
     grid-column: span 1;
   }
 }
+
+/* Detail perkara: PDF dan metadata dokumen. */
+.combined-perkara-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 45fr) minmax(0, 55fr);
+  gap: 24px;
+  align-items: start;
+  margin-bottom: 32px;
+}
+
+.combined-perkara-layout > .panel {
+  min-width: 0;
+  margin-bottom: 0;
+}
+
+.cover-panel,
+.perkara-information {
+  padding: 24px;
+}
+
+.cover-panel {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.pdf-viewer-header {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  margin-bottom: 14px;
+}
+
+.pdf-viewer-container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  min-width: 0;
+}
+
+.pdf-viewer-frame {
+  display: flex;
+  flex: 1;
+  justify-content: center;
+  align-items: flex-start;
+  min-height: 440px;
+  max-height: 600px;
+  overflow: auto;
+  padding: 20px;
+  background: #f8fafc;
+  border: 1px solid var(--line);
+  border-bottom: 0;
+  border-radius: var(--radius-md) var(--radius-md) 0 0;
+}
+
+.pdf-viewer-frame .react-pdf__Page {
+  overflow: hidden;
+  border-radius: 4px;
+  background: #fff;
+  box-shadow: 0 4px 16px rgba(15, 23, 42, 0.12);
+}
+
+.cover-panel .pdf-toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px;
+}
+
+.cover-carousel-toolbar {
+  justify-content: center;
+  margin-top: 0;
+  padding: 10px 16px;
+  background: #fff;
+  border: 1px solid var(--line);
+  border-top-color: #e2e8f0;
+  border-radius: 0 0 var(--radius-md) var(--radius-md);
+}
+
+.pdf-nav-btn {
+  padding: 6px 14px;
+  font-size: 13px;
+  font-weight: 500;
+}
+
+.pdf-nav-btn:disabled {
+  cursor: not-allowed;
+  opacity: 0.45;
+}
+
+.pdf-page-indicator {
+  min-width: 64px;
+  color: var(--text);
+  font-size: 13.5px;
+  font-weight: 600;
+  text-align: center;
+}
+
+.pdf-loading,
+.pdf-error-state {
+  width: 100%;
+  padding: 24px;
+  color: var(--text-muted);
+  font-size: 14px;
+  font-weight: 500;
+  text-align: center;
+}
+
+.pdf-error-state {
+  max-width: 360px;
+  color: var(--danger);
+  background: var(--danger-soft);
+  border: 1px solid var(--danger-border);
+  border-radius: var(--radius-md);
+}
+
+.cover-empty-state {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 360px;
+  padding: 24px;
+  gap: 12px;
+  text-align: center;
+  background: #f8fafc;
+  border: 1px dashed var(--line);
+  border-radius: var(--radius-md);
+}
+
+.cover-empty-state p {
+  margin: 0;
+  color: var(--text-muted);
+  line-height: 1.5;
+}
+
+.cover-placeholder-icon {
+  display: grid;
+  width: 56px;
+  height: 56px;
+  place-items: center;
+  color: var(--primary);
+  font-size: 1.5rem;
+  line-height: 1;
+  background: #e2e8f0;
+  border-radius: var(--radius-lg);
+}
+
+.perkara-information .panel-heading {
+  margin-bottom: 0;
+}
+
+.perkara-information .panel-heading h2 {
+  margin: 0;
+  color: var(--text);
+  font-size: 20px;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+
+.perkara-groups-container {
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+  margin-top: 16px;
+}
+
+.detail-group {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.detail-group-title {
+  margin: 0 0 8px;
+  padding-bottom: 6px;
+  color: var(--text);
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  border-bottom: 1px solid var(--line);
+}
+
+.perkara-detail-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  margin: 0;
+  padding: 0;
+}
+
+.perkara-detail-grid .detail-row {
+  display: grid;
+  grid-template-columns: 160px 14px minmax(0, 1fr);
+  gap: 8px;
+  align-items: baseline;
+  padding: 9px 0;
+  border-bottom: 1px solid var(--line-subtle);
+}
+
+.perkara-detail-grid .detail-row:last-child {
+  border-bottom: 0;
+}
+
+.perkara-detail-grid .detail-label {
+  margin: 0;
+  color: var(--text-muted);
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.5;
+}
+
+.perkara-detail-grid .detail-colon {
+  color: var(--text-muted);
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.5;
+  text-align: center;
+  user-select: none;
+}
+
+.perkara-detail-grid .detail-value {
+  min-width: 0;
+  margin: 0;
+  color: var(--text);
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1.6;
+  overflow-wrap: break-word;
+  word-break: break-word;
+  white-space: pre-wrap;
+}
+
+@media (max-width: 900px) {
+  .combined-perkara-layout {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 20px;
+  }
+}
+
+@media (max-width: 600px) {
+  .cover-panel,
+  .perkara-information {
+    padding: 18px;
+  }
+
+  .pdf-viewer-frame {
+    min-height: 360px;
+    padding: 14px;
+  }
+
+  .perkara-detail-grid .detail-row {
+    grid-template-columns: 130px 10px minmax(0, 1fr);
+    gap: 6px;
+    padding: 7px 0;
+  }
+}
+
+@media (max-width: 440px) {
+  .perkara-detail-grid .detail-row {
+    grid-template-columns: 115px 10px minmax(0, 1fr);
+    gap: 4px;
+  }
+}

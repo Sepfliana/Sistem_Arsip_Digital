@@ -1,0 +1,4 @@
+anomaly_type,count,status,ip_address,device,durasi_ms_mean,jumlah_objek_mean,features_mutated
+impossible_credential_shift,334,Berhasil,8.8.8.8,Virtual Machine,0.0,2.5449101796407185,"user_id,status,ip_address,device,hour,duration_ms"
+admin_breach_compound,333,Gagal,8.8.8.8,Virtual Machine,0.0,125.1921921921922,"status,aksi,ip_address,device,hour,object_count,user_id"
+silent_data_exfiltration,333,UNKNOWN,203.0.113.1,Unknown Device,0.0,295.84384384384384,"status,ip_address,device,hour,duration_ms,object_count,user_id"

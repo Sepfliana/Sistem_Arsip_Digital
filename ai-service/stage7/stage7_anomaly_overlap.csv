@@ -1,0 +1,5 @@
+Region,Number,Percentage
+Anomaly <= Normal P95 (0.013734),153,20.40%
+Anomaly <= Normal P99 (0.043960),340,45.33%
+Anomaly <= Normal MAX (0.144248),505,67.33%
+Anomaly > Normal MAX (0.144248),245,32.67%

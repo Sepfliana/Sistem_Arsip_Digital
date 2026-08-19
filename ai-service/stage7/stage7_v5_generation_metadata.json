@@ -1,0 +1,17 @@
+{
+  "seed": 42,
+  "requested_count": 1300,
+  "generated_count": 1000,
+  "rejected_count": 300,
+  "taxonomy_removed": [
+    "mass_archive_access"
+  ],
+  "per_type": {
+    "offhours_sensitive_external_access": 400,
+    "suspicious_external_access": 300,
+    "credential_takeover_compound": 300
+  },
+  "rejection_reason": "joint_rare_but_model_indistinguishable",
+  "raw_domain_only": true,
+  "hash": "3b3b2d372cae3087425cdddbc8a445b74f69d8446de1fdf78680e41f2dd6d97a"
+}

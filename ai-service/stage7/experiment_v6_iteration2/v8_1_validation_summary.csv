@@ -1,0 +1,4 @@
+anomaly_type,count,status,ip_address_mode,device_mode,durasi_ms_mean,jumlah_objek_mean,user_id_range,features_mutated
+failed_offhours_access,334,Gagal,192.168.1.99,PC Windows,2288.7784431137725,3.538922155688623,1-86,"status,hour"
+unknown_external_access,333,UNKNOWN,100.64.0.1,PC Windows,2166.171171171171,3.4294294294294296,1-86,"status,ip_address"
+failed_vm_access,333,Gagal,192.168.1.22,Virtual Machine,2395.288288288288,3.5135135135135136,1-86,"status,device"

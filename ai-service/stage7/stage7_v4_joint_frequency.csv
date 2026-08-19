@@ -1,0 +1,189 @@
+_activity,_obj_bucket,_dur_bucket,count,frequency,rarity_score_neglog10,combination,_hour_bucket,_device,_ip
+Akses Berkas,"(0.999, 6.0]","(1266.6, 1951.4]",511,0.03785185185185185,1.4219128683602933,activity_object_duration,,,
+Akses Berkas,"(0.999, 6.0]","(1951.4, 4051.0]",360,0.02666666666666667,1.5740312677277188,activity_object_duration,,,
+Akses Berkas,"(0.999, 6.0]","(199.999, 788.0]",539,0.03992592592592593,1.3987450033082673,activity_object_duration,,,
+Akses Berkas,"(0.999, 6.0]","(4051.0, 11997.0]",344,0.02548148148148148,1.593775325923476,activity_object_duration,,,
+Akses Berkas,"(0.999, 6.0]","(788.0, 1266.6]",518,0.03837037037037037,1.4160040087497732,activity_object_duration,,,
+Akses Berkas,"(6.0, 10.0]","(1266.6, 1951.4]",82,0.006074074074074074,2.2165199161112894,activity_object_duration,,,
+Akses Berkas,"(6.0, 10.0]","(1951.4, 4051.0]",235,0.017407407407407406,1.7592659062232698,activity_object_duration,,,
+Akses Berkas,"(6.0, 10.0]","(199.999, 788.0]",27,0.002,2.6989700043360187,activity_object_duration,,,
+Akses Berkas,"(6.0, 10.0]","(4051.0, 11997.0]",210,0.015555555555555555,1.8081144737610868,activity_object_duration,,,
+Akses Berkas,"(6.0, 10.0]","(788.0, 1266.6]",59,0.00437037037037037,2.359481756852862,activity_object_duration,,,
+Kelola Berkas,"(0.999, 6.0]","(1266.6, 1951.4]",43,0.003185185185185185,2.4968653129154195,activity_object_duration,,,
+Kelola Berkas,"(0.999, 6.0]","(1951.4, 4051.0]",29,0.002148148148148148,2.66793577059605,activity_object_duration,,,
+Kelola Berkas,"(0.999, 6.0]","(199.999, 788.0]",41,0.003037037037037037,2.5175499117752707,activity_object_duration,,,
+Kelola Berkas,"(0.999, 6.0]","(4051.0, 11997.0]",23,0.0017037037037037038,2.768605932477413,activity_object_duration,,,
+Kelola Berkas,"(0.999, 6.0]","(788.0, 1266.6]",29,0.002148148148148148,2.66793577059605,activity_object_duration,,,
+Kelola Berkas,"(6.0, 10.0]","(1266.6, 1951.4]",6,0.00044444444444444447,3.3521825181113623,activity_object_duration,,,
+Kelola Berkas,"(6.0, 10.0]","(1951.4, 4051.0]",17,0.0012592592592592592,2.899884847116732,activity_object_duration,,,
+Kelola Berkas,"(6.0, 10.0]","(199.999, 788.0]",2,0.00014814814814814815,3.829303772831025,activity_object_duration,,,
+Kelola Berkas,"(6.0, 10.0]","(4051.0, 11997.0]",17,0.0012592592592592592,2.899884847116732,activity_object_duration,,,
+Kelola Berkas,"(6.0, 10.0]","(788.0, 1266.6]",2,0.00014814814814814815,3.829303772831025,activity_object_duration,,,
+Kelola Perkara,"(0.999, 6.0]","(1266.6, 1951.4]",493,0.03651851851851852,1.4374868492177761,activity_object_duration,,,
+Kelola Perkara,"(0.999, 6.0]","(1951.4, 4051.0]",367,0.027185185185185184,1.5656677042429168,activity_object_duration,,,
+Kelola Perkara,"(0.999, 6.0]","(199.999, 788.0]",538,0.039851851851851854,1.399551492828617,activity_object_duration,,,
+Kelola Perkara,"(0.999, 6.0]","(4051.0, 11997.0]",357,0.026444444444444444,1.577665552382813,activity_object_duration,,,
+Kelola Perkara,"(0.999, 6.0]","(788.0, 1266.6]",553,0.040962962962962965,1.3876086371903078,activity_object_duration,,,
+Kelola Perkara,"(6.0, 10.0]","(1266.6, 1951.4]",75,0.005555555555555556,2.255272505103306,activity_object_duration,,,
+Kelola Perkara,"(6.0, 10.0]","(1951.4, 4051.0]",217,0.016074074074074074,1.7938740346464765,activity_object_duration,,,
+Kelola Perkara,"(6.0, 10.0]","(199.999, 788.0]",24,0.0017777777777777779,2.7501225267834,activity_object_duration,,,
+Kelola Perkara,"(6.0, 10.0]","(4051.0, 11997.0]",265,0.01962962962962963,1.7070878945581982,activity_object_duration,,,
+Kelola Perkara,"(6.0, 10.0]","(788.0, 1266.6]",39,0.0028888888888888888,2.539269161468507,activity_object_duration,,,
+Kelola User,"(0.999, 6.0]","(1266.6, 1951.4]",13,0.000962962962962963,3.016390416188169,activity_object_duration,,,
+Kelola User,"(0.999, 6.0]","(1951.4, 4051.0]",7,0.0005185185185185185,3.285235728480749,activity_object_duration,,,
+Kelola User,"(0.999, 6.0]","(199.999, 788.0]",18,0.0013333333333333333,2.8750612633917,activity_object_duration,,,
+Kelola User,"(0.999, 6.0]","(4051.0, 11997.0]",10,0.0007407407407407407,3.130333768495006,activity_object_duration,,,
+Kelola User,"(0.999, 6.0]","(788.0, 1266.6]",15,0.0011111111111111111,2.9542425094393248,activity_object_duration,,,
+Kelola User,"(6.0, 10.0]","(1266.6, 1951.4]",1,7.407407407407407e-05,4.1303337684950066,activity_object_duration,,,
+Kelola User,"(6.0, 10.0]","(1951.4, 4051.0]",8,0.0005925925925925926,3.2272437815030623,activity_object_duration,,,
+Kelola User,"(6.0, 10.0]","(199.999, 788.0]",1,7.407407407407407e-05,4.1303337684950066,activity_object_duration,,,
+Kelola User,"(6.0, 10.0]","(4051.0, 11997.0]",4,0.0002962962962962963,3.5282737771670436,activity_object_duration,,,
+Kelola User,"(6.0, 10.0]","(788.0, 1266.6]",3,0.00022222222222222223,3.6532125137753435,activity_object_duration,,,
+Laporan & Anomali,"(0.999, 6.0]","(1266.6, 1951.4]",20,0.0014814814814814814,2.829303772831025,activity_object_duration,,,
+Laporan & Anomali,"(0.999, 6.0]","(1951.4, 4051.0]",26,0.001925925925925926,2.7153604205241884,activity_object_duration,,,
+Laporan & Anomali,"(0.999, 6.0]","(199.999, 788.0]",31,0.0022962962962962963,2.6389720746607335,activity_object_duration,,,
+Laporan & Anomali,"(0.999, 6.0]","(4051.0, 11997.0]",22,0.0016296296296296295,2.7879110876728,activity_object_duration,,,
+Laporan & Anomali,"(0.999, 6.0]","(788.0, 1266.6]",30,0.0022222222222222222,2.6532125137753435,activity_object_duration,,,
+Laporan & Anomali,"(6.0, 10.0]","(1266.6, 1951.4]",2,0.00014814814814814815,3.829303772831025,activity_object_duration,,,
+Laporan & Anomali,"(6.0, 10.0]","(1951.4, 4051.0]",13,0.000962962962962963,3.016390416188169,activity_object_duration,,,
+Laporan & Anomali,"(6.0, 10.0]","(199.999, 788.0]",1,7.407407407407407e-05,4.1303337684950066,activity_object_duration,,,
+Laporan & Anomali,"(6.0, 10.0]","(4051.0, 11997.0]",12,0.0008888888888888889,3.0511525224473814,activity_object_duration,,,
+Laporan & Anomali,"(6.0, 10.0]","(788.0, 1266.6]",2,0.00014814814814814815,3.829303772831025,activity_object_duration,,,
+Login,"(0.999, 6.0]","(1266.6, 1951.4]",449,0.03325925925925926,1.4780874274916829,activity_object_duration,,,
+Login,"(0.999, 6.0]","(1951.4, 4051.0]",320,0.023703703703703703,1.6251837901751,activity_object_duration,,,
+Login,"(0.999, 6.0]","(199.999, 788.0]",503,0.037259259259259256,1.4287657834390788,activity_object_duration,,,
+Login,"(0.999, 6.0]","(4051.0, 11997.0]",315,0.023333333333333334,1.6320232147054057,activity_object_duration,,,
+Login,"(0.999, 6.0]","(788.0, 1266.6]",484,0.03585185185185185,1.4454884068505938,activity_object_duration,,,
+Login,"(6.0, 10.0]","(1266.6, 1951.4]",70,0.005185185185185185,2.285235728480749,activity_object_duration,,,
+Login,"(6.0, 10.0]","(1951.4, 4051.0]",219,0.01622222222222222,1.7898896536548878,activity_object_duration,,,
+Login,"(6.0, 10.0]","(199.999, 788.0]",31,0.0022962962962962963,2.6389720746607335,activity_object_duration,,,
+Login,"(6.0, 10.0]","(4051.0, 11997.0]",206,0.015259259259259259,1.8164665481258526,activity_object_duration,,,
+Login,"(6.0, 10.0]","(788.0, 1266.6]",41,0.003037037037037037,2.5175499117752707,activity_object_duration,,,
+Logout,"(0.999, 6.0]","(1266.6, 1951.4]",510,0.03777777777777778,1.4227635923970698,activity_object_duration,,,
+Logout,"(0.999, 6.0]","(1951.4, 4051.0]",356,0.02637037037037037,1.578883770522131,activity_object_duration,,,
+Logout,"(0.999, 6.0]","(199.999, 788.0]",585,0.043333333333333335,1.3631779024128257,activity_object_duration,,,
+Logout,"(0.999, 6.0]","(4051.0, 11997.0]",380,0.028148148148148148,1.550550171878196,activity_object_duration,,,
+Logout,"(0.999, 6.0]","(788.0, 1266.6]",552,0.04088888888888889,1.3883946907658071,activity_object_duration,,,
+Logout,"(6.0, 10.0]","(1266.6, 1951.4]",90,0.006666666666666667,2.1760912590556813,activity_object_duration,,,
+Logout,"(6.0, 10.0]","(1951.4, 4051.0]",220,0.016296296296296295,1.7879110876728,activity_object_duration,,,
+Logout,"(6.0, 10.0]","(199.999, 788.0]",30,0.0022222222222222222,2.6532125137753435,activity_object_duration,,,
+Logout,"(6.0, 10.0]","(4051.0, 11997.0]",247,0.018296296296296297,1.7376368152353403,activity_object_duration,,,
+Logout,"(6.0, 10.0]","(788.0, 1266.6]",58,0.004296296296296296,2.3669057749320688,activity_object_duration,,,
+Verifikasi,"(0.999, 6.0]","(1266.6, 1951.4]",38,0.0028148148148148147,2.550550171878196,activity_object_duration,,,
+Verifikasi,"(0.999, 6.0]","(1951.4, 4051.0]",20,0.0014814814814814814,2.829303772831025,activity_object_duration,,,
+Verifikasi,"(0.999, 6.0]","(199.999, 788.0]",47,0.0034814814814814817,2.4582359105592886,activity_object_duration,,,
+Verifikasi,"(0.999, 6.0]","(4051.0, 11997.0]",19,0.0014074074074074073,2.8515801675421772,activity_object_duration,,,
+Verifikasi,"(0.999, 6.0]","(788.0, 1266.6]",43,0.003185185185185185,2.4968653129154195,activity_object_duration,,,
+Verifikasi,"(6.0, 10.0]","(1266.6, 1951.4]",8,0.0005925925925925926,3.2272437815030623,activity_object_duration,,,
+Verifikasi,"(6.0, 10.0]","(1951.4, 4051.0]",15,0.0011111111111111111,2.9542425094393248,activity_object_duration,,,
+Verifikasi,"(6.0, 10.0]","(199.999, 788.0]",1,7.407407407407407e-05,4.1303337684950066,activity_object_duration,,,
+Verifikasi,"(6.0, 10.0]","(4051.0, 11997.0]",14,0.001037037037037037,2.984205732816768,activity_object_duration,,,
+Verifikasi,"(6.0, 10.0]","(788.0, 1266.6]",3,0.00022222222222222223,3.6532125137753435,activity_object_duration,,,
+Akses Berkas,,,2,0.00014814814814814815,3.829303772831025,hour_activity_device,00-05,Android,
+Akses Berkas,,,10,0.0007407407407407407,3.130333768495006,hour_activity_device,00-05,PC Windows,
+Akses Berkas,,,2,0.00014814814814814815,3.829303772831025,hour_activity_device,00-05,iOS,
+Kelola Berkas,,,3,0.00022222222222222223,3.6532125137753435,hour_activity_device,00-05,PC Windows,
+Kelola Perkara,,,5,0.00037037037037037035,3.4313637641589874,hour_activity_device,00-05,PC Windows,
+Kelola Perkara,,,1,7.407407407407407e-05,4.1303337684950066,hour_activity_device,00-05,iOS,
+Logout,,,2,0.00014814814814814815,3.829303772831025,hour_activity_device,00-05,Android,
+Logout,,,15,0.0011111111111111111,2.9542425094393248,hour_activity_device,00-05,PC Windows,
+Logout,,,4,0.0002962962962962963,3.5282737771670436,hour_activity_device,00-05,iOS,
+Verifikasi,,,3,0.00022222222222222223,3.6532125137753435,hour_activity_device,00-05,PC Windows,
+Akses Berkas,,,114,0.008444444444444444,2.0734289171585334,hour_activity_device,12-17,Android,
+Akses Berkas,,,791,0.05859259259259259,1.2321572849973295,hour_activity_device,12-17,PC Windows,
+Akses Berkas,,,226,0.01674074074074074,1.7762253293476051,hour_activity_device,12-17,iOS,
+Kelola Berkas,,,76,0.005629629629629629,2.2495201762142147,hour_activity_device,12-17,PC Windows,
+Kelola Perkara,,,123,0.009111111111111111,2.040428657055608,hour_activity_device,12-17,Android,
+Kelola Perkara,,,800,0.05925925925925926,1.2272437815030626,hour_activity_device,12-17,PC Windows,
+Kelola Perkara,,,243,0.018,1.744727494896694,hour_activity_device,12-17,iOS,
+Kelola User,,,38,0.0028148148148148147,2.550550171878196,hour_activity_device,12-17,PC Windows,
+Laporan & Anomali,,,72,0.005333333333333333,2.2730012720637376,hour_activity_device,12-17,PC Windows,
+Login,,,114,0.008444444444444444,2.0734289171585334,hour_activity_device,12-17,Android,
+Login,,,747,0.05533333333333333,1.2570131666796074,hour_activity_device,12-17,PC Windows,
+Login,,,205,0.015185185185185185,1.818579907439252,hour_activity_device,12-17,iOS,
+Logout,,,126,0.009333333333333334,2.029963223377443,hour_activity_device,12-17,Android,
+Logout,,,792,0.058666666666666666,1.2316085869055127,hour_activity_device,12-17,PC Windows,
+Logout,,,227,0.016814814814814814,1.7743079113018834,hour_activity_device,12-17,iOS,
+Verifikasi,,,81,0.006,2.221848749616356,hour_activity_device,12-17,PC Windows,
+Akses Berkas,,,196,0.01451851851851852,1.83807769713853,hour_activity_device,18-23,Android,
+Akses Berkas,,,1219,0.09029629629629629,1.044330062876624,hour_activity_device,18-23,PC Windows,
+Akses Berkas,,,325,0.024074074074074074,1.6184504075161317,hour_activity_device,18-23,iOS,
+Kelola Berkas,,,130,0.00962962962962963,2.016390416188169,hour_activity_device,18-23,PC Windows,
+Kelola Perkara,,,201,0.014888888888888889,1.8271377110745173,hour_activity_device,18-23,Android,
+Kelola Perkara,,,1222,0.09051851851851851,1.0432625625884706,hour_activity_device,18-23,PC Windows,
+Kelola Perkara,,,333,0.024666666666666667,1.6078895349886861,hour_activity_device,18-23,iOS,
+Kelola User,,,42,0.003111111111111111,2.5070844780971058,hour_activity_device,18-23,PC Windows,
+Laporan & Anomali,,,87,0.0064444444444444445,2.1908145158763874,hour_activity_device,18-23,PC Windows,
+Login,,,172,0.01274074074074074,1.8948053215874572,hour_activity_device,18-23,Android,
+Login,,,1091,0.08081481481481481,1.0925090179066643,hour_activity_device,18-23,PC Windows,
+Login,,,309,0.02288888888888889,1.6403752890701715,hour_activity_device,18-23,iOS,
+Logout,,,198,0.014666666666666666,1.833668578233475,hour_activity_device,18-23,Android,
+Logout,,,1313,0.09725925925925925,1.0120690424055268,hour_activity_device,18-23,PC Windows,
+Logout,,,351,0.026,1.585026652029182,hour_activity_device,18-23,iOS,
+Verifikasi,,,124,0.009185185185185185,2.036912083332771,hour_activity_device,18-23,PC Windows,
+Akses Berkas,,,14,0.001037037037037037,2.984205732816768,hour_activity_ip,00-05,,Private Network 192.168.x.x
+Kelola Berkas,,,3,0.00022222222222222223,3.6532125137753435,hour_activity_ip,00-05,,Private Network 192.168.x.x
+Kelola Perkara,,,6,0.00044444444444444447,3.3521825181113623,hour_activity_ip,00-05,,Private Network 192.168.x.x
+Logout,,,21,0.0015555555555555555,2.808114473761087,hour_activity_ip,00-05,,Private Network 192.168.x.x
+Verifikasi,,,3,0.00022222222222222223,3.6532125137753435,hour_activity_ip,00-05,,Private Network 192.168.x.x
+Akses Berkas,,,1131,0.08377777777777778,1.0768711635695507,hour_activity_ip,12-17,,Private Network 192.168.x.x
+Kelola Berkas,,,76,0.005629629629629629,2.2495201762142147,hour_activity_ip,12-17,,Private Network 192.168.x.x
+Kelola Perkara,,,1166,0.08637037037037038,1.0636352180720108,hour_activity_ip,12-17,,Private Network 192.168.x.x
+Kelola User,,,38,0.0028148148148148147,2.550550171878196,hour_activity_ip,12-17,,Private Network 192.168.x.x
+Laporan & Anomali,,,72,0.005333333333333333,2.2730012720637376,hour_activity_ip,12-17,,Private Network 192.168.x.x
+Login,,,1066,0.07896296296296296,1.1025765638044527,hour_activity_ip,12-17,,Private Network 192.168.x.x
+Logout,,,1145,0.08481481481481482,1.0715282818190994,hour_activity_ip,12-17,,Private Network 192.168.x.x
+Verifikasi,,,81,0.006,2.221848749616356,hour_activity_ip,12-17,,Private Network 192.168.x.x
+Akses Berkas,,,1740,0.1288888888888889,0.8897845202124064,hour_activity_ip,18-23,,Private Network 192.168.x.x
+Kelola Berkas,,,130,0.00962962962962963,2.016390416188169,hour_activity_ip,18-23,,Private Network 192.168.x.x
+Kelola Perkara,,,1756,0.13007407407407406,0.8858092569249224,hour_activity_ip,18-23,,Private Network 192.168.x.x
+Kelola User,,,42,0.003111111111111111,2.5070844780971058,hour_activity_ip,18-23,,Private Network 192.168.x.x
+Laporan & Anomali,,,87,0.0064444444444444445,2.1908145158763874,hour_activity_ip,18-23,,Private Network 192.168.x.x
+Login,,,1572,0.11644444444444445,0.933881226791617,hour_activity_ip,18-23,,Private Network 192.168.x.x
+Logout,,,1862,0.13792592592592592,0.8603540918496823,hour_activity_ip,18-23,,Private Network 192.168.x.x
+Verifikasi,,,124,0.009185185185185185,2.036912083332771,hour_activity_ip,18-23,,Private Network 192.168.x.x
+,,,1248,0.09244444444444444,1.034119183148601,device_ip,,Android,Private Network 192.168.x.x
+,,,8661,0.6415555555555555,0.1927657298946232,device_ip,,PC Windows,Private Network 192.168.x.x
+,,,2226,0.1648888888888889,0.7828086084963166,device_ip,,iOS,Private Network 192.168.x.x
+Akses Berkas,,,2,0.00014814814814814815,3.829303772831025,hour_activity_device_ip,00-05,Android,Private Network 192.168.x.x
+Akses Berkas,,,10,0.0007407407407407407,3.130333768495006,hour_activity_device_ip,00-05,PC Windows,Private Network 192.168.x.x
+Akses Berkas,,,2,0.00014814814814814815,3.829303772831025,hour_activity_device_ip,00-05,iOS,Private Network 192.168.x.x
+Kelola Berkas,,,3,0.00022222222222222223,3.6532125137753435,hour_activity_device_ip,00-05,PC Windows,Private Network 192.168.x.x
+Kelola Perkara,,,5,0.00037037037037037035,3.4313637641589874,hour_activity_device_ip,00-05,PC Windows,Private Network 192.168.x.x
+Kelola Perkara,,,1,7.407407407407407e-05,4.1303337684950066,hour_activity_device_ip,00-05,iOS,Private Network 192.168.x.x
+Logout,,,2,0.00014814814814814815,3.829303772831025,hour_activity_device_ip,00-05,Android,Private Network 192.168.x.x
+Logout,,,15,0.0011111111111111111,2.9542425094393248,hour_activity_device_ip,00-05,PC Windows,Private Network 192.168.x.x
+Logout,,,4,0.0002962962962962963,3.5282737771670436,hour_activity_device_ip,00-05,iOS,Private Network 192.168.x.x
+Verifikasi,,,3,0.00022222222222222223,3.6532125137753435,hour_activity_device_ip,00-05,PC Windows,Private Network 192.168.x.x
+Akses Berkas,,,114,0.008444444444444444,2.0734289171585334,hour_activity_device_ip,12-17,Android,Private Network 192.168.x.x
+Akses Berkas,,,791,0.05859259259259259,1.2321572849973295,hour_activity_device_ip,12-17,PC Windows,Private Network 192.168.x.x
+Akses Berkas,,,226,0.01674074074074074,1.7762253293476051,hour_activity_device_ip,12-17,iOS,Private Network 192.168.x.x
+Kelola Berkas,,,76,0.005629629629629629,2.2495201762142147,hour_activity_device_ip,12-17,PC Windows,Private Network 192.168.x.x
+Kelola Perkara,,,123,0.009111111111111111,2.040428657055608,hour_activity_device_ip,12-17,Android,Private Network 192.168.x.x
+Kelola Perkara,,,800,0.05925925925925926,1.2272437815030626,hour_activity_device_ip,12-17,PC Windows,Private Network 192.168.x.x
+Kelola Perkara,,,243,0.018,1.744727494896694,hour_activity_device_ip,12-17,iOS,Private Network 192.168.x.x
+Kelola User,,,38,0.0028148148148148147,2.550550171878196,hour_activity_device_ip,12-17,PC Windows,Private Network 192.168.x.x
+Laporan & Anomali,,,72,0.005333333333333333,2.2730012720637376,hour_activity_device_ip,12-17,PC Windows,Private Network 192.168.x.x
+Login,,,114,0.008444444444444444,2.0734289171585334,hour_activity_device_ip,12-17,Android,Private Network 192.168.x.x
+Login,,,747,0.05533333333333333,1.2570131666796074,hour_activity_device_ip,12-17,PC Windows,Private Network 192.168.x.x
+Login,,,205,0.015185185185185185,1.818579907439252,hour_activity_device_ip,12-17,iOS,Private Network 192.168.x.x
+Logout,,,126,0.009333333333333334,2.029963223377443,hour_activity_device_ip,12-17,Android,Private Network 192.168.x.x
+Logout,,,792,0.058666666666666666,1.2316085869055127,hour_activity_device_ip,12-17,PC Windows,Private Network 192.168.x.x
+Logout,,,227,0.016814814814814814,1.7743079113018834,hour_activity_device_ip,12-17,iOS,Private Network 192.168.x.x
+Verifikasi,,,81,0.006,2.221848749616356,hour_activity_device_ip,12-17,PC Windows,Private Network 192.168.x.x
+Akses Berkas,,,196,0.01451851851851852,1.83807769713853,hour_activity_device_ip,18-23,Android,Private Network 192.168.x.x
+Akses Berkas,,,1219,0.09029629629629629,1.044330062876624,hour_activity_device_ip,18-23,PC Windows,Private Network 192.168.x.x
+Akses Berkas,,,325,0.024074074074074074,1.6184504075161317,hour_activity_device_ip,18-23,iOS,Private Network 192.168.x.x
+Kelola Berkas,,,130,0.00962962962962963,2.016390416188169,hour_activity_device_ip,18-23,PC Windows,Private Network 192.168.x.x
+Kelola Perkara,,,201,0.014888888888888889,1.8271377110745173,hour_activity_device_ip,18-23,Android,Private Network 192.168.x.x
+Kelola Perkara,,,1222,0.09051851851851851,1.0432625625884706,hour_activity_device_ip,18-23,PC Windows,Private Network 192.168.x.x
+Kelola Perkara,,,333,0.024666666666666667,1.6078895349886861,hour_activity_device_ip,18-23,iOS,Private Network 192.168.x.x
+Kelola User,,,42,0.003111111111111111,2.5070844780971058,hour_activity_device_ip,18-23,PC Windows,Private Network 192.168.x.x
+Laporan & Anomali,,,87,0.0064444444444444445,2.1908145158763874,hour_activity_device_ip,18-23,PC Windows,Private Network 192.168.x.x
+Login,,,172,0.01274074074074074,1.8948053215874572,hour_activity_device_ip,18-23,Android,Private Network 192.168.x.x
+Login,,,1091,0.08081481481481481,1.0925090179066643,hour_activity_device_ip,18-23,PC Windows,Private Network 192.168.x.x
+Login,,,309,0.02288888888888889,1.6403752890701715,hour_activity_device_ip,18-23,iOS,Private Network 192.168.x.x
+Logout,,,198,0.014666666666666666,1.833668578233475,hour_activity_device_ip,18-23,Android,Private Network 192.168.x.x
+Logout,,,1313,0.09725925925925925,1.0120690424055268,hour_activity_device_ip,18-23,PC Windows,Private Network 192.168.x.x
+Logout,,,351,0.026,1.585026652029182,hour_activity_device_ip,18-23,iOS,Private Network 192.168.x.x
+Verifikasi,,,124,0.009185185185185185,2.036912083332771,hour_activity_device_ip,18-23,PC Windows,Private Network 192.168.x.x

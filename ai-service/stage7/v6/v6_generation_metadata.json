@@ -1,0 +1,27 @@
+{
+  "seed": 42,
+  "requested_count": 1000,
+  "generated_count": 1000,
+  "per_type": {
+    "offhours_sensitive_external_access": 400,
+    "suspicious_external_access": 300,
+    "credential_takeover_compound": 300
+  },
+  "per_severity": {
+    "Moderate": 400,
+    "Mild": 300,
+    "Severe": 300
+  },
+  "excluded_v5_sources": 1000,
+  "pool_size_after_exclusion": 12500,
+  "hash": "4f08beb76a37e4a26e4d7d6101852235ad37330b99d666000c5d8b20dd074802",
+  "anomaly_types_allowed": [
+    "suspicious_external_access",
+    "offhours_sensitive_external_access",
+    "credential_takeover_compound"
+  ],
+  "removed_types": [
+    "mass_archive_access",
+    "scripted_rapid_failure"
+  ]
+}

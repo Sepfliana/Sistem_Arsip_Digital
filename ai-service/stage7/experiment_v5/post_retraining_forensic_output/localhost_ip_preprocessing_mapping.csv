@@ -1,0 +1,4 @@
+raw_ip_address,count,canonical_ip_address
+unknown,325,Localhost / Loopback
+::ffff:127.0.0.1,3,Localhost / Loopback
+::1,1,Localhost / Loopback

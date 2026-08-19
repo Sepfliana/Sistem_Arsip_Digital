@@ -1,0 +1,83 @@
+{
+  "ip_analysis": {
+    "train_ip_starts_192_168_pct": 100.0,
+    "train_ip_starts_127_pct": 0.0,
+    "localhost_ip_starts_192_168_pct": 0.0,
+    "localhost_ip_starts_127_pct": 0.0,
+    "train_v6_ip_internal_pct": 100.0,
+    "localhost_v6_ip_internal_pct": 1.22,
+    "train_raw_ip_prefixes": {
+      "192": 8750
+    },
+    "localhost_raw_ip_prefixes": {
+      "unknown": 325,
+      "::ffff:127": 3,
+      "::1": 1
+    }
+  },
+  "duration_analysis": {
+    "train_dur_zero_pct": 0.0,
+    "localhost_dur_zero_pct": 100.0,
+    "train_v6_has_telemetry_pct": 100.0,
+    "localhost_v6_has_telemetry_pct": 0.0,
+    "train_dur_mean": 2290.03,
+    "localhost_dur_mean": 0.0
+  },
+  "activity_distribution": {
+    "train": {
+      "UNKNOWN": 0.509,
+      "Logout": 0.2483,
+      "Login": 0.2207,
+      "Administrasi": 0.016,
+      "Kelola User": 0.0059
+    },
+    "localhost": {
+      "UNKNOWN": 1.0
+    }
+  },
+  "device_distribution": {
+    "train": {
+      "PC Windows": 0.896,
+      "Android": 0.104
+    },
+    "localhost": {
+      "PC Windows": 1.0
+    }
+  },
+  "hour_distribution": {
+    "train": {
+      "1": 0.3934,
+      "2": 0.6032,
+      "3": 0.0034
+    },
+    "localhost": {
+      "0": 0.2857,
+      "1": 0.228,
+      "2": 0.2158,
+      "3": 0.2705
+    }
+  },
+  "status_distribution": {
+    "train": {
+      "Berhasil": 0.9719,
+      "Gagal": 0.0281
+    },
+    "localhost": {
+      "UNKNOWN": 1.0
+    }
+  },
+  "user_id_range": {
+    "train_min": 1.0,
+    "train_max": 86.0,
+    "localhost_min": 1.0,
+    "localhost_max": 86.0
+  },
+  "source_types": {
+    "train": {
+      "SYNTHETIC": 8750
+    },
+    "localhost": {
+      "REAL_DB": 329
+    }
+  }
+}

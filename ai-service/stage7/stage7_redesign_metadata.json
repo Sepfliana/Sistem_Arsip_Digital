@@ -1,0 +1,22 @@
+{
+  "generator": "stage7/generate_redesigned_anomalies_v2.py",
+  "random_seed": 42,
+  "total_anomalies": 1500,
+  "sha256": "5e00f038b765c7c2bfca525a936e0c9cfba1a0bcc2892dc93b1604a5fcb34c0f",
+  "severity_distribution": {
+    "Mild": 300,
+    "Moderate": 750,
+    "Severe": 450
+  },
+  "anomaly_type_counts": {
+    "credential_takeover_compound": 225,
+    "external_ip_single_probe": 150,
+    "mass_exfiltration_scraping": 225,
+    "offhours_external_login": 250,
+    "offhours_sensitive_access": 250,
+    "scripted_rapid_failure": 250,
+    "unusual_device_single": 150
+  },
+  "encoder_categories_verified": true,
+  "source_records_unique": true
+}

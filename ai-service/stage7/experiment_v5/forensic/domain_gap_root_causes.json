@@ -1,0 +1,181 @@
+{
+  "metadata": {
+    "stage": "7.6",
+    "objective": "Root cause classification for domain gap between TRAIN_NORMAL and LOCALHOST",
+    "classification_types": {
+      "A": "Representation mismatch — encoder/label-encoder cannot handle unseen category values",
+      "B": "Behavioral shift — genuine distributional difference in real usage patterns",
+      "C": "Logging / system artifact — missing or different telemetry from the logging pipeline",
+      "D": "Feature design limitation — feature structurally unsuitable for the task"
+    },
+    "evidence_sources": [
+      "per_feature_mse_decomposition.csv",
+      "scaled_feature_comparison.csv",
+      "categorical_feature_comparison.csv",
+      "FORENSIC_REPORT.md"
+    ]
+  },
+  "features": {
+    "ip_address": {
+      "severity": "CRITICAL",
+      "domain_gap_score": 100.0,
+      "primary_root_cause": "A",
+      "secondary_root_cause": "D",
+      "classification": "AD",
+      "explanation": "LabelEncoder fallback assigns unseen 'Localhost / Loopback' to integer 0 while training has constant 'Private Network 192.168.x.x' → integer 1. After StandardScaler (fit on train where std=0), localhost gets scaled value = −3.0 (the unknown's deviation). VAE encoder maps to extreme latent region; decoder cannot reconstruct the unknown encoding. Additionally, ip_address was constant in training (std=0), making it a structurally flawed feature that encodes identity, not behavior.",
+      "evidence": {
+        "train_ip": "100% 'Private Network 192.168.x.x' (constant, std=0)",
+        "localhost_ip": "100% 'Localhost / Loopback' (unseen category)",
+        "scaled_z_score": "3.0e+12 (training std=0, division by near-zero)",
+        "mse_ratio": "1,240,582,912x",
+        "contribution_pct": "301.1% of total localhost MSE"
+      }
+    },
+    "duration_ms": {
+      "severity": "CRITICAL",
+      "domain_gap_score": 95.4,
+      "primary_root_cause": "C",
+      "secondary_root_cause": "B",
+      "classification": "CB",
+      "explanation": "All 329 localhost records have duration_ms = 0 because localhost API calls do not produce browser-side timing telemetry (no fetch/XMLHttpRequest measurement). Training data has durations 200–12000 ms (log1p mean = 7.41). The model learned log1p(duration) ≈ 7.4; it cannot reconstruct 0.0 (log1p(0) = 0). This is a logging artifact (no telemetry) combined with a behavioral shift (system calls vs. user browsing).",
+      "evidence": {
+        "localhost_duration": "All 329 records = 0 ms",
+        "train_duration_mean": "1640 ms (log1p = 7.41)",
+        "scaled_z_score": "−8.83σ (8.83 standard deviations from train mean)",
+        "mse_ratio": "2032x",
+        "contribution_pct": "532.3% of total localhost MSE"
+      }
+    },
+    "device": {
+      "severity": "HIGH",
+      "domain_gap_score": 66.7,
+      "primary_root_cause": "C",
+      "secondary_root_cause": null,
+      "classification": "C",
+      "explanation": "User-Agent header is absent or unrecognized in localhost API calls, so parse_user_agent_device() returns 'Unknown Device' for 98.8% of localhost records. Training data has 71.5% 'PC Windows', 21.9% 'Android', 6.7% 'iOS'. 'Unknown Device' is present in DEVICE_CLASSES but was not seen during training → LabelEncoder fallback. This is a logging pipeline artifact.",
+      "evidence": {
+        "localhost_device": "98.8% 'Unknown Device'",
+        "train_device": "71.5% 'PC Windows', 21.9% 'Android', 6.7% 'iOS'",
+        "unseen_in_train": "Unknown Device (technically in vocabulary but never encoded)",
+        "mse_ratio": "226x",
+        "contribution_pct": "14.4% of total localhost MSE"
+      }
+    },
+    "hour": {
+      "severity": "HIGH",
+      "domain_gap_score": 75.9,
+      "primary_root_cause": "B",
+      "secondary_root_cause": null,
+      "classification": "B",
+      "explanation": "Genuine distributional shift in time-of-day patterns. Training data is concentrated in working hours (mean=18.4h, std=3.1, heavy right skew toward 16–21h). Localhost traffic is uniformly distributed across all hours (mean=10.8h, std=6.5). The model learned to reconstruct hour ≈ 18; records from midnight–morning have large reconstruction error.",
+      "evidence": {
+        "train_hour_mean": "18.4 h (std=3.1, concentrated 16–21h)",
+        "localhost_hour_mean": "10.8 h (std=6.5, uniform 0–23h)",
+        "scaled_z_score": "2.47σ",
+        "mse_ratio": "34x",
+        "contribution_pct": "29.3% of total localhost MSE"
+      }
+    },
+    "activity": {
+      "severity": "MEDIUM",
+      "domain_gap_score": 43.7,
+      "primary_root_cause": "C",
+      "secondary_root_cause": null,
+      "classification": "C",
+      "explanation": "3 activity categories present in localhost but absent from training: 'Keamanan & 2FA', 'Kelola Sarana', 'Peminjaman'. These represent system-triggered or admin operations not captured in the training dataset. The label encoder assigns fallback integers to unseen categories, increasing MSE.",
+      "evidence": {
+        "train_categories": "8 unique (Login, Logout, Akses Berkas, Kelola Berkas, Kelola Perkara, Kelola User, Verifikasi, Laporan & Anomali)",
+        "localhost_categories": "11 unique (train 8 + Keamanan & 2FA, Kelola Sarana, Peminjaman)",
+        "unseen_in_train": ["Keamanan & 2FA", "Kelola Sarana", "Peminjaman"],
+        "mse_ratio": "33x",
+        "contribution_pct": "12.7% of total localhost MSE"
+      }
+    },
+    "user_id": {
+      "severity": "HIGH",
+      "domain_gap_score": 52.9,
+      "primary_root_cause": "B",
+      "secondary_root_cause": null,
+      "classification": "B",
+      "explanation": "Genuine behavioral shift: localhost traffic is concentrated among low user IDs (1–8, mean=20.1) while training is uniform across 1–86 (mean=49.7). Low IDs likely correspond to admin/service accounts that generate localhost traffic. The model learned to reconstruct typical user IDs; extreme low values increase MSE.",
+      "evidence": {
+        "train_user_id_mean": "49.7 (std=21.7, uniform 1–86)",
+        "localhost_user_id_mean": "20.1 (std=33.1, concentrated at 1–8)",
+        "scaled_z_score": "1.36σ",
+        "mse_ratio": "19x",
+        "contribution_pct": "5.3% of total localhost MSE"
+      }
+    },
+    "day_of_week": {
+      "severity": "MEDIUM",
+      "domain_gap_score": 31.0,
+      "primary_root_cause": "B",
+      "secondary_root_cause": null,
+      "classification": "B",
+      "explanation": "Minor behavioral difference. Both distributions have similar shape (mean train=3.01 vs localhost=2.93) but localhost has slightly higher variance. The MSE gap exists but is relatively small.",
+      "evidence": {
+        "train_day_mean": "3.01 (std=1.97)",
+        "localhost_day_mean": "2.93 (std=2.01)",
+        "scaled_z_score": "0.04σ",
+        "mse_ratio": "10.4x",
+        "contribution_pct": "3.4% of total localhost MSE"
+      }
+    },
+    "object_count": {
+      "severity": "MEDIUM",
+      "domain_gap_score": 28.7,
+      "primary_root_cause": "B",
+      "secondary_root_cause": null,
+      "classification": "B",
+      "explanation": "Minor behavioral shift. Localhost records tend toward lower object counts (all log1p=0.693, i.e. raw=1 object) while training has a wider distribution (mean=1.26). This reflects simpler system operations vs. richer user interactions.",
+      "evidence": {
+        "train_object_count_mean": "1.26 objects (log1p=1.26)",
+        "localhost_object_count_mean": "1.0 object (log1p=0.693, constant)",
+        "scaled_z_score": "0.87σ",
+        "mse_ratio": "8.5x",
+        "contribution_pct": "1.3% of total localhost MSE"
+      }
+    },
+    "status": {
+      "severity": "MEDIUM",
+      "domain_gap_score": 23.0,
+      "primary_root_cause": "C",
+      "secondary_root_cause": null,
+      "classification": "C",
+      "explanation": "Localhost traffic is 100% 'Berhasil' (success), while training has 2.7% 'Gagal' (failure). This is a logging artifact — localhost API calls do not produce failure statuses in the same way as browser interactions. The model learned a slight bias toward 'Berhasil'; localhost's perfect success rate creates small but nonzero MSE.",
+      "evidence": {
+        "train_status": "97.3% Berhasil, 2.7% Gagal",
+        "localhost_status": "100% Berhasil",
+        "scaled_z_score": "0.17σ",
+        "mse_ratio": "9.9x",
+        "contribution_pct": "0.2% of total localhost MSE"
+      }
+    }
+  },
+  "summary_by_type": {
+    "A_Representation_mismatch": {
+      "features": ["ip_address"],
+      "count": 1,
+      "total_mse_contribution_pct": 301.1,
+      "fix_complexity": "LOW — fix requires canonical encoding change or feature removal"
+    },
+    "B_Behavioral_shift": {
+      "features": ["hour", "user_id", "day_of_week", "object_count"],
+      "count": 4,
+      "total_mse_contribution_pct": 39.3,
+      "fix_complexity": "MEDIUM — requires either distribution alignment or feature redesign"
+    },
+    "C_Logging_system_artifact": {
+      "features": ["duration_ms", "device", "activity", "status"],
+      "count": 4,
+      "total_mse_contribution_pct": 847.7,
+      "fix_complexity": "HIGH — requires fixing the logging pipeline or excluding localhost from scoring"
+    },
+    "D_Feature_design_limitation": {
+      "features": ["ip_address"],
+      "count": 1,
+      "total_mse_contribution_pct": 301.1,
+      "note": "ip_address is constant in training (std=0), making it structurally unsuitable as a learned feature"
+    }
+  }
+}

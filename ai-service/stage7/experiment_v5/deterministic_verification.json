@@ -1,0 +1,49 @@
+{
+  "seed": 42,
+  "manifest_results": {
+    "train_normal_manifest.csv": {
+      "expected_rows": 8750,
+      "actual_rows": 8750,
+      "membership_identical": true,
+      "ordering_and_values_identical": true,
+      "manifest_hash": "9fec2bbb86dbcf39781bb684a473487657d97fa05645c52b651e3d2b3898a96f",
+      "metadata_hash_matches": true
+    },
+    "validation_normal_manifest.csv": {
+      "expected_rows": 1875,
+      "actual_rows": 1875,
+      "membership_identical": true,
+      "ordering_and_values_identical": true,
+      "manifest_hash": "04e51412dbed475efd81590ce0d082ba5b8d3f1e45184ab4c59f8c1af183d0e2",
+      "metadata_hash_matches": true
+    },
+    "test_normal_manifest.csv": {
+      "expected_rows": 1875,
+      "actual_rows": 1875,
+      "membership_identical": true,
+      "ordering_and_values_identical": true,
+      "manifest_hash": "ed892a2a87f92e81fd8ea9e15b2bea9d1b84b04ac6696cfe9e16aac27c06d681",
+      "metadata_hash_matches": true
+    },
+    "validation_anomaly_manifest.csv": {
+      "expected_rows": 500,
+      "actual_rows": 500,
+      "membership_identical": true,
+      "ordering_and_values_identical": true,
+      "manifest_hash": "614b5f8b541ece9745f01f7e2e70297345a5cd88a6a4a87f2f7323b6875c6923",
+      "metadata_hash_matches": true
+    },
+    "test_anomaly_manifest.csv": {
+      "expected_rows": 500,
+      "actual_rows": 500,
+      "membership_identical": true,
+      "ordering_and_values_identical": true,
+      "manifest_hash": "18025ab971cab773efa2c7626cea2ea015a60d20e69f52f5ea85396bc4352b20",
+      "metadata_hash_matches": true
+    }
+  },
+  "source_exclusion_identical": true,
+  "production_integrity": true,
+  "metadata_timestamp_fields": [],
+  "pass": true
+}
