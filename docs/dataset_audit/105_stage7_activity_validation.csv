@@ -1,0 +1,12 @@
+activity,expected_count,actual_count,status,notes
+Login,3595,3595,PASS,nama tidak diubah; mapping kanonik hanya dokumentasi
+Logout,3595,3595,PASS,nama tidak diubah; mapping kanonik hanya dokumentasi
+Lihat Perkara,3497,3497,PASS,nama tidak diubah; mapping kanonik hanya dokumentasi
+Cari Berkas,3236,3236,PASS,nama tidak diubah; mapping kanonik hanya dokumentasi
+Lihat Berkas,261,261,PASS,nama tidak diubah; mapping kanonik hanya dokumentasi
+Input Berkas,261,261,PASS,nama tidak diubah; mapping kanonik hanya dokumentasi
+Verifikasi,261,261,PASS,nama tidak diubah; mapping kanonik hanya dokumentasi
+Dashboard,98,98,PASS,nama tidak diubah; mapping kanonik hanya dokumentasi
+Kelola User,98,98,PASS,nama tidak diubah; mapping kanonik hanya dokumentasi
+Kelola Kode Klasifikasi,98,98,PASS,nama tidak diubah; mapping kanonik hanya dokumentasi
+VOCABULARY_SIZE,10,10,PASS,aktivitas tak terduga: tidak ada

@@ -1,0 +1,53 @@
+{
+  "script": "audit_l_stage11.py v1.0",
+  "generated_at": "2026-08-23T16:31:28.005867",
+  "seed": {
+    "python": 42,
+    "numpy": 42,
+    "torch": 42
+  },
+  "deterministic_algorithms": true,
+  "architecture": {
+    "input_dimension": 9,
+    "latent_dimension": 8,
+    "hidden_layers": {
+      "encoder": [
+        64,
+        32
+      ],
+      "decoder": [
+        32,
+        64
+      ]
+    },
+    "activation": "ReLU",
+    "dropout": 0.2,
+    "optimizer": "Adam",
+    "learning_rate": 0.001,
+    "epochs": 100,
+    "batch_size": 30004,
+    "training_strategy": "KL capacity annealing",
+    "capacity_target": 0.5,
+    "capacity_warmup_epochs": 60,
+    "capacity_loss_weight": 1.0
+  },
+  "parameter_count": 6233,
+  "training_rows": 10503,
+  "validation_rows": 2266,
+  "test_rows": 2231,
+  "input_dimension": 9,
+  "epochs_run": 100,
+  "best_epoch_by_validation_loss": 99,
+  "best_validation_loss": 0.948609,
+  "final_train_loss": 0.960861,
+  "threshold_method": "P95 train reconstruction errors",
+  "threshold": 3.0499422550201416,
+  "status": "TRAINING VALIDATED / DEPLOYMENT NOT YET VALIDATED",
+  "ip_inference_blocker": "OPEN -> Tahap 12",
+  "artifacts": {
+    "model": "D:\\Sistem_Arsip_Digital\\ai-service\\models\\retrained\\vae_model_stage11.pth",
+    "model_sha256": "a664d407975eebf94948bd35b2cbf2a1cdfdef566250e2bec664565ee1488ab3",
+    "threshold": "D:\\Sistem_Arsip_Digital\\ai-service\\models\\retrained\\stage11_threshold.json",
+    "threshold_sha256": "914f0a03b3890b07b11860aa723ee789873b335fcfff0b36fe59446af2708abc"
+  }
+}

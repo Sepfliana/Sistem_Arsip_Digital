@@ -1,0 +1,10 @@
+feature,type,unique_count,missing,zero_count,min,max,mean,median,p25,p75,top_value,top_freq,notes
+user_id,categorical,72,0,0,,,,,,,54,372,identifier kategorikal; existing pipeline memperlakukan numerik
+activity,categorical,10,0,0,,,,,,,Login,3595,kosakata sintetis 10 aktivitas
+status,categorical,2,0,0,,,,,,,Berhasil,14550,biner hasil aksi
+device,categorical,9,0,0,,,,,,,PC Windows,4088,kosakata generator
+ip_address,categorical,362,0,0,,,,,,,192.168.1.99,598,"string IP; training->integer, kontrak inferensi->kategori"
+duration_ms,numeric,5279,0,0,1.0,106760.0,2423.2062,1495.5,894.0,3475.25,,,continuous behavioral
+object_count,numeric,108,0,0,1.0,200.0,4.4391,1.0,1.0,6.0,,,count behavioral
+hour,numeric,18,0,78,0.0,17.0,11.2826,11.0,9.0,14.0,,,derivasi timestamp.dt.hour
+day_of_week,numeric,7,0,2024,0.0,6.0,3.0335,3.0,1.0,5.0,,,derivasi timestamp.dt.dayofweek (Monday=0)

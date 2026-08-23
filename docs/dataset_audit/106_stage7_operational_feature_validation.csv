@@ -1,0 +1,7 @@
+feature,expected_baseline,actual_stage6,status,notes
+user_id_unique,72 (Tahap 1 baseline),72,PASS,snapshot users dev saat generasi
+device_distinct,9 (5 normal + 4 anomali),9,PASS,
+ip_address_internal_192_168,mayoritas internal,14700,INFO,sisanya prefix publik sintetis
+duration_ms_range,1 s/d 106760 (Tahap 1),1 s/d 106760,INFO,mean=2423.21
+object_count_range,1 s/d 200 (Tahap 1),1 s/d 200,INFO,
+status_distribution,Berhasil/Gagal,"{""Berhasil"": 14550, ""Gagal"": 450}",INFO,rasio ~97/3

@@ -1,0 +1,34 @@
+dataset,column_name,data_type,record_count,missing_count,unique_count,example_value,semantic_role,notes
+synthetic_raw,timestamp,string,15000,0,14982,2025-01-01 03:22:26,waktu event,tanpa timezone
+synthetic_raw,session_id,string,15000,0,3595,S7BA6BF6F6BA7AFDC,sesi aktivitas,prefix S + hex
+synthetic_raw,user_id,string,15000,0,72,61,user,ID dari tabel users dev
+synthetic_raw,username,string,15000,0,72,novri_ade_pratama,user,nama akun
+synthetic_raw,role,string,15000,0,3,User,role,Admin/Arsiparis/User
+synthetic_raw,activity,string,15000,0,10,Login,aktivitas,kosakata gaya UI Indonesia
+synthetic_raw,status,string,15000,0,2,Berhasil,status,Berhasil/Gagal
+synthetic_raw,ip_address,string,15000,0,362,192.168.1.99,jaringan,192.168.x.x saja
+synthetic_raw,device,string,15000,0,9,Android,perangkat,5 normal + 4 anomali
+synthetic_raw,duration_ms,string,15000,0,5279,1726,durasi,ms; 0 utk sebagian besar anomali
+synthetic_raw,object_count,string,15000,0,108,1,jumlah objek,angka; bukan identitas objek
+synthetic_raw,risk_level,string,15000,0,4,Low,label ground-truth,Normal/Low/Medium/High/Critical
+synthetic_raw,anomaly_type,string,15000,0,8,login_luar_jam,label ground-truth,8 nilai
+synthetic_raw,file/path/filename,-,15000,15000,0,(kolom tidak ada),-,NOT_FOUND_IN_SYNTHETIC_DATASET
+synthetic_raw,hash/checksum,-,15000,15000,0,(kolom tidak ada),-,NOT_FOUND_IN_SYNTHETIC_DATASET
+synthetic_raw,previous_hash,-,15000,15000,0,(kolom tidak ada),-,NOT_FOUND_IN_SYNTHETIC_DATASET
+synthetic_raw,document/case id,-,15000,15000,0,(kolom tidak ada),-,NOT_FOUND_IN_SYNTHETIC_DATASET
+synthetic_raw,target/resource,-,15000,15000,0,(kolom tidak ada),-,NOT_FOUND_IN_SYNTHETIC_DATASET
+postgresql_audit_log,id,bigint,337,0,337,55,?,PK
+postgresql_audit_log,user_id,integer,337,0,7,1,?,FK users
+postgresql_audit_log,aksi,varchar(80),337,0,33,LOGIN_SUCCESS,?,aktivitas UPPER_SNAKE_CASE
+postgresql_audit_log,target_tipe,varchar(80),337,0,7,USER,?,tipe objek: BERKAS/USER/PEMINJAMAN/dll
+postgresql_audit_log,target_id,integer,337,0,42,1,?,ID objek yang diaksi
+postgresql_audit_log,waktu,timestamp,337,0,337,2026-07-05 17:09:56.023000,?,waktu lokal server
+postgresql_audit_log,durasi_ms,integer,337,0,1,0,?,default 0
+postgresql_audit_log,jumlah_objek,integer,337,0,1,1,?,default 1
+postgresql_audit_log,status,varchar(20),337,0,2,SUCCESS,?,SUCCESS/VALID/dll
+postgresql_audit_log,ip_address,varchar(45),337,0,3,unknown,?,'unknown' 333/337
+postgresql_audit_log,device,varchar(255),337,0,3,unknown,?,'unknown' 333/337
+postgresql_audit_log,hash_sebelumnya,char(64),337,1,330,None,?,hash entri terakhir sebelumnya
+postgresql_audit_log,hash_entri,char(64),337,0,337,d1aa59df3f08c5ff2500147c00a1fc76359c8304,?,SHA-256 rantai entri
+postgresql_audit_log,file/path/nama_file,-,337,337,0,(kolom tidak ada),?,tidak ada kolom path/file di audit_log
+postgresql_audit_log,file_hash_sha256,-,337,337,0,(kolom tidak ada),?,"hash FILE disimpan di tabel berkas.hash_sha256, BUKAN audit_log"

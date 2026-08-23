@@ -1,0 +1,29 @@
+check,expected,status,detail
+input_rows_15000,15000,PASS,15000
+input_cols_9,9,PASS,"['user_id', 'activity', 'status', 'device', 'ip_address', 'duration_ms', 'object_count', 'hour', 'day_of_week']"
+feature_order_matches_stage9_metadata,user_id|activity|status|device|ip_address|duration_ms|object_count|hour|day_of_week,PASS,user_id|activity|status|device|ip_address|duration_ms|object_count|hour|day_of_week
+input_all_numeric,True,PASS,
+input_nan_0,0,PASS,0
+input_inf_0,0,PASS,
+stage9_metadata_feature_order,True,PASS,
+stage9_encoders_loadable,10/2/9,PASS,"10,2,9"
+stage9_candidate_scaler_loadable,n_features=9,PASS,
+alignment_user_id,True,PASS,
+alignment_activity_codes,True,PASS,
+split_groups_disjoint,True,PASS,2516/539/540 groups
+split_rows_cover_all_once,15000,PASS,"train=10503, val=2266, test=2231"
+train_shape_2d_cols9,"(rows, 9)",PASS,"(10503, 9)"
+train_dtype_float32,float32,PASS,float32
+train_nan_inf_0,0/0,PASS,0/0
+train_no_constant_feature,True,PASS,0.9999893307685852
+validation_shape_2d_cols9,"(rows, 9)",PASS,"(2266, 9)"
+validation_dtype_float32,float32,PASS,float32
+validation_nan_inf_0,0/0,PASS,0/0
+validation_no_constant_feature,True,PASS,0.7873311042785645
+test_shape_2d_cols9,"(rows, 9)",PASS,"(2231, 9)"
+test_dtype_float32,float32,PASS,float32
+test_nan_inf_0,0/0,PASS,0/0
+test_no_constant_feature,True,PASS,0.9416509866714478
+cross_split_exact_row_overlap,0,PASS,"train-val=0, train-test=0, val-test=0"
+session_id_never_spans_splits,0,PASS,sessions spanning >1 split = 0
+labels_not_in_matrix,True,PASS,matrix built from FEATURES only

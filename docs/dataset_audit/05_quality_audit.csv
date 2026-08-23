@@ -1,0 +1,23 @@
+issue_type,column,affected_records,affected_percentage,severity,example,notes
+duplicate_row_penuh,*,0,0.0,info,,baris identik pada seluruh kolom
+session_id_multi_user,"session_id,user_id",0,0.0,info,,dari 3595 session_id unik
+session_id_multi_role,"session_id,role",0,0.0,info,,dari 3595 session_id unik
+format_session_id_tidak_valid,session_id,0,0.0,info,,pola harapan S+16 hex dari generator/utils.py
+format_timestamp_tidak_valid,timestamp,0,0.0,info,,pola harapan YYYY-MM-DD HH:MM:SS
+format_ip_tidak_valid,ip_address,0,0.0,info,,bukan IPv4 dotted-quad
+inkonsistensi_anomaly_vs_risk,"anomaly_type,risk_level",0,0.0,info,,pemetaan mengikuti generator/anomaly.py
+login_luar_jam_tapi_jam_kerja,"anomaly_type,timestamp",0,0.0,info,,baris berlabel login_luar_jam dengan jam >= 07:00
+normal_sebelum_jam_07,"anomaly_type,timestamp",0,0.0,info,,baris berlabel Normal dengan jam < 07:00
+normal_setelah_jam_19,"anomaly_type,timestamp",0,0.0,info,,sesi normal generator maks mulai 17:00 + ~12 menit
+normal_dengan_ip_eksternal,"anomaly_type,ip_address",0,0.0,info,,baris Normal memakai prefix IP eksternal milik skenario ip_berubah
+normal_dengan_device_anomali,"anomaly_type,device",0,0.0,info,,baris Normal memakai device dari daftar anomali
+durasi_non_numerik,duration_ms,0,0.0,info,,
+durasi_kurang_dari_sama_dengan_nol,duration_ms,0,0.0,info,,generator mensintesis >= 300 ms
+object_count_non_numerik,object_count,0,0.0,info,,
+object_count_kurang_dari_sama_dengan_nol,object_count,0,0.0,info,,
+nilai_device_di_luar_kamus,device,0,0.0,info,,
+nilai_status_di_luar_kamus,status,0,0.0,info,,generator hanya menulis Berhasil/Gagal
+nilai_activity_di_luar_workflows,activity,0,0.0,info,,di luar kamus generator/flows.py
+record_struktur_beda,*,0,0.0,info,,lebar baris: {13: 15000}; kolom header: 13
+duplicate_row_penuh_combined_raw,*,0,0.0,info,,artefak lama retraining_dataset_combined_raw.csv
+duplicate_row_penuh_canonical,*,0,0.0,info,,artefak lama retraining_dataset_canonical.csv

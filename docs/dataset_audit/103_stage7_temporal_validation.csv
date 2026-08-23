@@ -1,0 +1,8 @@
+metric,actual,expected,status,source
+total_records,15000,15000,PASS,baseline Tahap 3/6
+working_hours_08_15,11633,11633,PASS,baseline Tahap 3/6
+before_08,1854,1854,PASS,baseline Tahap 3/6
+after_16,1513,1513,PASS,baseline Tahap 3/6
+weekday,10802,10802,PASS,baseline Tahap 3/6
+weekend,4198,4198,PASS,baseline Tahap 3/6
+holiday,1124,1124,PASS,baseline Tahap 3/6

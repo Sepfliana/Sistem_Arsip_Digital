@@ -1,0 +1,97 @@
+{
+  "script": "audit_k_stage10.py v1.0",
+  "generated_at": "2026-08-23T15:39:38.572404",
+  "seed": 42,
+  "split_method": "group-based by session_id (rng default_rng(42))",
+  "fractions": {
+    "train": 0.7,
+    "validation": 0.15,
+    "test": 0.15
+  },
+  "groups": {
+    "total_sessions": 3595,
+    "train": 2516,
+    "validation": 539,
+    "test": 540
+  },
+  "feature_order": [
+    "user_id",
+    "activity",
+    "status",
+    "device",
+    "ip_address",
+    "duration_ms",
+    "object_count",
+    "hour",
+    "day_of_week"
+  ],
+  "input": {
+    "path": "D:\\Sistem_Arsip_Digital\\ai-service\\dataset\\encoded\\audit_log_dataset_stage9_encoded_unscaled.csv",
+    "sha256_unscaled": "853c362859db26c9a3c1912addf6825bc3f8404da9d9939bff02fad747258055"
+  },
+  "final_scaler": {
+    "type": "StandardScaler",
+    "fit_split": "train",
+    "fit_row_count": 10503,
+    "mean": [
+      49.733599923831285,
+      5.326668570884509,
+      0.03065790726459107,
+      4.357897743501857,
+      3200088399.4453964,
+      2429.6378177663523,
+      4.423212415500333,
+      11.278682281252975,
+      3.0138055793582788
+    ],
+    "scale": [
+      21.621559207947463,
+      3.033787331852901,
+      0.17238909474426445,
+      2.8619854829664706,
+      260014831.04125068,
+      3143.8651919363333,
+      11.186762542205203,
+      3.20366615186463,
+      1.990240832885144
+    ],
+    "var": [
+      467.49182258277773,
+      9.203865574911143,
+      0.029717999986746985,
+      8.190960904710822,
+      6.7607712361410136e+16,
+      9883888.345068878,
+      125.14365617568544,
+      10.263476812603127,
+      3.961058572883352
+    ],
+    "path": "D:\\Sistem_Arsip_Digital\\ai-service\\dataset\\final\\scaler\\final_train_scaler.pkl"
+  },
+  "shapes": {
+    "train": [
+      10503,
+      9
+    ],
+    "validation": [
+      2266,
+      9
+    ],
+    "test": [
+      2231,
+      9
+    ]
+  },
+  "dtype": "float32",
+  "labels_in_matrix": false,
+  "outputs": {
+    "X_train_final.npy": "D:\\Sistem_Arsip_Digital\\ai-service\\dataset\\final\\X_train_final.npy",
+    "X_validation_final.npy": "D:\\Sistem_Arsip_Digital\\ai-service\\dataset\\final\\X_validation_final.npy",
+    "X_test_final.npy": "D:\\Sistem_Arsip_Digital\\ai-service\\dataset\\final\\X_test_final.npy"
+  },
+  "output_sha256": {
+    "X_train_final.npy": "fe67e6c8bc1e5b4fdbb532a8b8691fba1c96068239689a19573c8625e182a59f",
+    "X_validation_final.npy": "f6e5185bf3a0486bcf7f28580a7354f9b64a1d95a6824775a92a933dbb2e2af3",
+    "X_test_final.npy": "a2d02e16fd76349709bd29bf43242f5d0929f6f847b522b34e7e20e409153bc9"
+  }
+}

@@ -1,0 +1,13 @@
+dataset,time_category,day_category,record_count,percentage
+synthetic_raw,<08:00,(semua hari),1854,12.36
+synthetic_raw,08:00-15:59,(semua hari),11633,77.5533
+synthetic_raw,16:00-16:59,(semua hari),1460,9.7333
+synthetic_raw,>=17:00,(semua hari),53,0.3533
+synthetic_raw,(semua jam),WORKDAY,10802,72.0133
+synthetic_raw,(semua jam),WEEKEND,4198,27.9867
+postgresql_real,<08:00,(semua hari),71,21.0682
+postgresql_real,08:00-15:59,(semua hari),137,40.6528
+postgresql_real,16:00-16:59,(semua hari),7,2.0772
+postgresql_real,>=17:00,(semua hari),122,36.2018
+postgresql_real,(semua jam),WORKDAY,232,68.8427
+postgresql_real,(semua jam),WEEKEND,105,31.1573

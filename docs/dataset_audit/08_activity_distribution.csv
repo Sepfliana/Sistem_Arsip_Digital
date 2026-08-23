@@ -1,0 +1,83 @@
+dataset,column,value,count,percentage
+synthetic_raw,activity,Login,3595,23.9667
+synthetic_raw,activity,Logout,3595,23.9667
+synthetic_raw,activity,Lihat Perkara,3497,23.3133
+synthetic_raw,activity,Cari Berkas,3236,21.5733
+synthetic_raw,activity,Lihat Berkas,261,1.74
+synthetic_raw,activity,Input Berkas,261,1.74
+synthetic_raw,activity,Verifikasi,261,1.74
+synthetic_raw,activity,Dashboard,98,0.6533
+synthetic_raw,activity,Kelola User,98,0.6533
+synthetic_raw,activity,Kelola Kode Klasifikasi,98,0.6533
+synthetic_raw,status,Berhasil,14550,97.0
+synthetic_raw,status,Gagal,450,3.0
+synthetic_raw,anomaly_type(label),Normal,13500,90.0
+synthetic_raw,anomaly_type(label),login_luar_jam,450,3.0
+synthetic_raw,anomaly_type(label),ip_berubah,300,2.0
+synthetic_raw,anomaly_type(label),device_berubah,225,1.5
+synthetic_raw,anomaly_type(label),aktivitas_terlalu_cepat,180,1.2
+synthetic_raw,anomaly_type(label),durasi_tidak_wajar,150,1.0
+synthetic_raw,anomaly_type(label),peminjaman_massal,120,0.8
+synthetic_raw,anomaly_type(label),verifikasi_massal,75,0.5
+synthetic_raw,risk_level(label),Normal,13500,90.0
+synthetic_raw,risk_level(label),Low,975,6.5
+synthetic_raw,risk_level(label),Medium,330,2.2
+synthetic_raw,risk_level(label),High,195,1.3
+retraining_combined_raw,activity,Login,3595,23.4523
+retraining_combined_raw,activity,Logout,3595,23.4523
+retraining_combined_raw,activity,Lihat Perkara,3497,22.813
+retraining_combined_raw,activity,Cari Berkas,3236,21.1103
+retraining_combined_raw,activity,Lihat Berkas,261,1.7027
+retraining_combined_raw,activity,Input Berkas,261,1.7027
+retraining_combined_raw,activity,Verifikasi,261,1.7027
+retraining_combined_raw,activity,Dashboard,98,0.6393
+retraining_combined_raw,activity,Kelola User,98,0.6393
+retraining_combined_raw,activity,Kelola Kode Klasifikasi,98,0.6393
+retraining_combined_raw,activity,LOGIN_SUCCESS,59,0.3849
+retraining_combined_raw,activity,ACCESS_BERKAS_FILE,40,0.2609
+retraining_combined_raw,activity,LOGOUT,26,0.1696
+retraining_combined_raw,activity,CREATE_USER,16,0.1044
+retraining_combined_raw,activity,CREATE_LEMARI,16,0.1044
+retraining_combined_raw,activity,CREATE_PERKARA,16,0.1044
+retraining_combined_raw,activity,SETUP_2FA_GENERATE,15,0.0979
+retraining_combined_raw,activity,UPDATE_USER,15,0.0979
+retraining_combined_raw,activity,UPDATE_RAK,14,0.0913
+retraining_combined_raw,activity,CREATE_BERKAS,12,0.0783
+retraining_combined_raw,activity,UPDATE_PERKARA,11,0.0718
+retraining_combined_raw,activity,UPDATE_LEMARI,8,0.0522
+retraining_combined_raw,activity,DELETE_USER,7,0.0457
+retraining_combined_raw,activity,AJUKAN_PEMINJAMAN,7,0.0457
+retraining_combined_raw,activity,AKTIVASI_OTP,6,0.0391
+retraining_combined_raw,activity,DELETE_PERKARA,6,0.0391
+retraining_combined_raw,activity,UPDATE_BERKAS,6,0.0391
+retraining_combined_raw,activity,PENGEMBALIAN,6,0.0391
+retraining_combined_raw,activity,DELETE_LEMARI,5,0.0326
+retraining_combined_raw,activity,SETUJUI_PEMINJAMAN,5,0.0326
+retraining_combined_raw,activity,PINJAM,5,0.0326
+retraining_combined_raw,activity,DELETE_BERKAS,4,0.0261
+retraining_combined_raw,activity,VERIFIKASI_INTEGRITAS_BERKAS,4,0.0261
+retraining_combined_raw,activity,DELETE_PEMINJAMAN,3,0.0196
+retraining_combined_raw,activity,DELETE_RAK,3,0.0196
+retraining_combined_raw,activity,EXPORT_VERIFICATION_REPORT,3,0.0196
+retraining_combined_raw,activity,KEPUTUSAN_ANOMALI_OVERRIDE,2,0.013
+retraining_combined_raw,activity,DISABLE_2FA_EMAIL_CHANGED,2,0.013
+retraining_combined_raw,activity,TOLAK_PEMINJAMAN,2,0.013
+retraining_combined_raw,activity,KEPUTUSAN_ANOMALI_DITERIMA,2,0.013
+retraining_combined_raw,activity,UPDATE_PEMINJAMAN,1,0.0065
+retraining_combined_raw,activity,REQUEST_RESET_PASSWORD,1,0.0065
+retraining_combined_raw,activity,RESET_PASSWORD,1,0.0065
+retraining_combined_raw,status,Berhasil,14550,94.9181
+retraining_combined_raw,status,Gagal,450,2.9356
+retraining_combined_raw,status,SUCCESS,325,2.1202
+retraining_combined_raw,status,VALID,4,0.0261
+retraining_canonical,activity(canonical),Login,3654,23.8372
+retraining_canonical,activity(canonical),Logout,3621,23.6219
+retraining_canonical,activity(canonical),Akses Berkas,3537,23.0739
+retraining_canonical,activity(canonical),Kelola Perkara,3530,23.0282
+retraining_canonical,activity(canonical),Kelola Berkas,283,1.8462
+retraining_canonical,activity(canonical),Verifikasi,265,1.7287
+retraining_canonical,activity(canonical),Laporan & Anomali,203,1.3243
+retraining_canonical,activity(canonical),Kelola User,136,0.8872
+retraining_canonical,activity(canonical),Kelola Sarana,46,0.3001
+retraining_canonical,activity(canonical),Peminjaman,29,0.1892
+retraining_canonical,activity(canonical),Keamanan & 2FA,25,0.1631

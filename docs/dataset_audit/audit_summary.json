@@ -1,0 +1,118 @@
+{
+  "rows": {
+    "synthetic_raw": 15000,
+    "retraining_combined_raw": 15329,
+    "retraining_canonical": 15329,
+    "legacy_sample_vae": 25,
+    "processed_train": 0,
+    "processed_validation": 0,
+    "processed_test": 0
+  },
+  "cols": {
+    "synthetic_raw": 13,
+    "retraining_combined_raw": 13,
+    "retraining_canonical": 12,
+    "legacy_sample_vae": 10,
+    "processed_train": 0,
+    "processed_validation": 0,
+    "processed_test": 0
+  },
+  "columns": {
+    "synthetic_raw": [
+      "timestamp",
+      "session_id",
+      "user_id",
+      "username",
+      "role",
+      "activity",
+      "status",
+      "ip_address",
+      "device",
+      "duration_ms",
+      "object_count",
+      "risk_level",
+      "anomaly_type"
+    ],
+    "retraining_combined_raw": [
+      "source_type",
+      "source_id",
+      "user_id",
+      "aksi",
+      "status",
+      "device",
+      "ip_address",
+      "durasi_ms",
+      "jumlah_objek",
+      "waktu",
+      "is_anomali",
+      "risk_level_source",
+      "candidate_type"
+    ],
+    "retraining_canonical": [
+      "user_id",
+      "activity",
+      "status",
+      "device",
+      "ip_address",
+      "duration_ms",
+      "object_count",
+      "hour",
+      "day_of_week",
+      "source_type",
+      "source_id",
+      "candidate_type"
+    ],
+    "legacy_sample_vae": [
+      "user_id",
+      "aksi",
+      "target_tipe",
+      "status",
+      "device",
+      "ip_address",
+      "durasi_ms",
+      "jumlah_objek",
+      "hour",
+      "day_of_week"
+    ],
+    "processed_train": [],
+    "processed_validation": [],
+    "processed_test": []
+  },
+  "duplicate_full_synthetic": 0,
+  "duplicate_full_combined": 0,
+  "duplicate_full_canonical": 0,
+  "missing_total_synthetic": 0,
+  "quality_issues": 22,
+  "npy_shapes": {
+    "X_train_preprocessed": [
+      15000,
+      9
+    ],
+    "X_train_candidate": [
+      9680,
+      9
+    ]
+  },
+  "preprocessing_metadata": {
+    "dataset_rows": 15000,
+    "feature_count": 9,
+    "feature_names": [
+      "user_id",
+      "activity",
+      "status",
+      "device",
+      "ip_address",
+      "duration_ms",
+      "object_count",
+      "hour",
+      "day_of_week"
+    ],
+    "scaler": "StandardScaler",
+    "encoder_columns": [
+      "activity",
+      "status",
+      "device"
+    ],
+    "created_at": "2026-07-27T14:53:32.169313"
+  }
+}

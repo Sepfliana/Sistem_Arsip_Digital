@@ -1,0 +1,28 @@
+date,day_of_week,holiday_name,holiday_status,activity_count
+2025-01-01,Rabu,Tahun Baru Masehi,TERVERIFIKASI,53
+2025-01-27,Senin,Isra Mikraj Nabi Muhammad saw.,TERVERIFIKASI,52
+2025-01-29,Rabu,Tahun Baru Imlek 2576 Kongzili,TERVERIFIKASI,34
+2025-03-29,Sabtu,Hari Suci Nyepi (Tahun Baru Saka 1947),TERVERIFIKASI,42
+2025-03-31,Senin,Idulfitri 1446 Hijriah (hari ke-1),TERVERIFIKASI,32
+2025-04-01,Selasa,Idulfitri 1446 Hijriah (hari ke-2),TERVERIFIKASI,52
+2025-04-18,Jumat,Wafat Yesus Kristus,TERVERIFIKASI,50
+2025-04-20,Minggu,Kebangkitan Yesus Kristus (Paskah),TERVERIFIKASI,38
+2025-05-01,Kamis,Hari Buruh Internasional,TERVERIFIKASI,45
+2025-05-12,Senin,Hari Raya Waisak 2569 BE,TERVERIFIKASI,28
+2025-05-29,Kamis,Kenaikan Yesus Kristus,TERVERIFIKASI,40
+2025-06-01,Minggu,Hari Lahir Pancasila,TERVERIFIKASI,70
+2025-06-06,Jumat,Iduladha 1446 Hijriah,TERVERIFIKASI,32
+2025-06-27,Jumat,1 Muharam Tahun Baru Islam 1447 Hijriah,TERVERIFIKASI,48
+2025-08-17,Minggu,Proklamasi Kemerdekaan RI,TERVERIFIKASI,29
+2025-09-05,Jumat,Maulid Nabi Muhammad saw.,TERVERIFIKASI,50
+2025-12-25,Kamis,Kelahiran Yesus Kristus (Natal),TERVERIFIKASI,38
+2025-01-28,Selasa,Cuti Bersama Tahun Baru Imlek 2576 Kongzili,TERVERIFIKASI,16
+2025-03-28,Jumat,Cuti Bersama Hari Suci Nyepi,TERVERIFIKASI,48
+2025-04-02,Rabu,Cuti Bersama Idulfitri 1446 Hijriah,TERVERIFIKASI,20
+2025-04-03,Kamis,Cuti Bersama Idulfitri 1446 Hijriah,TERVERIFIKASI,58
+2025-04-04,Jumat,Cuti Bersama Idulfitri 1446 Hijriah,TERVERIFIKASI,38
+2025-04-07,Senin,Cuti Bersama Idulfitri 1446 Hijriah,TERVERIFIKASI,36
+2025-05-13,Selasa,Cuti Bersama Hari Raya Waisak 2569 BE,TERVERIFIKASI,46
+2025-05-30,Jumat,Cuti Bersama Kenaikan Yesus Kristus,TERVERIFIKASI,51
+2025-06-09,Senin,Cuti Bersama Iduladha 1446 Hijriah,TERVERIFIKASI,42
+2025-12-26,Jumat,Cuti Bersama Kelahiran Yesus Kristus,TERVERIFIKASI,36

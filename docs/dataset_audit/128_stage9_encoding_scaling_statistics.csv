@@ -1,0 +1,10 @@
+feature_pre_scale,unique,min,max,mean,median,std,nan,inf,scaled_min,scaled_max,mapping_or_transform
+user_id,72,1.0,86.0,49.6411,50.0,21.7394,0,0,-2.2375,1.6725,passthrough int
+activity,10,0.0,9.0,5.3245,6.0,3.0346,0,0,-1.7546,1.2112,"{""Cari Berkas"": 0, ""Dashboard"": 1, ""Input Berkas"": 2, ""Kelola Kode Klasifikasi"": 3, ""Kelola User"": 4, ""Lihat Berkas"": 5, ""Lihat Perkara"": 6, ""Login"": 7, ""Logout"": 8, ""Verifikasi"": 9}"
+status,2,0.0,1.0,0.03,0.0,0.1706,0,0,-0.1759,5.6862,"{""Berhasil"": 0, ""Gagal"": 1}"
+device,9,0.0,8.0,4.3765,4.0,2.8788,0,0,-1.5202,1.2587,"{""Android"": 0, ""Laptop Windows"": 1, ""Linux"": 2, ""MacOS"": 3, ""PC Windows"": 4, ""Unknown Device"": 5, ""Virtual Machine"": 6, ""Windows"": 7, ""iPhone"": 8}"
+ip_address,362,134276992.0,3232236030.0,3199081930.6031,3232235886.0,269204031.6608,0,0,-11.3847,0.1232,IP string -> integer 32-bit (ipaddress)
+duration_ms,5279,1.0,106760.0,2423.2062,1495.5,3083.7972,0,0,-0.7855,33.8339,passthrough float; StandardScaler
+object_count,108,1.0,200.0,4.4391,1.0,11.2158,0,0,-0.3066,17.4362,passthrough float; StandardScaler
+hour,18,0.0,17.0,11.2826,11.0,3.2065,0,0,-3.5187,1.7831,passthrough float; StandardScaler
+day_of_week,7,0.0,6.0,3.0335,3.0,1.9751,0,0,-1.5359,1.5019,passthrough float; StandardScaler

@@ -1,0 +1,22 @@
+group,check,status,detail
+artifacts,model_loadable,PASS,
+artifacts,threshold_value,PASS,3.0499422550201416
+artifacts,encoders_vocab_10_2_9,PASS,
+artifacts,scaler_fit_rows_10503,PASS,10503.0
+artifacts,scaler_n_features_9,PASS,
+feature_order,tuple_contract,PASS,user_id|activity|status|device|ip_address|duration_ms|object_count|hour|day_of_week
+e2e,unscaled_shape_1x9,PASS,"(1, 9)"
+e2e,finite_no_nan_inf,PASS,
+e2e,ip_not_zero_default,PASS,ip_int=3232235875
+e2e,scaled_shape_dtype,PASS,"(1, 9)"
+e2e,prediction_valid_schema,PASS,"{""anomaly_score"": 1.0727083683013916, ""is_anomaly"": false, ""status"": ""NORMAL""}"
+parity,train_side_representation_identical_15_rows,PASS,"rows=15, mismatches=0"
+contract,invalid_ipv4_rejected,PASS,IP address tidak valid: '999.999.1.1'.
+contract,ipv6_rejected_no_fabrication,PASS,Hanya IPv4 yang didukung kontrak training (diterima IPv6: '::1'). Tidak dipetaka
+contract,unknown_activity_rejected,PASS,Nilai 'Klik Sembarang' tidak ada dalam vocabulary training kolom 'activity'. Kel
+contract,unknown_device_rejected,PASS,Nilai 'Smart Fridge' tidak ada dalam vocabulary training kolom 'device'. Kelas v
+contract,valid_ipv4_matches_training_encoding,PASS,3232235853
+regression,old_inference_importable,PASS,
+regression,fastapi_app_importable,PASS,
+regression,old_endpoint_logic_works,PASS,"{""anomaly_score"": 9.464900970458984, ""is_anomaly"": true}"
+production_safety,deployment_config_unchanged,PASS,3.1496288776397705

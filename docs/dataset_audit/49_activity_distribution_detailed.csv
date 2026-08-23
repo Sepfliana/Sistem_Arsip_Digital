@@ -1,0 +1,44 @@
+dataset,activity,count,percentage
+synthetic_raw,Login,3595,23.9667
+synthetic_raw,Logout,3595,23.9667
+synthetic_raw,Lihat Perkara,3497,23.3133
+synthetic_raw,Cari Berkas,3236,21.5733
+synthetic_raw,Lihat Berkas,261,1.74
+synthetic_raw,Input Berkas,261,1.74
+synthetic_raw,Verifikasi,261,1.74
+synthetic_raw,Dashboard,98,0.6533
+synthetic_raw,Kelola User,98,0.6533
+synthetic_raw,Kelola Kode Klasifikasi,98,0.6533
+postgresql_audit_log,LOGIN_SUCCESS,62,18.3976
+postgresql_audit_log,ACCESS_BERKAS_FILE,40,11.8694
+postgresql_audit_log,LOGOUT,29,8.6053
+postgresql_audit_log,CREATE_USER,16,4.7478
+postgresql_audit_log,CREATE_LEMARI,16,4.7478
+postgresql_audit_log,UPDATE_USER,16,4.7478
+postgresql_audit_log,CREATE_PERKARA,16,4.7478
+postgresql_audit_log,SETUP_2FA_GENERATE,15,4.451
+postgresql_audit_log,UPDATE_RAK,14,4.1543
+postgresql_audit_log,CREATE_BERKAS,12,3.5608
+postgresql_audit_log,UPDATE_PERKARA,11,3.2641
+postgresql_audit_log,UPDATE_LEMARI,8,2.3739
+postgresql_audit_log,DELETE_USER,7,2.0772
+postgresql_audit_log,AJUKAN_PEMINJAMAN,7,2.0772
+postgresql_audit_log,PENGEMBALIAN,6,1.7804
+postgresql_audit_log,DELETE_PERKARA,6,1.7804
+postgresql_audit_log,UPDATE_BERKAS,6,1.7804
+postgresql_audit_log,AKTIVASI_OTP,6,1.7804
+postgresql_audit_log,PINJAM,5,1.4837
+postgresql_audit_log,DELETE_LEMARI,5,1.4837
+postgresql_audit_log,SETUJUI_PEMINJAMAN,5,1.4837
+postgresql_audit_log,DELETE_BERKAS,4,1.1869
+postgresql_audit_log,VERIFIKASI_INTEGRITAS_BERKAS,4,1.1869
+postgresql_audit_log,EXPORT_VERIFICATION_REPORT,3,0.8902
+postgresql_audit_log,DELETE_PEMINJAMAN,3,0.8902
+postgresql_audit_log,DELETE_RAK,3,0.8902
+postgresql_audit_log,REQUEST_RESET_PASSWORD,2,0.5935
+postgresql_audit_log,KEPUTUSAN_ANOMALI_DITERIMA,2,0.5935
+postgresql_audit_log,KEPUTUSAN_ANOMALI_OVERRIDE,2,0.5935
+postgresql_audit_log,DISABLE_2FA_EMAIL_CHANGED,2,0.5935
+postgresql_audit_log,TOLAK_PEMINJAMAN,2,0.5935
+postgresql_audit_log,RESET_PASSWORD,1,0.2967
+postgresql_audit_log,UPDATE_PEMINJAMAN,1,0.2967

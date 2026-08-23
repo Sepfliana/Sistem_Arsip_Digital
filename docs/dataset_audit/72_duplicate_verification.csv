@@ -1,0 +1,5 @@
+duplicate_type,detail,count,disposition
+EXACT_DUPLICATE,(tidak ditemukan),0,tidak ada penghapusan - sesuai RULE N
+SAME_USER_SAME_TIMESTAMP,-,0,dua aktivitas berbeda pada detik sama - sah (bukan otomatis duplikat)
+SAME_SESSION_SAME_ACTIVITY,-,0,aktivitas berulang dalam satu sesi - sah menurut RULE N
+SESSION_WITH_MULTIPLE_EVENTS,-,3595,15000 baris berada dalam sesi multi-event - rantai workflow sah

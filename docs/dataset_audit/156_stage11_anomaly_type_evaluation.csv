@@ -1,0 +1,17 @@
+split,anomaly_type,count,detected,missed,detection_rate
+validation,Normal,2030,51,1979,0.0251
+validation,aktivitas_terlalu_cepat,25,0,25,0.0
+validation,device_berubah,29,2,27,0.069
+validation,durasi_tidak_wajar,31,5,26,0.1613
+validation,ip_berubah,48,29,19,0.6042
+validation,login_luar_jam,70,6,64,0.0857
+validation,peminjaman_massal,18,9,9,0.5
+validation,verifikasi_massal,15,14,1,0.9333
+test,Normal,2016,52,1964,0.0258
+test,aktivitas_terlalu_cepat,14,0,14,0.0
+test,device_berubah,39,0,39,0.0
+test,durasi_tidak_wajar,21,11,10,0.5238
+test,ip_berubah,40,25,15,0.625
+test,login_luar_jam,66,6,60,0.0909
+test,peminjaman_massal,23,13,10,0.5652
+test,verifikasi_massal,12,11,1,0.9167

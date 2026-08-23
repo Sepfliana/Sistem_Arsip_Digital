@@ -1,0 +1,5 @@
+dataset,attribute,availability,record_count_with_attr,missing,duplicate_summary,unique_or_chain_summary,notes
+synthetic_raw,-,TIDAK ADA atribut file/path/hash,,,,,"kolom tersedia: timestamp, session_id, user_id, username, role, activity, status, ip_address, device, duration_ms, object_count, risk_level, anomaly_type"
+retraining_combined_raw,-,TIDAK ADA atribut file/path/hash,,,,,"kolom tersedia: source_type, source_id, user_id, aksi, status, device, ip_address, durasi_ms, jumlah_objek, waktu, is_anomali, risk_level_source, candidate_type"
+retraining_canonical,-,TIDAK ADA atribut file/path/hash,,,,,"kolom tersedia: user_id, activity, status, device, ip_address, duration_ms, object_count, hour, day_of_week, source_type, source_id, candidate_type"
+postgresql_audit_log(tabel live),"hash_entri,hash_sebelumnya",ADA (hash chaining),337,0,hash_sebelumnya NULL=1,rantai SHA-256 per entri,rentang waktu 2026-07-05 17:09:56.023000 s/d 2026-08-19 18:57:06.366000

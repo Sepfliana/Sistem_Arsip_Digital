@@ -1,0 +1,15 @@
+dataset,day_of_week,kategori,record_count,percentage
+synthetic_raw,Senin,weekday,2024,13.4933
+synthetic_raw,Selasa,weekday,2067,13.78
+synthetic_raw,Rabu,weekday,2173,14.4867
+synthetic_raw,Kamis,weekday,2202,14.68
+synthetic_raw,Jumat,weekday,2336,15.5733
+synthetic_raw,Sabtu,weekend,2048,13.6533
+synthetic_raw,Minggu,weekend,2150,14.3333
+postgresql_real,Senin,weekday,4,1.1869
+postgresql_real,Selasa,weekday,95,28.1899
+postgresql_real,Rabu,weekday,71,21.0682
+postgresql_real,Kamis,weekday,62,18.3976
+postgresql_real,Jumat,weekday,0,0.0
+postgresql_real,Sabtu,weekend,33,9.7923
+postgresql_real,Minggu,weekend,72,21.365

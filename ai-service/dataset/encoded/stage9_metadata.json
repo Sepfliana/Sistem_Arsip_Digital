@@ -1,0 +1,108 @@
+{
+  "script": "audit_j_stage9.py v1.0",
+  "generated_at": "2026-08-23T15:05:01.587663",
+  "input_stage8": {
+    "path": "D:\\Sistem_Arsip_Digital\\ai-service\\dataset\\feature_engineering\\audit_log_dataset_stage8_features.csv",
+    "sha256": "ce4854fae37d5c5ce4739784554aa9c20a9ff8dbe84f28541d924a47469ef959"
+  },
+  "input_stage6_sha256": "5e9bf0d5ce8b8552356291da59f35877ad745e78e748f82d42fa9f3255f9e966",
+  "feature_order": [
+    "user_id",
+    "activity",
+    "status",
+    "device",
+    "ip_address",
+    "duration_ms",
+    "object_count",
+    "hour",
+    "day_of_week"
+  ],
+  "encoder_columns": [
+    "activity",
+    "status",
+    "device"
+  ],
+  "encodings": {
+    "activity": "LabelEncoder (alphabetical)",
+    "status": "LabelEncoder",
+    "device": "LabelEncoder",
+    "ip_address": "int(ipaddress.ip_address()) 32-bit ordinal [training contract]",
+    "user_id": "integer passthrough [training & inference contract]",
+    "duration_ms": "raw passthrough (log1p = inference-side only, NOT applied)",
+    "object_count": "raw passthrough (log1p = inference-side only, NOT applied)",
+    "hour": "passthrough",
+    "day_of_week": "passthrough (Monday=0)"
+  },
+  "label_mappings": {
+    "activity": {
+      "Cari Berkas": 0,
+      "Dashboard": 1,
+      "Input Berkas": 2,
+      "Kelola Kode Klasifikasi": 3,
+      "Kelola User": 4,
+      "Lihat Berkas": 5,
+      "Lihat Perkara": 6,
+      "Login": 7,
+      "Logout": 8,
+      "Verifikasi": 9
+    },
+    "status": {
+      "Berhasil": 0,
+      "Gagal": 1
+    },
+    "device": {
+      "Android": 0,
+      "Laptop Windows": 1,
+      "Linux": 2,
+      "MacOS": 3,
+      "PC Windows": 4,
+      "Unknown Device": 5,
+      "Virtual Machine": 6,
+      "Windows": 7,
+      "iPhone": 8
+    }
+  },
+  "unknown_policy": "tidak ada unknown pada dataset ini; LabelEncoder tanpa kelas UNKNOWN",
+  "scaler": {
+    "type": "StandardScaler",
+    "fit_on": "seluruh 15.000 baris stage8 (preprocessing candidate)",
+    "mean": [
+      49.64106666666667,
+      5.324466666666667,
+      0.03,
+      4.376533333333334,
+      3199081930.603133,
+      2423.2062,
+      4.439066666666666,
+      11.2826,
+      3.033533333333333
+    ],
+    "scale": [
+      21.739370587229264,
+      3.034642436195005,
+      0.1705872210923198,
+      2.8788347148725917,
+      269204031.6607907,
+      3083.7971732830006,
+      11.215805237649631,
+      3.206483625406498,
+      1.9751478043146262
+    ],
+    "var": [
+      472.60023352888885,
+      9.209054715555554,
+      0.0291,
+      8.287689315555555,
+      7.247081066242398e+16,
+      9509805.005948225,
+      125.7942871288889,
+      10.281537239999999,
+      3.9012088488888894
+    ]
+  },
+  "outputs": {
+    "encoded_csv": "D:\\Sistem_Arsip_Digital\\ai-service\\dataset\\encoded\\audit_log_dataset_stage9_encoded.csv",
+    "encoded_sha256": "63801485f5e5c84dbe4453d214f811de62c75b8efd1e53bb917664303846affc",
+    "unscaled_csv": "D:\\Sistem_Arsip_Digital\\ai-service\\dataset\\encoded\\audit_log_dataset_stage9_encoded_unscaled.csv"
+  }
+}

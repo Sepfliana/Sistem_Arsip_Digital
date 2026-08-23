@@ -1,0 +1,70 @@
+{
+  "script": "audit_j_stage9.py v1.0",
+  "generated_at": "2026-08-23T15:05:01.587663",
+  "feature_order": [
+    "user_id",
+    "activity",
+    "status",
+    "device",
+    "ip_address",
+    "duration_ms",
+    "object_count",
+    "hour",
+    "day_of_week"
+  ],
+  "label_mappings": {
+    "activity": {
+      "Cari Berkas": 0,
+      "Dashboard": 1,
+      "Input Berkas": 2,
+      "Kelola Kode Klasifikasi": 3,
+      "Kelola User": 4,
+      "Lihat Berkas": 5,
+      "Lihat Perkara": 6,
+      "Login": 7,
+      "Logout": 8,
+      "Verifikasi": 9
+    },
+    "status": {
+      "Berhasil": 0,
+      "Gagal": 1
+    },
+    "device": {
+      "Android": 0,
+      "Laptop Windows": 1,
+      "Linux": 2,
+      "MacOS": 3,
+      "PC Windows": 4,
+      "Unknown Device": 5,
+      "Virtual Machine": 6,
+      "Windows": 7,
+      "iPhone": 8
+    }
+  },
+  "input_sha256": "ce4854fae37d5c5ce4739784554aa9c20a9ff8dbe84f28541d924a47469ef959",
+  "output_sha256": "63801485f5e5c84dbe4453d214f811de62c75b8efd1e53bb917664303846affc",
+  "checks_pass": 14,
+  "checks_fail": 0,
+  "scaled_min": [
+    -2.2374643493699278,
+    -1.7545614610671447,
+    -0.17586311452816475,
+    -1.5202447402497108,
+    -11.384691825362136,
+    -0.785462228510096,
+    -0.30662681758437454,
+    -3.518683180105017,
+    -1.5358513052576162
+  ],
+  "scaled_max": [
+    1.6724924572881743,
+    1.2111915688959756,
+    5.686240703077327,
+    1.2586574171650664,
+    0.12315602850496114,
+    33.833870367331386,
+    17.436191979945153,
+    1.7830747535082712,
+    1.5018960404819055
+  ]
+}

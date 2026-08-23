@@ -1,0 +1,9 @@
+check,expected,actual,status,notes
+sha256_match,5e9bf0d5ce8b8552356291da59f35877ad745e78e748f82d42fa9f3255f9e966,5e9bf0d5ce8b8552356291da59f35877ad745e78e748f82d42fa9f3255f9e966,PASS,
+file_readable,TRUE,TRUE,PASS,dibuka mode binary
+csv_parseable,TRUE,TRUE,PASS,"pandas parse OK (15000, 13)"
+encoding_valid_utf8_sig,TRUE,TRUE,PASS,head decode
+row_count,15000,15000,PASS,
+column_count,13,13,PASS,
+column_names_match,timestamp|session_id|user_id|username|role|activity|status|ip_address|device|duration_ms|object_count|risk_level|anomaly_type,timestamp|session_id|user_id|username|role|activity|status|ip_address|device|duration_ms|object_count|risk_level|anomaly_type,PASS,
+column_order_match,original,identik,PASS,

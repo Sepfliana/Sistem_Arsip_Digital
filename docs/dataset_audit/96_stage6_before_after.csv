@@ -1,0 +1,14 @@
+metric,before,after,difference,status,notes
+row_count,15000,15000,0,UNCHANGED_OK,
+column_count,13,13,0,UNCHANGED_OK,
+exact_duplicates,0,0,0,NONE_FOUND,verification-only
+missing_values,0,0,0,UNCHANGED_OK,
+weekend_count,4198,4198,0,UNCHANGED_OK,RULE C
+holiday_count,1124,1124,0,UNCHANGED_OK,RULE D; SKB 2025 metadata
+outside_working_hours_count,3367,3367,0,UNCHANGED_OK,RULE B analisis-only
+activity_count,10,10,0,UNCHANGED_OK,rename DEFERRED_TO_GENERATOR_V2
+feature_count,9,9,0,UNCHANGED_OK,"kontrak 9 fitur; X_train.npy=(15000, 9)"
+label_count,2,2,0,UNCHANGED_OK,"anomaly_type+risk_level tetap sbg ground truth, di luar fitur"
+hash_feature_count,0,0,0,UNCHANGED_OK,RULE L
+path_feature_count,0,0,0,UNCHANGED_OK,RULE K
+real_record_count,337,337,0,EXCLUDED,RULE P - tidak digabung ke training

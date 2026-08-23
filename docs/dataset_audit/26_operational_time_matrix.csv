@@ -1,0 +1,11 @@
+dataset,kategori_hari,kategori_jam,record_count,percentage
+synthetic_raw,hari_kerja(Sen-Jum),08:00-15:59,8406,56.04
+synthetic_raw,hari_kerja(Sen-Jum),di_luar_08:00-15:59,2396,15.9733
+synthetic_raw,weekend(Sab-Min),08:00-15:59,3227,21.5133
+synthetic_raw,weekend(Sab-Min),di_luar_08:00-15:59,971,6.4733
+synthetic_raw,hari_libur,(status UNKNOWN utk seluruh baris),15000,100.0
+postgresql_real,hari_kerja(Sen-Jum),08:00-15:59,88,26.1128
+postgresql_real,hari_kerja(Sen-Jum),di_luar_08:00-15:59,144,42.73
+postgresql_real,weekend(Sab-Min),08:00-15:59,49,14.5401
+postgresql_real,weekend(Sab-Min),di_luar_08:00-15:59,56,16.6172
+postgresql_real,hari_libur,(status UNKNOWN utk seluruh baris),337,100.0

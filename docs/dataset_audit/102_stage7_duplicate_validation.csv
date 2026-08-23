@@ -1,0 +1,5 @@
+check,actual_count,expected_count,status,notes
+EXACT_DUPLICATE_ROWS,0,0,PASS,tidak dihapus - tidak ada yang perlu dihapus
+SAME_USER_SAME_TIMESTAMP,0,0,INFO,sah bila >0 - bukan otomatis duplikat
+SAME_SESSION_SAME_ACTIVITY,0,0,INFO,legitimate repeated event
+MULTI_EVENT_SESSIONS,3595,3595,INFO,desain workflow generator

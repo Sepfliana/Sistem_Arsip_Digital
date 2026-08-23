@@ -1,0 +1,29 @@
+dataset,hour,jam_label,count,percentage
+synthetic_raw,0,00:00-00:59,78,0.52
+synthetic_raw,1,01:00-01:59,57,0.38
+synthetic_raw,2,02:00-02:59,62,0.4133
+synthetic_raw,3,03:00-03:59,58,0.3867
+synthetic_raw,4,04:00-04:59,69,0.46
+synthetic_raw,5,05:00-05:59,57,0.38
+synthetic_raw,6,06:00-06:59,69,0.46
+synthetic_raw,7,07:00-07:59,1404,9.36
+synthetic_raw,8,08:00-08:59,1461,9.74
+synthetic_raw,9,09:00-09:59,1368,9.12
+synthetic_raw,10,10:00-10:59,1527,10.18
+synthetic_raw,11,11:00-11:59,1469,9.7933
+synthetic_raw,12,12:00-12:59,1445,9.6333
+synthetic_raw,13,13:00-13:59,1438,9.5867
+synthetic_raw,14,14:00-14:59,1518,10.12
+synthetic_raw,15,15:00-15:59,1407,9.38
+synthetic_raw,16,16:00-16:59,1460,9.7333
+synthetic_raw,17,17:00-17:59,53,0.3533
+synthetic_raw,18,18:00-18:59,0,0.0
+synthetic_raw,19,19:00-19:59,0,0.0
+synthetic_raw,20,20:00-20:59,0,0.0
+synthetic_raw,21,21:00-21:59,0,0.0
+synthetic_raw,22,22:00-22:59,0,0.0
+synthetic_raw,23,23:00-23:59,0,0.0
+""
+synthetic_raw,BUKET <08:00,<08:00,1854,12.36
+synthetic_raw,BUKET 08:00-15:59,08:00-15:59,11633,77.5533
+synthetic_raw,BUKET >=16:00,>=16:00,1513,10.0867

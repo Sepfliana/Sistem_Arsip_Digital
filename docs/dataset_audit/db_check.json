@@ -1,0 +1,57 @@
+{
+  "row_count": 337,
+  "timestamp_min": "2026-07-05 17:09:56.023000",
+  "timestamp_max": "2026-08-19 18:57:06.366000",
+  "distinct_users": 7,
+  "invalid_or_null_hash_entri": 0,
+  "null_hash_sebelumnya": 1,
+  "distinct_aksi": [
+    "ACCESS_BERKAS_FILE",
+    "AJUKAN_PEMINJAMAN",
+    "AKTIVASI_OTP",
+    "CREATE_BERKAS",
+    "CREATE_LEMARI",
+    "CREATE_PERKARA",
+    "CREATE_USER",
+    "DELETE_BERKAS",
+    "DELETE_LEMARI",
+    "DELETE_PEMINJAMAN",
+    "DELETE_PERKARA",
+    "DELETE_RAK",
+    "DELETE_USER",
+    "DISABLE_2FA_EMAIL_CHANGED",
+    "EXPORT_VERIFICATION_REPORT",
+    "KEPUTUSAN_ANOMALI_DITERIMA",
+    "KEPUTUSAN_ANOMALI_OVERRIDE",
+    "LOGIN_SUCCESS",
+    "LOGOUT",
+    "PENGEMBALIAN",
+    "PINJAM",
+    "REQUEST_RESET_PASSWORD",
+    "RESET_PASSWORD",
+    "SETUJUI_PEMINJAMAN",
+    "SETUP_2FA_GENERATE",
+    "TOLAK_PEMINJAMAN",
+    "UPDATE_BERKAS",
+    "UPDATE_LEMARI",
+    "UPDATE_PEMINJAMAN",
+    "UPDATE_PERKARA",
+    "UPDATE_RAK",
+    "UPDATE_USER",
+    "VERIFIKASI_INTEGRITAS_BERKAS"
+  ],
+  "top_ip": [
+    [
+      "unknown",
+      333
+    ],
+    [
+      "::ffff:127.0.0.1",
+      3
+    ],
+    [
+      "::1",
+      1
+    ]
+  ]
+}

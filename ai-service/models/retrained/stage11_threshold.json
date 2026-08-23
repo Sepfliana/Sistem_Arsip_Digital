@@ -1,0 +1,6 @@
+{
+  "method": "percentile-95 of TRAIN reconstruction errors (metodologi existing dihitung ulang)",
+  "threshold": 3.0499422550201416,
+  "validation_p95_reference_not_used_for_selection": 3.226661443710327,
+  "test_used": false
+}

@@ -1,0 +1,37 @@
+{
+  "started": "2026-08-23T17:00:16.822415",
+  "checks_pass": 21,
+  "checks_fail": 0,
+  "failures": [],
+  "parity_rows_tested": 15,
+  "threshold_used": 3.0499422550201416,
+  "new_module_sha256": "602d350f10c963afc801f5709ead736e5ace004ff0f58486865942ca85c69e58",
+  "artifacts": {
+    "model": "D:\\Sistem_Arsip_Digital\\ai-service\\models\\retrained\\vae_model_stage11.pth",
+    "threshold": "D:\\Sistem_Arsip_Digital\\ai-service\\models\\retrained\\stage11_threshold.json",
+    "encoders": "D:\\Sistem_Arsip_Digital\\ai-service\\dataset\\encoded\\stage9_label_encoders.pkl",
+    "scaler": "D:\\Sistem_Arsip_Digital\\ai-service\\dataset\\final\\scaler\\final_train_scaler.pkl"
+  },
+  "deployment_readiness": "READY FOR CONTROLLED INTEGRATION",
+  "wiring": {
+    "started": "2026-08-23T17:00:16.822415",
+    "checks_pass": 24,
+    "checks_fail": 0,
+    "failures": [],
+    "endpoint_candidate": "/predict-stage11",
+    "production_unchanged": {
+      "deployment_threshold": 3.1496288776397705,
+      "vae_model_sha256": "405c2b27356a6793a511fb352c87f72ec29b1218b128cd3c4f6f4ea1f3f448f2"
+    },
+    "safety_hashes": {
+      "stage6": "5e9bf0d5ce8b8552356291da59f35877ad745e78e748f82d42fa9f3255f9e966",
+      "stage8": "ce4854fae37d5c5ce4739784554aa9c20a9ff8dbe84f28541d924a47469ef959",
+      "stage9_encoded": "63801485f5e5c84dbe4453d214f811de62c75b8efd1e53bb917664303846affc",
+      "X_train_final": "fe67e6c8bc1e5b4fdbb532a8b8691fba1c96068239689a19573c8625e182a59f",
+      "X_validation_final": "f6e5185bf3a0486bcf7f28580a7354f9b64a1d95a6824775a92a933dbb2e2af3",
+      "X_test_final": "a2d02e16fd76349709bd29bf43242f5d0929f6f847b522b34e7e20e409153bc9",
+      "vae_model_production": "405c2b27356a6793a511fb352c87f72ec29b1218b128cd3c4f6f4ea1f3f448f2"
+    },
+    "rollback": "hapus rute /predict-stage11 di app.py; jalur lama tidak tersentuh"
+  }
+}

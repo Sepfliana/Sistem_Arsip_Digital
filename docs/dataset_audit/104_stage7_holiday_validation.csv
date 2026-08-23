@@ -1,0 +1,30 @@
+date,expected_count,actual_count,status,notes
+2025-01-01,53,53,PASS,kalender SKB 2025; tetap karakteristik - bukan anomali
+2025-01-27,52,52,PASS,kalender SKB 2025; tetap karakteristik - bukan anomali
+2025-01-28,16,16,PASS,kalender SKB 2025; tetap karakteristik - bukan anomali
+2025-01-29,34,34,PASS,kalender SKB 2025; tetap karakteristik - bukan anomali
+2025-03-28,48,48,PASS,kalender SKB 2025; tetap karakteristik - bukan anomali
+2025-03-29,42,42,PASS,kalender SKB 2025; tetap karakteristik - bukan anomali
+2025-03-31,32,32,PASS,kalender SKB 2025; tetap karakteristik - bukan anomali
+2025-04-01,52,52,PASS,kalender SKB 2025; tetap karakteristik - bukan anomali
+2025-04-02,20,20,PASS,kalender SKB 2025; tetap karakteristik - bukan anomali
+2025-04-03,58,58,PASS,kalender SKB 2025; tetap karakteristik - bukan anomali
+2025-04-04,38,38,PASS,kalender SKB 2025; tetap karakteristik - bukan anomali
+2025-04-07,36,36,PASS,kalender SKB 2025; tetap karakteristik - bukan anomali
+2025-04-18,50,50,PASS,kalender SKB 2025; tetap karakteristik - bukan anomali
+2025-04-20,38,38,PASS,kalender SKB 2025; tetap karakteristik - bukan anomali
+2025-05-01,45,45,PASS,kalender SKB 2025; tetap karakteristik - bukan anomali
+2025-05-12,28,28,PASS,kalender SKB 2025; tetap karakteristik - bukan anomali
+2025-05-13,46,46,PASS,kalender SKB 2025; tetap karakteristik - bukan anomali
+2025-05-29,40,40,PASS,kalender SKB 2025; tetap karakteristik - bukan anomali
+2025-05-30,51,51,PASS,kalender SKB 2025; tetap karakteristik - bukan anomali
+2025-06-01,70,70,PASS,kalender SKB 2025; tetap karakteristik - bukan anomali
+2025-06-06,32,32,PASS,kalender SKB 2025; tetap karakteristik - bukan anomali
+2025-06-09,42,42,PASS,kalender SKB 2025; tetap karakteristik - bukan anomali
+2025-06-27,48,48,PASS,kalender SKB 2025; tetap karakteristik - bukan anomali
+2025-08-17,29,29,PASS,kalender SKB 2025; tetap karakteristik - bukan anomali
+2025-09-05,50,50,PASS,kalender SKB 2025; tetap karakteristik - bukan anomali
+2025-12-25,38,38,PASS,kalender SKB 2025; tetap karakteristik - bukan anomali
+2025-12-26,36,36,PASS,kalender SKB 2025; tetap karakteristik - bukan anomali
+TOTAL_HOLIDAY_RECORDS,1124,1124,PASS,
+HOLIDAY_DATES_MISSING,0,0,PASS,

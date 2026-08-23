@@ -1,0 +1,11 @@
+synthetic_activity,canonical_activity,mapping_type,action,reason
+Login,LOGIN_SUCCESS,DIRECT,DOCUMENT_ONLY,nilai dataset TIDAK direname - pemetaan hanya dokumentasi kontrak
+Logout,LOGOUT,DIRECT,DOCUMENT_ONLY,nilai dataset TIDAK direname - pemetaan hanya dokumentasi kontrak
+Lihat Berkas,ACCESS_BERKAS_FILE,DIRECT,DOCUMENT_ONLY,nilai dataset TIDAK direname - pemetaan hanya dokumentasi kontrak
+Cari Berkas,ACCESS_BERKAS_FILE,MANY_TO_ONE,DOCUMENT_ONLY,nilai dataset TIDAK direname - pemetaan hanya dokumentasi kontrak
+Input Berkas,CREATE_BERKAS | UPDATE_BERKAS,MANY_TO_ONE,DOCUMENT_ONLY,nilai dataset TIDAK direname - pemetaan hanya dokumentasi kontrak
+Verifikasi,VERIFIKASI_INTEGRITAS_BERKAS | EXPORT_VERIFICATION_REPORT,MANY_TO_ONE,DOCUMENT_ONLY,nilai dataset TIDAK direname - pemetaan hanya dokumentasi kontrak
+Kelola User,CREATE_USER | UPDATE_USER | DELETE_USER,MANY_TO_ONE,DOCUMENT_ONLY,nilai dataset TIDAK direname - pemetaan hanya dokumentasi kontrak
+Dashboard,NOT_FOUND (tidak ada createAuditLog),NOT_FOUND,DEFERRED_TO_GENERATOR_V2,aktivitas tanpa padanan real - keputusan perbaikan memerlukan regenerasi (di luar Stage 6)
+Lihat Perkara,NOT_FOUND (perkaraController tidak memanggil createAuditLog),NOT_FOUND,DEFERRED_TO_GENERATOR_V2,aktivitas tanpa padanan real - keputusan perbaikan memerlukan regenerasi (di luar Stage 6)
+Kelola Kode Klasifikasi,NOT_FOUND,NOT_FOUND,DEFERRED_TO_GENERATOR_V2,aktivitas tanpa padanan real - keputusan perbaikan memerlukan regenerasi (di luar Stage 6)

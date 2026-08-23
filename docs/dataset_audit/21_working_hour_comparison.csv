@@ -1,0 +1,11 @@
+dataset,time_category,record_count,percentage
+synthetic_raw,<07:00,450,3.0
+synthetic_raw,07:00-07:59,1404,9.36
+synthetic_raw,08:00-15:59,11633,77.5533
+synthetic_raw,16:00-16:59,1460,9.7333
+synthetic_raw,>=17:00,53,0.3533
+postgresql_real,<07:00,69,20.4748
+postgresql_real,07:00-07:59,2,0.5935
+postgresql_real,08:00-15:59,137,40.6528
+postgresql_real,16:00-16:59,7,2.0772
+postgresql_real,>=17:00,122,36.2018

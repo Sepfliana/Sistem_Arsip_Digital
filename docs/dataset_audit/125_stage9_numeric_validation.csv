@@ -1,0 +1,15 @@
+check,expected,status,detail
+row_count,15000,PASS,15000
+column_count_9,9,PASS,"['user_id', 'activity', 'status', 'device', 'ip_address', 'duration_ms', 'object_count', 'hour', 'day_of_week']"
+feature_order_deterministic,user_id|activity|status|device|ip_address|duration_ms|object_count|hour|day_of_week,PASS,user_id|activity|status|device|ip_address|duration_ms|object_count|hour|day_of_week
+all_numeric,float64,PASS,"float64,float64,float64,float64,float64,float64,float64,float64,float64"
+no_nan,0,PASS,0
+no_inf,0,PASS,0
+categorical_roundtrip_exact,True,PASS,inverse_transform == original
+ip_roundtrip_exact,True,PASS,int->str == original
+user_id_int_passthrough,True,PASS,int64
+scaler_mean_zero,True,PASS,4.902744876744692e-16
+scaler_std_one,True,PASS,1.1102230246251565e-16
+label_hash_path_leakage,0,PASS,none
+stage8_source_unchanged,ce4854fae37d5c5ce4739784554aa9c20a9ff8dbe84f28541d924a47469ef959,PASS,ce4854fae37d5c5ce4739784554aa9c20a9ff8dbe84f28541d924a47469ef959
+stage6_sha_still_constant,5e9bf0d5ce8b8552356291da59f35877ad745e78e748f82d42fa9f3255f9e966,PASS,5e9bf0d5ce8b8552356291da59f35877ad745e78e748f82d42fa9f3255f9e966

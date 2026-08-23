@@ -1,0 +1,44 @@
+activity,synthetic_count,real_count,exists_in_synthetic,exists_in_real,source_code_evidence,notes
+ACCESS_BERKAS_FILE,0,40,0,1,backend/controllers (grep createAuditLog) - tanpa padanan synthetic,hanya real; tidak direpresentasikan generator
+AJUKAN_PEMINJAMAN,0,7,0,1,backend/controllers (grep createAuditLog) - tanpa padanan synthetic,hanya real; tidak direpresentasikan generator
+AKTIVASI_OTP,0,6,0,1,backend/controllers (grep createAuditLog) - tanpa padanan synthetic,hanya real; tidak direpresentasikan generator
+CREATE_BERKAS,0,12,0,1,backend/controllers (grep createAuditLog) - tanpa padanan synthetic,hanya real; tidak direpresentasikan generator
+CREATE_LEMARI,0,16,0,1,backend/controllers (grep createAuditLog) - tanpa padanan synthetic,hanya real; tidak direpresentasikan generator
+CREATE_PERKARA,0,16,0,1,backend/controllers (grep createAuditLog) - tanpa padanan synthetic,hanya real; tidak direpresentasikan generator
+CREATE_USER,0,16,0,1,backend/controllers (grep createAuditLog) - tanpa padanan synthetic,hanya real; tidak direpresentasikan generator
+Cari Berkas,3236,0,1,0,ACCESS_BERKAS_FILE (pencarian tidak dilogging tersendiri),hanya synthetic; tidak pernah terekam sistem nyata
+DELETE_BERKAS,0,4,0,1,backend/controllers (grep createAuditLog) - tanpa padanan synthetic,hanya real; tidak direpresentasikan generator
+DELETE_LEMARI,0,5,0,1,backend/controllers (grep createAuditLog) - tanpa padanan synthetic,hanya real; tidak direpresentasikan generator
+DELETE_PEMINJAMAN,0,3,0,1,backend/controllers (grep createAuditLog) - tanpa padanan synthetic,hanya real; tidak direpresentasikan generator
+DELETE_PERKARA,0,6,0,1,backend/controllers (grep createAuditLog) - tanpa padanan synthetic,hanya real; tidak direpresentasikan generator
+DELETE_RAK,0,3,0,1,backend/controllers (grep createAuditLog) - tanpa padanan synthetic,hanya real; tidak direpresentasikan generator
+DELETE_USER,0,7,0,1,backend/controllers (grep createAuditLog) - tanpa padanan synthetic,hanya real; tidak direpresentasikan generator
+DISABLE_2FA_EMAIL_CHANGED,0,2,0,1,backend/controllers (grep createAuditLog) - tanpa padanan synthetic,hanya real; tidak direpresentasikan generator
+Dashboard,98,0,1,0,NOT_FOUND - tidak ada createAuditLog,hanya synthetic; tidak pernah terekam sistem nyata
+EXPORT_VERIFICATION_REPORT,0,3,0,1,backend/controllers (grep createAuditLog) - tanpa padanan synthetic,hanya real; tidak direpresentasikan generator
+Input Berkas,261,0,1,0,CREATE_BERKAS / UPDATE_BERKAS,hanya synthetic; tidak pernah terekam sistem nyata
+KEPUTUSAN_ANOMALI_DITERIMA,0,2,0,1,backend/controllers (grep createAuditLog) - tanpa padanan synthetic,hanya real; tidak direpresentasikan generator
+KEPUTUSAN_ANOMALI_OVERRIDE,0,2,0,1,backend/controllers (grep createAuditLog) - tanpa padanan synthetic,hanya real; tidak direpresentasikan generator
+Kelola Kode Klasifikasi,98,0,1,0,NOT_FOUND,hanya synthetic; tidak pernah terekam sistem nyata
+Kelola User,98,0,1,0,CREATE/UPDATE/DELETE_USER (userController),hanya synthetic; tidak pernah terekam sistem nyata
+LOGIN_SUCCESS,0,62,0,1,backend/controllers (grep createAuditLog) - tanpa padanan synthetic,hanya real; tidak direpresentasikan generator
+LOGOUT,0,29,0,1,backend/controllers (grep createAuditLog) - tanpa padanan synthetic,hanya real; tidak direpresentasikan generator
+Lihat Berkas,261,0,1,0,ACCESS_BERKAS_FILE (berkasController getBerkasFile),hanya synthetic; tidak pernah terekam sistem nyata
+Lihat Perkara,3497,0,1,0,NOT_FOUND - perkaraController tidak memanggil createAuditLog untuk read,hanya synthetic; tidak pernah terekam sistem nyata
+Login,3595,0,1,0,authController.js LOGIN_SUCCESS (login),hanya synthetic; tidak pernah terekam sistem nyata
+Logout,3595,0,1,0,authController.js LOGOUT,hanya synthetic; tidak pernah terekam sistem nyata
+PENGEMBALIAN,0,6,0,1,backend/controllers (grep createAuditLog) - tanpa padanan synthetic,hanya real; tidak direpresentasikan generator
+PINJAM,0,5,0,1,backend/controllers (grep createAuditLog) - tanpa padanan synthetic,hanya real; tidak direpresentasikan generator
+REQUEST_RESET_PASSWORD,0,2,0,1,backend/controllers (grep createAuditLog) - tanpa padanan synthetic,hanya real; tidak direpresentasikan generator
+RESET_PASSWORD,0,1,0,1,backend/controllers (grep createAuditLog) - tanpa padanan synthetic,hanya real; tidak direpresentasikan generator
+SETUJUI_PEMINJAMAN,0,5,0,1,backend/controllers (grep createAuditLog) - tanpa padanan synthetic,hanya real; tidak direpresentasikan generator
+SETUP_2FA_GENERATE,0,15,0,1,backend/controllers (grep createAuditLog) - tanpa padanan synthetic,hanya real; tidak direpresentasikan generator
+TOLAK_PEMINJAMAN,0,2,0,1,backend/controllers (grep createAuditLog) - tanpa padanan synthetic,hanya real; tidak direpresentasikan generator
+UPDATE_BERKAS,0,6,0,1,backend/controllers (grep createAuditLog) - tanpa padanan synthetic,hanya real; tidak direpresentasikan generator
+UPDATE_LEMARI,0,8,0,1,backend/controllers (grep createAuditLog) - tanpa padanan synthetic,hanya real; tidak direpresentasikan generator
+UPDATE_PEMINJAMAN,0,1,0,1,backend/controllers (grep createAuditLog) - tanpa padanan synthetic,hanya real; tidak direpresentasikan generator
+UPDATE_PERKARA,0,11,0,1,backend/controllers (grep createAuditLog) - tanpa padanan synthetic,hanya real; tidak direpresentasikan generator
+UPDATE_RAK,0,14,0,1,backend/controllers (grep createAuditLog) - tanpa padanan synthetic,hanya real; tidak direpresentasikan generator
+UPDATE_USER,0,16,0,1,backend/controllers (grep createAuditLog) - tanpa padanan synthetic,hanya real; tidak direpresentasikan generator
+VERIFIKASI_INTEGRITAS_BERKAS,0,4,0,1,backend/controllers (grep createAuditLog) - tanpa padanan synthetic,hanya real; tidak direpresentasikan generator
+Verifikasi,261,0,1,0,VERIFIKASI_INTEGRITAS_BERKAS / EXPORT_VERIFICATION_REPORT,hanya synthetic; tidak pernah terekam sistem nyata

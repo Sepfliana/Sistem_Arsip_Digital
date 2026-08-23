@@ -1,0 +1,12 @@
+dataset,aspect,value,count,percentage
+synthetic_raw,ip_category,private-192.168,14700,98.0
+synthetic_raw,ip_category,public-generator-prefix,300,2.0
+synthetic_raw,ip_unique_count,362 alamat unik dari 15000 baris,,
+retraining_combined_raw,ip_category,private-192.168,14700,95.8967
+retraining_combined_raw,ip_category,localhost/loopback/unknown,326,2.1267
+retraining_combined_raw,ip_category,public-generator-prefix,300,1.9571
+retraining_combined_raw,ip_category,private-lain,3,0.0196
+retraining_combined_raw,ip_unique_count,365 alamat unik dari 15329 baris,,
+retraining_canonical,ip_address(encoded/category),Private Network 192.168.x.x,14700,95.8967
+retraining_canonical,ip_address(encoded/category),Localhost / Loopback,329,2.1463
+retraining_canonical,ip_address(encoded/category),Public IP Address,300,1.9571

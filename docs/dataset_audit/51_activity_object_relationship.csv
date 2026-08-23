@@ -1,0 +1,44 @@
+activity,object_field,record_count,has_file,has_path,has_document_id,notes
+Login,object_count (angka agregat),3595,NO,NO,NO,identitas objek/file/path tidak ada; object_count hanya angka
+Logout,object_count (angka agregat),3595,NO,NO,NO,identitas objek/file/path tidak ada; object_count hanya angka
+Lihat Perkara,object_count (angka agregat),3497,NO,NO,NO,identitas objek/file/path tidak ada; object_count hanya angka
+Cari Berkas,object_count (angka agregat),3236,NO,NO,NO,identitas objek/file/path tidak ada; object_count hanya angka
+Lihat Berkas,object_count (angka agregat),261,NO,NO,NO,identitas objek/file/path tidak ada; object_count hanya angka
+Input Berkas,object_count (angka agregat),261,NO,NO,NO,identitas objek/file/path tidak ada; object_count hanya angka
+Verifikasi,object_count (angka agregat),261,NO,NO,NO,identitas objek/file/path tidak ada; object_count hanya angka
+Dashboard,object_count (angka agregat),98,NO,NO,NO,identitas objek/file/path tidak ada; object_count hanya angka
+Kelola User,object_count (angka agregat),98,NO,NO,NO,identitas objek/file/path tidak ada; object_count hanya angka
+Kelola Kode Klasifikasi,object_count (angka agregat),98,NO,NO,NO,identitas objek/file/path tidak ada; object_count hanya angka
+LOGIN_SUCCESS,target_tipe/target_id,62,NO,NO,YES,target_tipe=['USER']; audit_log tidak menyimpan path/hash file
+ACCESS_BERKAS_FILE,target_tipe/target_id,40,YES,NO,YES,target_tipe=['BERKAS']; audit_log tidak menyimpan path/hash file
+LOGOUT,target_tipe/target_id,29,NO,NO,YES,target_tipe=['USER']; audit_log tidak menyimpan path/hash file
+CREATE_USER,target_tipe/target_id,16,NO,NO,YES,target_tipe=['USER']; audit_log tidak menyimpan path/hash file
+CREATE_LEMARI,target_tipe/target_id,16,NO,NO,YES,target_tipe=['LEMARI']; audit_log tidak menyimpan path/hash file
+UPDATE_USER,target_tipe/target_id,16,NO,NO,YES,target_tipe=['USER']; audit_log tidak menyimpan path/hash file
+CREATE_PERKARA,target_tipe/target_id,16,NO,NO,YES,target_tipe=['PERKARA']; audit_log tidak menyimpan path/hash file
+SETUP_2FA_GENERATE,target_tipe/target_id,15,NO,NO,YES,target_tipe=['USER']; audit_log tidak menyimpan path/hash file
+UPDATE_RAK,target_tipe/target_id,14,NO,NO,YES,target_tipe=['RAK']; audit_log tidak menyimpan path/hash file
+CREATE_BERKAS,target_tipe/target_id,12,YES,NO,YES,target_tipe=['BERKAS']; audit_log tidak menyimpan path/hash file
+UPDATE_PERKARA,target_tipe/target_id,11,NO,NO,YES,target_tipe=['PERKARA']; audit_log tidak menyimpan path/hash file
+UPDATE_LEMARI,target_tipe/target_id,8,NO,NO,YES,target_tipe=['LEMARI']; audit_log tidak menyimpan path/hash file
+DELETE_USER,target_tipe/target_id,7,NO,NO,YES,target_tipe=['USER']; audit_log tidak menyimpan path/hash file
+AJUKAN_PEMINJAMAN,target_tipe/target_id,7,NO,NO,YES,target_tipe=['PEMINJAMAN']; audit_log tidak menyimpan path/hash file
+PENGEMBALIAN,target_tipe/target_id,6,NO,NO,YES,target_tipe=['PEMINJAMAN']; audit_log tidak menyimpan path/hash file
+DELETE_PERKARA,target_tipe/target_id,6,NO,NO,YES,target_tipe=['PERKARA']; audit_log tidak menyimpan path/hash file
+UPDATE_BERKAS,target_tipe/target_id,6,YES,NO,YES,target_tipe=['BERKAS']; audit_log tidak menyimpan path/hash file
+AKTIVASI_OTP,target_tipe/target_id,6,NO,NO,YES,target_tipe=['USER']; audit_log tidak menyimpan path/hash file
+PINJAM,target_tipe/target_id,5,NO,NO,YES,target_tipe=['PEMINJAMAN']; audit_log tidak menyimpan path/hash file
+DELETE_LEMARI,target_tipe/target_id,5,NO,NO,YES,target_tipe=['LEMARI']; audit_log tidak menyimpan path/hash file
+SETUJUI_PEMINJAMAN,target_tipe/target_id,5,NO,NO,YES,target_tipe=['PEMINJAMAN']; audit_log tidak menyimpan path/hash file
+DELETE_BERKAS,target_tipe/target_id,4,YES,NO,YES,target_tipe=['BERKAS']; audit_log tidak menyimpan path/hash file
+VERIFIKASI_INTEGRITAS_BERKAS,target_tipe/target_id,4,YES,NO,YES,target_tipe=['BERKAS']; audit_log tidak menyimpan path/hash file
+EXPORT_VERIFICATION_REPORT,target_tipe/target_id,3,YES,NO,YES,target_tipe=['BERKAS']; audit_log tidak menyimpan path/hash file
+DELETE_PEMINJAMAN,target_tipe/target_id,3,NO,NO,YES,target_tipe=['PEMINJAMAN']; audit_log tidak menyimpan path/hash file
+DELETE_RAK,target_tipe/target_id,3,NO,NO,YES,target_tipe=['RAK']; audit_log tidak menyimpan path/hash file
+REQUEST_RESET_PASSWORD,target_tipe/target_id,2,NO,NO,YES,target_tipe=['USER']; audit_log tidak menyimpan path/hash file
+KEPUTUSAN_ANOMALI_DITERIMA,target_tipe/target_id,2,NO,NO,YES,target_tipe=['LAPORAN_ANOMALI']; audit_log tidak menyimpan path/hash file
+KEPUTUSAN_ANOMALI_OVERRIDE,target_tipe/target_id,2,NO,NO,YES,target_tipe=['LAPORAN_ANOMALI']; audit_log tidak menyimpan path/hash file
+DISABLE_2FA_EMAIL_CHANGED,target_tipe/target_id,2,NO,NO,YES,target_tipe=['USER']; audit_log tidak menyimpan path/hash file
+TOLAK_PEMINJAMAN,target_tipe/target_id,2,NO,NO,YES,target_tipe=['PEMINJAMAN']; audit_log tidak menyimpan path/hash file
+RESET_PASSWORD,target_tipe/target_id,1,NO,NO,YES,target_tipe=['USER']; audit_log tidak menyimpan path/hash file
+UPDATE_PEMINJAMAN,target_tipe/target_id,1,NO,NO,YES,target_tipe=['PEMINJAMAN']; audit_log tidak menyimpan path/hash file

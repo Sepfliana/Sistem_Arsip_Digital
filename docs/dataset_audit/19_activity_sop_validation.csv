@@ -1,0 +1,14 @@
+aktivitas,ada_di_synthetic,ada_di_real,ada_di_source_code,dasar_sop,status,notes
+Cari Berkas,YA,YA,YA,dokumen SOP tidak ditemukan di repository,NEEDS_VERIFICATION,padanan real: ACCESS_BERKAS_FILE
+Dashboard,YA,TIDAK,TIDAK,dokumen SOP tidak ditemukan di repository,NOT_FOUND,padanan real: tidak ditemukan
+Input Berkas,YA,YA,YA,dokumen SOP tidak ditemukan di repository,NEEDS_VERIFICATION,"padanan real: CREATE_BERKAS, UPDATE_BERKAS"
+Kelola Kode Klasifikasi,YA,TIDAK,TIDAK,dokumen SOP tidak ditemukan di repository,NOT_FOUND,padanan real: tidak ditemukan
+Kelola User,YA,YA,YA,dokumen SOP tidak ditemukan di repository,NEEDS_VERIFICATION,"padanan real: CREATE_USER, UPDATE_USER, DELETE_USER"
+Lihat Berkas,YA,YA,YA,dokumen SOP tidak ditemukan di repository,NEEDS_VERIFICATION,padanan real: ACCESS_BERKAS_FILE
+Lihat Perkara,YA,TIDAK,TIDAK,dokumen SOP tidak ditemukan di repository,NOT_FOUND,padanan real: tidak ditemukan
+Login,YA,YA,YA,dokumen SOP tidak ditemukan di repository,NEEDS_VERIFICATION,padanan real: LOGIN_SUCCESS
+Logout,YA,YA,YA,dokumen SOP tidak ditemukan di repository,NEEDS_VERIFICATION,padanan real: LOGOUT
+Verifikasi,YA,YA,YA,dokumen SOP tidak ditemukan di repository,NEEDS_VERIFICATION,"padanan real: VERIFIKASI_INTEGRITAS_BERKAS, EXPORT_VERIFICATION_REPORT"
+CREATE_RAK,TIDAK,YA (kode ada; belum terekam),YA,dokumen SOP tidak ditemukan di repository,PARTIALLY_SUPPORTED,didefinisikan di rakController.js namun belum muncul di log live
+PERUBAHAN_STATUS_ARSIP,TIDAK,YA (kode ada; belum terekam),YA,dokumen SOP tidak ditemukan di repository,PARTIALLY_SUPPORTED,didefinisikan di berkasController.js namun belum muncul di log live
+RETENSI_INAKTIF,TIDAK,YA (kode ada; belum terekam),YA,dokumen SOP tidak ditemukan di repository,PARTIALLY_SUPPORTED,didefinisikan di berkasController.js namun belum muncul di log live

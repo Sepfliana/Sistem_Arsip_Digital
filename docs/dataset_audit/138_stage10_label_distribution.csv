@@ -1,0 +1,4 @@
+split,rows,anomaly_ratio,normal,anomaly,anomaly_type_dist,risk_level_dist
+train,10503,0.7002,9454,1049,"{""Normal"": 9454, ""login_luar_jam"": 314, ""ip_berubah"": 212, ""device_berubah"": 157, ""aktivitas_terlalu_cepat"": 141, ""durasi_tidak_wajar"": 98, ""peminjaman_massal"": 79, ""verifikasi_massal"": 48}","{""Normal"": 9454, ""Low"": 683, ""Medium"": 239, ""High"": 127}"
+validation,2266,0.1511,2030,236,"{""Normal"": 2030, ""login_luar_jam"": 70, ""ip_berubah"": 48, ""durasi_tidak_wajar"": 31, ""device_berubah"": 29, ""aktivitas_terlalu_cepat"": 25, ""peminjaman_massal"": 18, ""verifikasi_massal"": 15}","{""Normal"": 2030, ""Low"": 147, ""Medium"": 56, ""High"": 33}"
+test,2231,0.1487,2016,215,"{""Normal"": 2016, ""login_luar_jam"": 66, ""ip_berubah"": 40, ""device_berubah"": 39, ""peminjaman_massal"": 23, ""durasi_tidak_wajar"": 21, ""aktivitas_terlalu_cepat"": 14, ""verifikasi_massal"": 12}","{""Normal"": 2016, ""Low"": 145, ""High"": 35, ""Medium"": 35}"

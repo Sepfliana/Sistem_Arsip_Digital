@@ -1,0 +1,11 @@
+check,expected,status,detail
+stage6_sha_unchanged,5e9bf0d5ce8b8552356291da59f35877ad745e78e748f82d42fa9f3255f9e966,PASS,5e9bf0d5ce8b8552356291da59f35877ad745e78e748f82d42fa9f3255f9e966
+row_count_15000,15000,PASS,15000
+raw_column_count_13,13,PASS,timestamp|session_id|user_id|username|role|activity|status|ip_address|device|duration_ms|object_count|risk_level|anomaly_type
+canonical_features_available,9/9,PASS,user_id|activity|status|device|ip_address|duration_ms|object_count|hour|day_of_week
+label_separation,0 leak,PASS,none
+hash_path_file_separation,0 leak,PASS,none
+hour_derived_from_timestamp_no_shift,TRUE,PASS,dt.hour
+day_of_week_derived_monday0_sunday6,TRUE,PASS,dt.dayofweek
+no_missing_in_canonical,0,PASS,0
+source_reread_sha_equal_after_run,5e9bf0d5ce8b8552356291da59f35877ad745e78e748f82d42fa9f3255f9e966,PASS,5e9bf0d5ce8b8552356291da59f35877ad745e78e748f82d42fa9f3255f9e966

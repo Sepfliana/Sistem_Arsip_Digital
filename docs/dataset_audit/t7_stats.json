@@ -1,0 +1,62 @@
+{
+  "sha_original": "5e9bf0d5ce8b8552356291da59f35877ad745e78e748f82d42fa9f3255f9e966",
+  "sha_stage6": "5e9bf0d5ce8b8552356291da59f35877ad745e78e748f82d42fa9f3255f9e966",
+  "frames_identical": true,
+  "rows_original": 15000,
+  "rows_stage6": 15000,
+  "rows_missing": 0,
+  "rows_added": 0,
+  "rows_changed": 0,
+  "exact_duplicates": 0,
+  "same_user_ts": 0,
+  "same_sess_act": 0,
+  "multi_sessions": 3595,
+  "temporal_buckets": {
+    "total_records": 15000,
+    "working_hours_08_15": 11633,
+    "before_08": 1854,
+    "after_16": 1513,
+    "weekday": 10802,
+    "weekend": 4198,
+    "holiday": 1124
+  },
+  "holiday_total": 1124,
+  "activity_vocab_size": 10,
+  "user_id_unique": 72,
+  "device_distinct": 9,
+  "ip_internal": 14700,
+  "status_counts": {
+    "Berhasil": 14550,
+    "Gagal": 450
+  },
+  "duration_min_max_mean": [
+    1.0,
+    106760.0,
+    2423.2062
+  ],
+  "object_count_min_max": [
+    1.0,
+    200.0
+  ],
+  "preproc": {
+    "shape": [
+      15000,
+      9
+    ],
+    "dtype": "float64",
+    "nan": 0,
+    "inf": 0,
+    "ok": true
+  },
+  "contract_features": [
+    "user_id",
+    "activity",
+    "status",
+    "device",
+    "ip_address",
+    "duration_ms",
+    "object_count",
+    "hour",
+    "day_of_week"
+  ]
+}

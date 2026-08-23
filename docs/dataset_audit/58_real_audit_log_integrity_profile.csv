@@ -1,0 +1,15 @@
+attribute,value,percentage,notes
+total_record,337,100%,audit_log
+unique_activity(aksi),33,,UPPER_SNAKE_CASE
+records_with_target_tipe,337,100.0,objek logis (BERKAS dll)
+unique_target_tipe,7,,nilai distinct
+records_with_target_id,337,100.0,dokumen ID logis
+unique_target_id,42,,
+records_with_hash_entri(current_hash),337,100.0,SHA-256 chain
+records_with_hash_sebelumnya(previous_hash),336,99.7033,1 NULL = baris pertama rantai
+status SUCCESS/VALID,337,100.0,
+rentang waktu,2026-07-05 17:09:56.023000 s/d 2026-08-19 18:57:06.366000,,
+ip_address='unknown',333,98.8131,default middleware
+device='unknown',333,98.8131,default middleware
+path/filename di audit_log,0,0%,NOT_FOUND - tidak ada kolom
+file hash di audit_log,0,0%,"hash file ada di berkas.hash_sha256, tidak masuk audit_log"

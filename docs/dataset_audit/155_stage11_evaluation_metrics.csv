@@ -1,0 +1,3 @@
+split,threshold,TP,TN,FP,FN,precision,recall,f1,accuracy,specificity,FPR,FNR,n_normal_actual,n_anomaly_actual,pred_normal,pred_anomaly,flag_rate,actual_anomaly_rate
+validation,3.0499422550201416,65,1979,51,171,0.5603,0.2754,0.3693,0.902,0.9749,0.0251,0.7246,2030,236,2150,116,0.0512,0.1041
+test,3.0499422550201416,66,1964,52,149,0.5593,0.307,0.3964,0.9099,0.9742,0.0258,0.693,2016,215,2113,118,0.0529,0.0964

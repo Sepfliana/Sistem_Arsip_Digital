@@ -1,0 +1,98 @@
+{
+  "original": {
+    "path": "ai-service\\dataset\\generator\\raw\\audit_log_dataset.csv",
+    "file_size_bytes": 1825031,
+    "sha256": "5e9bf0d5ce8b8552356291da59f35877ad745e78e748f82d42fa9f3255f9e966",
+    "row_count": 15000,
+    "column_count": 13,
+    "mtime": "2026-07-27T14:50:12.320271",
+    "git_commit": "b9857fc16b2d7c54a4517da0173e45cce6d243af",
+    "snapshot_time": "2026-08-23T13:58:14"
+  },
+  "stage6": {
+    "path": "ai-service\\dataset\\generator\\raw\\audit_log_dataset_stage6.csv",
+    "file_size_bytes": 1825031,
+    "sha256": "5e9bf0d5ce8b8552356291da59f35877ad745e78e748f82d42fa9f3255f9e966",
+    "row_count": null,
+    "column_count": null,
+    "mtime": "2026-07-27T14:50:12.320271",
+    "git_commit": "b9857fc16b2d7c54a4517da0173e45cce6d243af",
+    "snapshot_time": "2026-08-23T13:58:14"
+  },
+  "sha_match": true,
+  "frames_equal": true,
+  "exact_duplicates": {
+    "groups": 0,
+    "rows_involved": 0,
+    "extra_rows": 0
+  },
+  "context_counts": {
+    "same_user_same_timestamp": 0,
+    "same_session_same_activity": 0,
+    "sessions_multi_event": 3595,
+    "rows_in_multi_sessions": 15000
+  },
+  "buckets": {
+    "weekday": 10802,
+    "weekend": 4198,
+    "holiday": 1124,
+    "non-holiday": 13876,
+    "before_08": 1854,
+    "08_to_15_59": 11633,
+    "16_or_later": 1513
+  },
+  "hourly": {
+    "00": 78,
+    "01": 57,
+    "02": 62,
+    "03": 58,
+    "04": 69,
+    "05": 57,
+    "06": 69,
+    "07": 1404,
+    "08": 1461,
+    "09": 1368,
+    "10": 1527,
+    "11": 1469,
+    "12": 1445,
+    "13": 1438,
+    "14": 1518,
+    "15": 1407,
+    "16": 1460,
+    "17": 53,
+    "18": 0,
+    "19": 0,
+    "20": 0,
+    "21": 0,
+    "22": 0,
+    "23": 0
+  },
+  "contract_features": [
+    "user_id",
+    "activity",
+    "status",
+    "device",
+    "ip_address",
+    "duration_ms",
+    "object_count",
+    "hour",
+    "day_of_week"
+  ],
+  "contaminations": [],
+  "x_train_shape": [
+    15000,
+    9
+  ],
+  "activity_counts": {
+    "Login": 3595,
+    "Logout": 3595,
+    "Lihat Perkara": 3497,
+    "Cari Berkas": 3236,
+    "Lihat Berkas": 261,
+    "Input Berkas": 261,
+    "Verifikasi": 261,
+    "Dashboard": 98,
+    "Kelola User": 98,
+    "Kelola Kode Klasifikasi": 98
+  }
+}

@@ -1,0 +1,2 @@
+path,event_count,unique_hash_count,unique_file_size_count,first_timestamp,last_timestamp,activities,change_detected,evidence
+HASH_NOT_AVAILABLE_IN_SYNTHETIC_DATASET,0,0,0,NOT_FOUND,NOT_FOUND,NOT_FOUND,NOT_APPLICABLE,Dataset synthetic tidak memiliki kolom path maupun hash; analisis same-path change dilakukan pada level aplikasi (lihat 56_same_path_hash_detection_analysis.md)

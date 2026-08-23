@@ -1,0 +1,15 @@
+check,expected,actual,status,notes
+1. File readable,TRUE,TRUE,PASS,100_stage7_file_integrity.csv 8/8 PASS
+2. Row integrity,"15000; missing=0; added=0; changed=0","15000; 0; 0; 0",PASS,101
+3. Column integrity,"13 kolom; nama & urutan sama",identik,PASS,100
+4. Exact duplicate,0,0,PASS,multi-event sesi sah (3595 sesi) - bukan duplikat
+5. Missing values,0,0,PASS,tidak ada imputasi dilakukan
+6. Timestamp integrity,distribusi jam identik baseline,identik (Δ=0 semua jam),PASS,103 vs Tahap 3/6
+7. Calendar integrity,"weekday 10802; weekend 4198; holiday 1124",semua cocok,PASS,103+104; kalender SKB 2025
+8. Activity integrity,10 kosakata asli dgn count baseline,sama persis,PASS,105; tanpa rename
+9. Feature integrity,kontrak 9 fitur utuh,cocok 9/9 + shape (15000;9),PASS,108+111
+10. Label leakage,0,0,PASS,107
+11. Hash/path separation,0 kontaminasi,0,PASS,110
+12. Synthetic/real separation,real added = 0,0,PASS,109
+13. Preprocessing compatibility,"shape ok; NaN=0; Inf=0",lolos semua,PASS,111 dry-run in-memory
+14. Checksum integrity,SHA256_MATCH = TRUE,TRUE,PASS,97 + re-hash Stage 7

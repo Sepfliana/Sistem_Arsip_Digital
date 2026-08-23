@@ -1,0 +1,34 @@
+{
+  "started": "2026-08-23T15:39:38.572404",
+  "seed": 42,
+  "input_unscaled_sha256": "853c362859db26c9a3c1912addf6825bc3f8404da9d9939bff02fad747258055",
+  "groups": {
+    "total_sessions": 3595,
+    "train": 2516,
+    "validation": 539,
+    "test": 540
+  },
+  "rows": {
+    "train": 10503,
+    "validation": 2266,
+    "test": 2231
+  },
+  "anomaly_ratio": {
+    "train": 0.0999,
+    "validation": 0.1041,
+    "test": 0.0964
+  },
+  "cross_split_overlap": {
+    "train_validation": 0,
+    "train_test": 0,
+    "validation_test": 0
+  },
+  "scaler_fit_rows": 10503,
+  "checks_pass": 28,
+  "checks_fail": 0,
+  "output_sha256": {
+    "X_train_final.npy": "fe67e6c8bc1e5b4fdbb532a8b8691fba1c96068239689a19573c8625e182a59f",
+    "X_validation_final.npy": "f6e5185bf3a0486bcf7f28580a7354f9b64a1d95a6824775a92a933dbb2e2af3",
+    "X_test_final.npy": "a2d02e16fd76349709bd29bf43242f5d0929f6f847b522b34e7e20e409153bc9"
+  }
+}

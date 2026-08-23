@@ -1,0 +1,49 @@
+dataset,column_name,data_type,record_count,missing_count,missing_pct,unique_count,example_value,kind,used_in_preprocessing,used_as_vae_feature,used_as_label_or_eval,role
+synthetic_raw,timestamp,datetime-string,15000,0,0.0,14982,2025-01-01 03:22:26,kategorikal,ya (ekstraksi hour/day_of_week lalu drop),tidak (turunannya ya),tidak,timestamp
+synthetic_raw,session_id,string/kategorikal,15000,0,0.0,3595,S7BA6BF6F6BA7AFDC,kategorikal,tidak (drop),tidak,tidak,identifier
+synthetic_raw,user_id,integer,15000,0,0.0,72,61,numerik,ya,ya,tidak,identifier
+synthetic_raw,username,string/kategorikal,15000,0,0.0,72,novri_ade_pratama,kategorikal,tidak (drop),tidak,metadata aktor,label/metadata
+synthetic_raw,role,string/kategorikal,15000,0,0.0,3,User,kategorikal,tidak (drop),tidak,metadata aktor,label/metadata
+synthetic_raw,activity,string/kategorikal,15000,0,0.0,10,Login,kategorikal,ya (LabelEncoder),ya,tidak,fitur VAE
+synthetic_raw,status,string/kategorikal,15000,0,0.0,2,Berhasil,kategorikal,ya (LabelEncoder),ya,tidak,fitur VAE
+synthetic_raw,ip_address,string/kategorikal,15000,0,0.0,362,192.168.1.99,kategorikal,ya (konversi ke integer),ya,tidak,fitur VAE
+synthetic_raw,device,string/kategorikal,15000,0,0.0,9,Android,kategorikal,ya (LabelEncoder),ya,tidak,fitur VAE
+synthetic_raw,duration_ms,integer,15000,0,0.0,5279,1726,numerik,ya (StandardScaler),ya,tidak,fitur VAE
+synthetic_raw,object_count,integer,15000,0,0.0,108,1,numerik,ya (StandardScaler),ya,tidak,fitur VAE
+synthetic_raw,risk_level,string/kategorikal,15000,0,0.0,4,Low,kategorikal,tidak (drop),tidak,label sintetis (drop),label/metadata
+synthetic_raw,anomaly_type,string/kategorikal,15000,0,0.0,8,login_luar_jam,kategorikal,tidak (drop),tidak,label sintetis ground-truth (drop),label/metadata
+retraining_combined_raw,source_type,string/kategorikal,15329,0,0.0,2,SYNTHETIC,kategorikal,perlu verifikasi (artefak lama),perlu verifikasi (artefak lama),perlu verifikasi (artefak lama),label/metadata
+retraining_combined_raw,source_id,string/kategorikal,15329,0,0.0,15329,synth_1,kategorikal,perlu verifikasi (artefak lama),perlu verifikasi (artefak lama),perlu verifikasi (artefak lama),label/metadata
+retraining_combined_raw,user_id,integer,15329,0,0.0,72,61,numerik,perlu verifikasi (artefak lama),perlu verifikasi (artefak lama),perlu verifikasi (artefak lama),identifier
+retraining_combined_raw,aksi,string/kategorikal,15329,0,0.0,43,Login,kategorikal,perlu verifikasi (artefak lama),perlu verifikasi (artefak lama),perlu verifikasi (artefak lama),label/metadata
+retraining_combined_raw,status,string/kategorikal,15329,0,0.0,4,Berhasil,kategorikal,perlu verifikasi (artefak lama),perlu verifikasi (artefak lama),perlu verifikasi (artefak lama),label/metadata
+retraining_combined_raw,device,string/kategorikal,15329,0,0.0,12,Android,kategorikal,perlu verifikasi (artefak lama),perlu verifikasi (artefak lama),perlu verifikasi (artefak lama),label/metadata
+retraining_combined_raw,ip_address,string/kategorikal,15329,0,0.0,365,192.168.1.99,kategorikal,perlu verifikasi (artefak lama),perlu verifikasi (artefak lama),perlu verifikasi (artefak lama),label/metadata
+retraining_combined_raw,durasi_ms,integer,15329,0,0.0,5280,1726.0,numerik,perlu verifikasi (artefak lama),perlu verifikasi (artefak lama),perlu verifikasi (artefak lama),label/metadata
+retraining_combined_raw,jumlah_objek,integer,15329,0,0.0,108,1.0,numerik,perlu verifikasi (artefak lama),perlu verifikasi (artefak lama),perlu verifikasi (artefak lama),label/metadata
+retraining_combined_raw,waktu,datetime-string,15329,0,0.0,15311,2025-01-01 03:22:26,kategorikal,perlu verifikasi (artefak lama),perlu verifikasi (artefak lama),perlu verifikasi (artefak lama),label/metadata
+retraining_combined_raw,is_anomali,string/kategorikal,15329,0,0.0,2,True,kategorikal,perlu verifikasi (artefak lama),perlu verifikasi (artefak lama),perlu verifikasi (artefak lama),label/metadata
+retraining_combined_raw,risk_level_source,string/kategorikal,15329,0,0.0,5,Low,kategorikal,perlu verifikasi (artefak lama),perlu verifikasi (artefak lama),perlu verifikasi (artefak lama),label/metadata
+retraining_combined_raw,candidate_type,string/kategorikal,15329,0,0.0,2,ANOMALY,kategorikal,perlu verifikasi (artefak lama),perlu verifikasi (artefak lama),perlu verifikasi (artefak lama),label/metadata
+retraining_canonical,user_id,integer,15329,0,0.0,72,61.0,numerik,perlu verifikasi (artefak lama),perlu verifikasi (artefak lama),perlu verifikasi (artefak lama),identifier
+retraining_canonical,activity,string/kategorikal,15329,0,0.0,11,Login,kategorikal,perlu verifikasi (artefak lama),perlu verifikasi (artefak lama),perlu verifikasi (artefak lama),label/metadata
+retraining_canonical,status,string/kategorikal,15329,0,0.0,2,Berhasil,kategorikal,perlu verifikasi (artefak lama),perlu verifikasi (artefak lama),perlu verifikasi (artefak lama),label/metadata
+retraining_canonical,device,string/kategorikal,15329,0,0.0,7,Android,kategorikal,perlu verifikasi (artefak lama),perlu verifikasi (artefak lama),perlu verifikasi (artefak lama),label/metadata
+retraining_canonical,ip_address,string/kategorikal,15329,0,0.0,3,Private Network 192.168.x.x,kategorikal,perlu verifikasi (artefak lama),perlu verifikasi (artefak lama),perlu verifikasi (artefak lama),label/metadata
+retraining_canonical,duration_ms,float,15329,0,0.0,5280,7.454141078146678,numerik,perlu verifikasi (artefak lama),perlu verifikasi (artefak lama),perlu verifikasi (artefak lama),label/metadata
+retraining_canonical,object_count,float,15329,0,0.0,108,0.6931471805599453,numerik,perlu verifikasi (artefak lama),perlu verifikasi (artefak lama),perlu verifikasi (artefak lama),label/metadata
+retraining_canonical,hour,integer,15329,0,0.0,24,10,numerik,perlu verifikasi (artefak lama),perlu verifikasi (artefak lama),perlu verifikasi (artefak lama),label/metadata
+retraining_canonical,day_of_week,integer,15329,0,0.0,7,2,numerik,perlu verifikasi (artefak lama),perlu verifikasi (artefak lama),perlu verifikasi (artefak lama),label/metadata
+retraining_canonical,source_type,string/kategorikal,15329,0,0.0,2,SYNTHETIC,kategorikal,perlu verifikasi (artefak lama),perlu verifikasi (artefak lama),perlu verifikasi (artefak lama),label/metadata
+retraining_canonical,source_id,string/kategorikal,15329,0,0.0,15329,synth_1,kategorikal,perlu verifikasi (artefak lama),perlu verifikasi (artefak lama),perlu verifikasi (artefak lama),label/metadata
+retraining_canonical,candidate_type,string/kategorikal,15329,0,0.0,2,ANOMALY,kategorikal,perlu verifikasi (artefak lama),perlu verifikasi (artefak lama),perlu verifikasi (artefak lama),label/metadata
+legacy_sample_vae,user_id,integer,25,0,0.0,2,1,numerik,perlu verifikasi (artefak lama),perlu verifikasi (artefak lama),perlu verifikasi (artefak lama),identifier
+legacy_sample_vae,aksi,integer,25,0,0.0,3,2,numerik,perlu verifikasi (artefak lama),perlu verifikasi (artefak lama),perlu verifikasi (artefak lama),label/metadata
+legacy_sample_vae,target_tipe,integer,25,0,0.0,1,0,numerik,perlu verifikasi (artefak lama),perlu verifikasi (artefak lama),perlu verifikasi (artefak lama),label/metadata
+legacy_sample_vae,status,integer,25,0,0.0,1,0,numerik,perlu verifikasi (artefak lama),perlu verifikasi (artefak lama),perlu verifikasi (artefak lama),label/metadata
+legacy_sample_vae,device,integer,25,0,0.0,1,0,numerik,perlu verifikasi (artefak lama),perlu verifikasi (artefak lama),perlu verifikasi (artefak lama),label/metadata
+legacy_sample_vae,ip_address,integer,25,0,0.0,1,0.0,numerik,perlu verifikasi (artefak lama),perlu verifikasi (artefak lama),perlu verifikasi (artefak lama),label/metadata
+legacy_sample_vae,durasi_ms,integer,25,0,0.0,1,0.0,numerik,perlu verifikasi (artefak lama),perlu verifikasi (artefak lama),perlu verifikasi (artefak lama),label/metadata
+legacy_sample_vae,jumlah_objek,integer,25,0,0.0,1,0.0,numerik,perlu verifikasi (artefak lama),perlu verifikasi (artefak lama),perlu verifikasi (artefak lama),label/metadata
+legacy_sample_vae,hour,integer,25,0,0.0,2,11,numerik,perlu verifikasi (artefak lama),perlu verifikasi (artefak lama),perlu verifikasi (artefak lama),label/metadata
+legacy_sample_vae,day_of_week,integer,25,0,0.0,1,2,numerik,perlu verifikasi (artefak lama),perlu verifikasi (artefak lama),perlu verifikasi (artefak lama),label/metadata

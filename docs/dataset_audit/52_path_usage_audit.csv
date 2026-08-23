@@ -1,0 +1,2 @@
+path,event_count,unique_users,activities,first_timestamp,last_timestamp
+(PATH_FIELD_NOT_AVAILABLE),0,0,NOT_FOUND,NOT_FOUND,NOT_FOUND,Tidak ada kolom path/filename pada dataset synthetic maupun tabel audit_log; path_file hanya ada di tabel berkas (database/schema.sql:111)

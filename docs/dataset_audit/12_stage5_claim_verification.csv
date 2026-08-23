@@ -1,0 +1,9 @@
+claim,evidence,actual_result,status
+Synthetic = 15000 baris,audit A: len(audit_log_dataset.csv),aktual = 15000,CONFIRMED
+Real PostgreSQL = 329 baris,stage5 report vs db_check.json (COUNT(*) saat audit),laporan lama = 329; aktual saat audit = 337,NOT_CONFIRMED
+Combined = 15329 baris,stage5 report vs len(retraining_dataset_combined_raw.csv),aktual = 15329,CONFIRMED
+9 fitur VAE,preprocessing_metadata.json feature_count; shape X_train.npy; preprocessing_contract.FEATURE_COLUMNS,"metadata=9; X_train.npy shape=[15000, 9]; kontrak=9",CONFIRMED
+Duplicate combined = 0,df.duplicated().sum() pada retraining_dataset_combined_raw.csv,aktual = 0,CONFIRMED
+Localhost = 329 baris di combined,kolom kategori IP pada retraining_dataset_combined_raw.csv,aktual = kolom kategori IP tidak ditemukan,NOT_VERIFIABLE
+Feature leakage tidak ada (label bukan fitur),kolom retraining_dataset_canonical.csv vs FEATURE_COLUMNS kontrak,"kolom canonical = ['user_id', 'activity', 'status', 'device', 'ip_address', 'duration_ms', 'object_count', 'hour', 'day_of_week', 'source_type', 'source_id', 'candidate_type']; kolom label di canonical = tidak ada",CONFIRMED
+Model/threshold tidak disentuh Stage 5,models/deployment_config.json & models/vae_model.pth mtime vs artefak retraining/,dibandingkan pada 13_consistency_audit.md (waktu modifikasi file),LIHAT LAPORAN MD

@@ -1,0 +1,131 @@
+{
+  "input": "D:\\Sistem_Arsip_Digital\\ai-service\\dataset\\generator\\raw\\audit_log_dataset_stage6.csv",
+  "rows": 15000,
+  "raw_columns": [
+    "timestamp",
+    "session_id",
+    "user_id",
+    "username",
+    "role",
+    "activity",
+    "status",
+    "ip_address",
+    "device",
+    "duration_ms",
+    "object_count",
+    "risk_level",
+    "anomaly_type"
+  ],
+  "canonical_features": [
+    "user_id",
+    "activity",
+    "status",
+    "device",
+    "ip_address",
+    "duration_ms",
+    "object_count",
+    "hour",
+    "day_of_week"
+  ],
+  "sha_stage6_before": "5e9bf0d5ce8b8552356291da59f35877ad745e78e748f82d42fa9f3255f9e966",
+  "sha_stage6_after": "5e9bf0d5ce8b8552356291da59f35877ad745e78e748f82d42fa9f3255f9e966",
+  "intermediate_artifact": "D:\\Sistem_Arsip_Digital\\ai-service\\dataset\\feature_engineering\\audit_log_dataset_stage8_features.csv",
+  "duration_ms": {
+    "min": 1.0,
+    "max": 106760.0,
+    "mean": 2423.2062,
+    "median": 1495.5,
+    "p25": 894.0,
+    "p75": 3475.25,
+    "zero_count": 0.0
+  },
+  "object_count": {
+    "min": 1.0,
+    "max": 200.0,
+    "mean": 4.439066666666666,
+    "median": 1.0,
+    "zero_count": 0.0
+  },
+  "dist_activity": {
+    "Login": 3595,
+    "Logout": 3595,
+    "Lihat Perkara": 3497,
+    "Cari Berkas": 3236,
+    "Lihat Berkas": 261,
+    "Input Berkas": 261,
+    "Verifikasi": 261,
+    "Dashboard": 98,
+    "Kelola User": 98,
+    "Kelola Kode Klasifikasi": 98
+  },
+  "dist_status": {
+    "Berhasil": 14550,
+    "Gagal": 450
+  },
+  "dist_device": {
+    "PC Windows": 4088,
+    "Windows": 3393,
+    "Laptop Windows": 3057,
+    "iPhone": 2696,
+    "Android": 1541,
+    "Virtual Machine": 68,
+    "Linux": 57,
+    "MacOS": 51,
+    "Unknown Device": 49
+  },
+  "dist_role": {
+    "User": 12944,
+    "Arsiparis": 1566,
+    "Admin": 490
+  },
+  "dist_username_unique": 72,
+  "dist_session_unique": 3595,
+  "dist_ip_prefix_internal_192168": 14700,
+  "dist_ip_public_examples": [
+    "103.0.75.214",
+    "103.111.66.212",
+    "103.128.26.207",
+    "103.151.158.102",
+    "103.152.55.141",
+    "103.153.240.84",
+    "103.170.184.115",
+    "103.171.78.177",
+    "103.173.224.141",
+    "103.173.70.89",
+    "103.176.243.35",
+    "103.177.179.174",
+    "103.187.100.189",
+    "103.189.84.48",
+    "103.196.142.26"
+  ],
+  "dist_ip_distinct": 362,
+  "dist_hour_freq": {
+    "0": 78,
+    "1": 57,
+    "2": 62,
+    "3": 58,
+    "4": 69,
+    "5": 57,
+    "6": 69,
+    "7": 1404,
+    "8": 1461,
+    "9": 1368,
+    "10": 1527,
+    "11": 1469,
+    "12": 1445,
+    "13": 1438,
+    "14": 1518,
+    "15": 1407,
+    "16": 1460,
+    "17": 53
+  },
+  "dist_dow_freq": {
+    "0": 2024,
+    "1": 2067,
+    "2": 2173,
+    "3": 2202,
+    "4": 2336,
+    "5": 2048,
+    "6": 2150
+  }
+}

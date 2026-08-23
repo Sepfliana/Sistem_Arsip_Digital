@@ -1,0 +1,25 @@
+group,check,status,detail
+wiring,route_predict_exists,PASS,
+wiring,route_predict_stage11_exists,PASS,
+candidate_endpoint,valid_request_ok,PASS,
+candidate_endpoint,schema_valid,PASS,
+candidate_endpoint,threshold_stage11,PASS,3.0499422550201416
+candidate_endpoint,score_fields_equal,PASS,
+candidate_endpoint,is_anomaly_bool,PASS,False/NORMAL
+candidate_negative,invalid_ipv4_http400,PASS,400: IP address tidak valid: '999.999.1.1'.
+candidate_negative,ipv6_http400,PASS,400: Hanya IPv4 yang didukung kontrak training (diterima IPv6: ':
+candidate_negative,unknown_activity_http400,PASS,400: Nilai 'Klik Sembarang' tidak ada dalam vocabulary training k
+candidate_negative,unknown_device_http400,PASS,400: Nilai 'Smart Fridge' tidak ada dalam vocabulary training kol
+candidate_negative,unknown_status_http400,PASS,400: Nilai 'Mungkin' tidak ada dalam vocabulary training kolom 's
+candidate_endpoint,public_ipv4_ok,PASS,
+regression_old_predict,still_works,PASS,
+regression_old_predict,schema_same,PASS,
+regression_old_predict,uses_production_threshold,PASS,3.1496288776397705
+regression_old_predict,uses_production_model_path,PASS,D:\Sistem_Arsip_Digital\ai-service\models\vae_model.pth
+safety,stage6_unchanged,PASS,5e9bf0d5ce8b8552
+safety,stage8_unchanged,PASS,ce4854fae37d5c5c
+safety,stage9_encoded_unchanged,PASS,63801485f5e5c84d
+safety,X_train_final_unchanged,PASS,fe67e6c8bc1e5b4f
+safety,X_validation_final_unchanged,PASS,f6e5185bf3a0486b
+safety,X_test_final_unchanged,PASS,a2d02e16fd763497
+safety,deployment_config_unchanged,PASS,3.1496288776397705

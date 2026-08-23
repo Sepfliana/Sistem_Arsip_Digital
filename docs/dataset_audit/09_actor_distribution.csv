@@ -1,0 +1,88 @@
+dataset,column,value,count,percentage
+synthetic_raw,user_id,"[72 nilai unik - terlalu banyak, lihat top-20]",,
+synthetic_raw,user_id(top20),54,372,2.48
+synthetic_raw,user_id(top20),55,342,2.28
+synthetic_raw,user_id(top20),48,306,2.04
+synthetic_raw,user_id(top20),85,276,1.84
+synthetic_raw,user_id(top20),1,270,1.8
+synthetic_raw,user_id(top20),6,270,1.8
+synthetic_raw,user_id(top20),26,268,1.7867
+synthetic_raw,user_id(top20),23,268,1.7867
+synthetic_raw,user_id(top20),56,264,1.76
+synthetic_raw,user_id(top20),41,256,1.7067
+synthetic_raw,user_id(top20),45,236,1.5733
+synthetic_raw,user_id(top20),64,236,1.5733
+synthetic_raw,user_id(top20),73,236,1.5733
+synthetic_raw,user_id(top20),77,232,1.5467
+synthetic_raw,user_id(top20),28,232,1.5467
+synthetic_raw,user_id(top20),79,228,1.52
+synthetic_raw,user_id(top20),57,228,1.52
+synthetic_raw,user_id(top20),86,224,1.4933
+synthetic_raw,user_id(top20),61,220,1.4667
+synthetic_raw,user_id(top20),76,220,1.4667
+synthetic_raw,username,"[72 nilai unik - terlalu banyak, lihat top-20]",,
+synthetic_raw,username(top20),bungaa,372,2.48
+synthetic_raw,username(top20),sonia,342,2.28
+synthetic_raw,username(top20),raisa,306,2.04
+synthetic_raw,username(top20),audit_arsiparis_e2e,276,1.84
+synthetic_raw,username(top20),admin,270,1.8
+synthetic_raw,username(top20),Luna,270,1.8
+synthetic_raw,username(top20),Reni_muharni,268,1.7867
+synthetic_raw,username(top20),yosuapl,268,1.7867
+synthetic_raw,username(top20),pujha,264,1.76
+synthetic_raw,username(top20),alfitrya,256,1.7067
+synthetic_raw,username(top20),dina,236,1.5733
+synthetic_raw,username(top20),andrinaldi,236,1.5733
+synthetic_raw,username(top20),Randi123,236,1.5733
+synthetic_raw,username(top20),deni_defriani,232,1.5467
+synthetic_raw,username(top20),hafiz,232,1.5467
+synthetic_raw,username(top20),meri_andani,228,1.52
+synthetic_raw,username(top20),andree,228,1.52
+synthetic_raw,username(top20),audit_user_e2e,224,1.4933
+synthetic_raw,username(top20),novri_ade_pratama,220,1.4667
+synthetic_raw,username(top20),amysyilfiani,220,1.4667
+synthetic_raw,role,User,12944,86.2933
+synthetic_raw,role,Arsiparis,1566,10.44
+synthetic_raw,role,Admin,490,3.2667
+synthetic_raw,device,PC Windows,4088,27.2533
+synthetic_raw,device,Windows,3393,22.62
+synthetic_raw,device,Laptop Windows,3057,20.38
+synthetic_raw,device,iPhone,2696,17.9733
+synthetic_raw,device,Android,1541,10.2733
+synthetic_raw,device,Virtual Machine,68,0.4533
+synthetic_raw,device,Linux,57,0.38
+synthetic_raw,device,MacOS,51,0.34
+synthetic_raw,device,Unknown Device,49,0.3267
+retraining_combined_raw,user_id,"[72 nilai unik - terlalu banyak, lihat top-20]",,
+retraining_combined_raw,user_id(top20),1,428,2.7921
+retraining_combined_raw,user_id(top20),54,372,2.4268
+retraining_combined_raw,user_id(top20),6,354,2.3093
+retraining_combined_raw,user_id(top20),55,342,2.2311
+retraining_combined_raw,user_id(top20),48,306,1.9962
+retraining_combined_raw,user_id(top20),85,284,1.8527
+retraining_combined_raw,user_id(top20),84,277,1.807
+retraining_combined_raw,user_id(top20),26,268,1.7483
+retraining_combined_raw,user_id(top20),23,268,1.7483
+retraining_combined_raw,user_id(top20),56,264,1.7222
+retraining_combined_raw,user_id(top20),41,256,1.67
+retraining_combined_raw,user_id(top20),45,236,1.5396
+retraining_combined_raw,user_id(top20),64,236,1.5396
+retraining_combined_raw,user_id(top20),73,236,1.5396
+retraining_combined_raw,user_id(top20),77,232,1.5135
+retraining_combined_raw,user_id(top20),28,232,1.5135
+retraining_combined_raw,user_id(top20),86,228,1.4874
+retraining_combined_raw,user_id(top20),79,228,1.4874
+retraining_combined_raw,user_id(top20),57,228,1.4874
+retraining_combined_raw,user_id(top20),61,220,1.4352
+retraining_combined_raw,device,PC Windows,4088,26.6684
+retraining_combined_raw,device,Windows,3393,22.1345
+retraining_combined_raw,device,Laptop Windows,3057,19.9426
+retraining_combined_raw,device,iPhone,2696,17.5876
+retraining_combined_raw,device,Android,1541,10.0528
+retraining_combined_raw,device,unknown,325,2.1202
+retraining_combined_raw,device,Virtual Machine,68,0.4436
+retraining_combined_raw,device,Linux,57,0.3718
+retraining_combined_raw,device,MacOS,51,0.3327
+retraining_combined_raw,device,Unknown Device,49,0.3197
+retraining_combined_raw,device,axios/1.18.1,3,0.0196
+retraining_combined_raw,device,"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.7778.265 Electron/42.4.1 Safari/537.36",1,0.0065
