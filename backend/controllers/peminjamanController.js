@@ -149,6 +149,7 @@ const getPeminjamanById = async (req, res) => {
 
 // POST ajukan peminjaman
 const createPeminjaman = async (req, res) => {
+    const operationStart = Date.now();
     try {
         const {
             berkas_id,
@@ -206,7 +207,8 @@ const createPeminjaman = async (req, res) => {
             req.user.id,
             "AJUKAN_PEMINJAMAN",
             "PEMINJAMAN",
-            result.rows[0].id
+            result.rows[0].id,
+            null, 0, 1, "SUCCESS", null, null, operationStart
         );
 
         res.status(201).json({
@@ -223,6 +225,7 @@ const createPeminjaman = async (req, res) => {
 };
 
 const setujuiPeminjaman = async (req, res) => {
+    const operationStart = Date.now();
     try {
         const { id } = req.params;
 
@@ -281,14 +284,16 @@ const setujuiPeminjaman = async (req, res) => {
             req.user.id,
             "SETUJUI_PEMINJAMAN",
             "PEMINJAMAN",
-            id
+            id,
+            null, 0, 1, "SUCCESS", null, null, operationStart
         );
 
         await createAuditLog(
             req.user.id,
             "PINJAM",
             "PEMINJAMAN",
-            id
+            id,
+            null, 0, 1, "SUCCESS", null, null, operationStart
         );
 
         res.status(200).json({
@@ -305,6 +310,7 @@ const setujuiPeminjaman = async (req, res) => {
 };
 
 const catatDipinjam = async (req, res) => {
+    const operationStart = Date.now();
     try {
         const { id } = req.params;
 
@@ -329,7 +335,8 @@ const catatDipinjam = async (req, res) => {
             req.user.id,
             "PINJAM",
             "PEMINJAMAN",
-            id
+            id,
+            null, 0, 1, "SUCCESS", null, null, operationStart
         );
 
         res.status(200).json({
@@ -345,6 +352,7 @@ const catatDipinjam = async (req, res) => {
 };
 
 const tolakPeminjaman = async (req, res) => {
+    const operationStart = Date.now();
     try {
         const { id } = req.params;
 
@@ -371,7 +379,8 @@ const tolakPeminjaman = async (req, res) => {
             req.user.id,
             "TOLAK_PEMINJAMAN",
             "PEMINJAMAN",
-            id
+            id,
+            null, 0, 1, "SUCCESS", null, null, operationStart
         );
 
         res.status(200).json({
@@ -388,6 +397,7 @@ const tolakPeminjaman = async (req, res) => {
 
 // PUT kembalikan berkas
 const kembalikanBerkas = async (req, res) => {
+    const operationStart = Date.now();
     try {
         const { id } = req.params;
 
@@ -436,7 +446,8 @@ const kembalikanBerkas = async (req, res) => {
             req.user.id,
             "PENGEMBALIAN",
             "PEMINJAMAN",
-            id
+            id,
+            null, 0, 1, "SUCCESS", null, null, operationStart
         );
 
         res.status(200).json({
@@ -454,6 +465,7 @@ const kembalikanBerkas = async (req, res) => {
 
 // PUT update peminjaman oleh arsiparis/admin
 const updatePeminjaman = async (req, res) => {
+    const operationStart = Date.now();
     try {
         const { id } = req.params;
 
@@ -546,7 +558,8 @@ const updatePeminjaman = async (req, res) => {
             req.user.id,
             "UPDATE_PEMINJAMAN",
             "PEMINJAMAN",
-            id
+            id,
+            null, 0, 1, "SUCCESS", null, null, operationStart
         );
 
         res.status(200).json({
@@ -563,6 +576,7 @@ const updatePeminjaman = async (req, res) => {
 };
 
 const deletePeminjaman = async (req, res) => {
+    const operationStart = Date.now();
     try {
         const { id } = req.params;
 
@@ -594,7 +608,8 @@ const deletePeminjaman = async (req, res) => {
             req.user.id,
             "DELETE_PEMINJAMAN",
             "PEMINJAMAN",
-            id
+            id,
+            null, 0, 1, "SUCCESS", null, null, operationStart
         );
 
         res.status(200).json({

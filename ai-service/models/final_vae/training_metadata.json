@@ -1,0 +1,9 @@
+{
+  "train_ssot_rows": 6692,
+  "train_anomaly_rows": 0,
+  "validation_rows": 4168,
+  "test_rows": 4140,
+  "epochs_completed": 100,
+  "validation_and_test_fitting": false,
+  "seed": 42
+}

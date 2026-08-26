@@ -703,6 +703,7 @@ const getPerkaraCover = async (req, res) => {
 
 // POST tambah perkara
 const createPerkara = async (req, res) => {
+    const operationStart = Date.now();
     try {
         const {
             nomor_perkara,
@@ -854,7 +855,8 @@ const createPerkara = async (req, res) => {
             data: createdWithTerdakwa
         });
 
-        await createAuditLog(req.user.id, "CREATE_PERKARA", "PERKARA", createdPerkara.id);
+        await createAuditLog(req.user.id, "CREATE_PERKARA", "PERKARA", createdPerkara.id,
+            null, 0, 1, "SUCCESS", null, null, operationStart);
 
     } catch (error) {
 
@@ -873,6 +875,7 @@ const createPerkara = async (req, res) => {
 
 // PUT update perkara
 const updatePerkara = async (req, res) => {
+    const operationStart = Date.now();
     try {
         const { id } = req.params;
 
@@ -1054,7 +1057,8 @@ const updatePerkara = async (req, res) => {
             data: updatedWithTerdakwa
         });
 
-        await createAuditLog(req.user.id, "UPDATE_PERKARA", "PERKARA", id);
+        await createAuditLog(req.user.id, "UPDATE_PERKARA", "PERKARA", id,
+            null, 0, 1, "SUCCESS", null, null, operationStart);
 
     } catch (error) {
 
@@ -1079,6 +1083,7 @@ const updatePerkara = async (req, res) => {
 
 // DELETE perkara
 const deletePerkara = async (req, res) => {
+    const operationStart = Date.now();
     try {
         const { id } = req.params;
 
@@ -1142,7 +1147,8 @@ const deletePerkara = async (req, res) => {
             removeCoverFile(deletedPerkara.cover_file);
         }
 
-        await createAuditLog(req.user.id, "DELETE_PERKARA", "PERKARA", id);
+        await createAuditLog(req.user.id, "DELETE_PERKARA", "PERKARA", id,
+            null, 0, 1, "SUCCESS", null, null, operationStart);
 
     } catch (error) {
         res.status(500).json({

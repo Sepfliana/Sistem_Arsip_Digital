@@ -1,4 +1,4 @@
-﻿const express = require("express");
+const express = require("express");
 const pool = require("./config/database");
 const userRoutes = require("./routes/userRoutes");
 const lemariRoutes = require("./routes/lemariRoutes");
@@ -11,7 +11,9 @@ const totpRoutes = require("./routes/totpRoutes");
 const auditLogRoutes = require("./routes/auditLogRoutes");
 const replicationRoutes = require("./routes/replicationRoutes");
 const masterDataRoutes = require("./routes/masterDataRoutes");
+const { requestAuditContext } = require("./utils/auditRequestContext");
 const cors = require("cors");
+const { runBackfillAnalysis } = require("./controllers/auditLogController");
 
 const app = express();
 
@@ -62,17 +64,64 @@ const ensureIntegrityColumns = async () => {
             )
         `);
         await pool.query(`
-            CREATE INDEX IF NOT EXISTS idx_verifikasi_integritas_berkas_waktu ON verifikasi_integritas_berkas(tanggal_verifikasi DESC, id DESC)
+            CREATE INDEX IF NOT EXISTS idx_verifikasi_integritas_berkas_waktu ON verifikasi_integritas_berkas(tanggal_verifikasi DESC, id)
+        `);
+        await pool.query(`
+            ALTER TABLE audit_log
+            ADD COLUMN IF NOT EXISTS status_analisis VARCHAR(20) NOT NULL DEFAULT 'NOT_ANALYZED'
+        `);
+        await pool.query(`
+            ALTER TABLE audit_log
+            ADD COLUMN IF NOT EXISTS anomaly_score NUMERIC(18, 10)
+        `);
+        await pool.query(`
+            ALTER TABLE audit_log
+            ADD COLUMN IF NOT EXISTS analysis_threshold NUMERIC(18, 10)
+        `);
+        await pool.query(`
+            ALTER TABLE audit_log
+            ADD COLUMN IF NOT EXISTS risk_level VARCHAR(20)
+        `);
+        await pool.query(`
+            ALTER TABLE audit_log
+            ADD COLUMN IF NOT EXISTS analysis_detail JSONB
+        `);
+        await pool.query(`
+            ALTER TABLE laporan_anomali
+            ADD COLUMN IF NOT EXISTS penjelasan JSONB
         `);
     } catch (error) {
         console.error("Gagal memastikan kolom pendukung database:", error.message);
     }
 };
 
-ensureIntegrityColumns();
+ensureIntegrityColumns().then(async () => {
+    const MAX_RETRIES = 5;
+    const RETRY_DELAY_MS = 5000;
+    for (let attempt = 1; attempt <= MAX_RETRIES; attempt++) {
+        try {
+            console.log(`[STARTUP] Auto-backfill attempt ${attempt}/${MAX_RETRIES}: re-analyzing all audit logs with final VAE pipeline...`);
+            const result = await runBackfillAnalysis();
+            console.log(`[STARTUP] Auto-backfill complete: total=${result.total} processed=${result.processed} errors=${result.errors}`);
+            return;
+        } catch (err) {
+            console.error(`[STARTUP] Auto-backfill attempt ${attempt}/${MAX_RETRIES} failed:`, err.message);
+            if (attempt < MAX_RETRIES) {
+                console.log(`[STARTUP] Retrying in ${RETRY_DELAY_MS / 1000}s...`);
+                await new Promise((resolve) => setTimeout(resolve, RETRY_DELAY_MS));
+            }
+        }
+    }
+    console.error("[STARTUP] Auto-backfill gave up after max retries. Use POST /audit-log/backfill-analyze to retry manually.");
+}).catch((err) => {
+    console.error("[STARTUP] Column ensure failed (non-fatal):", err.message);
+});
 
 app.use(cors());
 app.use(express.json());
+// All request-originated audit logs now inherit the same normalized IPv4 and
+// User-Agent, including controller call-sites that do not pass them explicitly.
+app.use(requestAuditContext);
 
 app.use("/users", userRoutes);
 app.use("/lemari", lemariRoutes);
@@ -88,24 +137,13 @@ app.use("/", masterDataRoutes);
 app.use("/api/perkara", perkaraRoutes);
 app.use("/api", masterDataRoutes);
 
-app.get("/", async (req, res) => {
+app.get("/", async (_req, res) => {
     try {
         const result = await pool.query("SELECT NOW()");
-        res.json({
-            message: "Backend Sistem Arsip Digital Berjalan",
-            database: "Terhubung",
-            waktu_server: result.rows[0]
-        });
+        res.json({ message: "Backend Sistem Arsip Digital Berjalan", database: "Terhubung", waktu_server: result.rows[0] });
     } catch (error) {
-        res.status(500).json({
-            message: "Koneksi database gagal",
-            error: error.message
-        });
+        res.status(500).json({ message: "Koneksi database gagal", error: error.message });
     }
 });
 
 module.exports = app;
-
-
-
-

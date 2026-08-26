@@ -1,0 +1,451 @@
+{
+  "stage": "STAGE 1",
+  "status": "PASS",
+  "purpose": "Final VAE dataset SSOT; no retraining performed.",
+  "script": "ai-service/finalize_dataset_stage1.py",
+  "seed": 42,
+  "source": {
+    "raw_dataset": "ai-service/dataset/generator/raw/audit_log_dataset_stage6.csv",
+    "encoded_unscaled_dataset": "ai-service/dataset/encoded/audit_log_dataset_stage9_encoded_unscaled.csv",
+    "encoded_metadata": "ai-service/dataset/encoded/stage9_metadata.json",
+    "sha256": {
+      "stage6_raw": "5e9bf0d5ce8b8552356291da59f35877ad745e78e748f82d42fa9f3255f9e966",
+      "stage9_unscaled": "853c362859db26c9a3c1912addf6825bc3f8404da9d9939bff02fad747258055",
+      "stage9_metadata": "0fd9bbbfac683c9b01f535e069363b4553f3306d2dfa85cecb722eb8a9f991c5"
+    }
+  },
+  "feature_order": [
+    "user_id",
+    "activity",
+    "status",
+    "device",
+    "ip_address",
+    "duration_ms",
+    "object_count",
+    "hour",
+    "day_of_week"
+  ],
+  "excluded_from_vae_input": [
+    "anomaly_type",
+    "risk_level",
+    "role",
+    "session_id",
+    "username"
+  ],
+  "split_policy": {
+    "method": "session-based deterministic split by session_id",
+    "normal_only_session_fractions": {
+      "train": 0.7,
+      "validation": 0.15,
+      "test": 0.15
+    },
+    "anomalous_session_fractions": {
+      "train": 0.0,
+      "validation": 0.5,
+      "test": 0.5
+    },
+    "normal_session_count": 2318,
+    "anomalous_session_count": 1277,
+    "normal_session_assignments": {
+      "train": 1623,
+      "validation": 348,
+      "test": 347
+    },
+    "anomalous_session_assignments": {
+      "train": 0,
+      "validation": 638,
+      "test": 639
+    },
+    "all_rows_assigned_once": true,
+    "session_overlap": {
+      "train_validation": 0,
+      "train_test": 0,
+      "validation_test": 0
+    },
+    "feature_row_overlap": {
+      "train_validation": 0,
+      "train_test": 0,
+      "validation_test": 0
+    }
+  },
+  "composition": {
+    "train": {
+      "rows": 6692,
+      "normal_rows": 6692,
+      "anomaly_rows": 0,
+      "anomaly_ratio": 0.0,
+      "anomaly_type_counts": {
+        "Normal": 6692
+      },
+      "risk_level_counts": {
+        "Normal": 6692
+      },
+      "sessions": 1623
+    },
+    "validation": {
+      "rows": 4168,
+      "normal_rows": 3416,
+      "anomaly_rows": 752,
+      "anomaly_ratio": 0.180422,
+      "anomaly_type_counts": {
+        "Normal": 3416,
+        "aktivitas_terlalu_cepat": 88,
+        "device_berubah": 111,
+        "durasi_tidak_wajar": 76,
+        "ip_berubah": 150,
+        "login_luar_jam": 228,
+        "peminjaman_massal": 59,
+        "verifikasi_massal": 40
+      },
+      "risk_level_counts": {
+        "High": 99,
+        "Low": 489,
+        "Medium": 164,
+        "Normal": 3416
+      },
+      "sessions": 986
+    },
+    "test": {
+      "rows": 4140,
+      "normal_rows": 3392,
+      "anomaly_rows": 748,
+      "anomaly_ratio": 0.180676,
+      "anomaly_type_counts": {
+        "Normal": 3392,
+        "aktivitas_terlalu_cepat": 92,
+        "device_berubah": 114,
+        "durasi_tidak_wajar": 74,
+        "ip_berubah": 150,
+        "login_luar_jam": 222,
+        "peminjaman_massal": 61,
+        "verifikasi_massal": 35
+      },
+      "risk_level_counts": {
+        "High": 96,
+        "Low": 486,
+        "Medium": 166,
+        "Normal": 3392
+      },
+      "sessions": 986
+    }
+  },
+  "session_counts": {
+    "train": 1623,
+    "validation": 986,
+    "test": 986
+  },
+  "scaler": {
+    "type": "StandardScaler",
+    "fit_subset": "train",
+    "fit_row_count": 6692,
+    "fit_anomaly_row_count": 0,
+    "path": "ai-service/dataset/final_stage1_ssot/final_train_scaler.pkl",
+    "mean": [
+      50.55304841601913,
+      5.298117154811716,
+      0.02973699940227137,
+      4.440824865511058,
+      3232235898.133144,
+      2240.653466826061,
+      3.323819485953377,
+      11.588015540944411,
+      3.0026897788404066
+    ],
+    "scale": [
+      21.052329159319264,
+      3.0563608007423144,
+      0.1698608556107636,
+      2.8914813629033977,
+      72.59185533478102,
+      1845.5006613875662,
+      3.0642473709996514,
+      2.8787813005172818,
+      1.9685950181498202
+    ],
+    "var": [
+      443.2005630323241,
+      9.3413413443142,
+      0.028852710268820685,
+      8.36066447201769,
+      5269.577460945776,
+      3405872.691181944,
+      9.389611950678276,
+      8.287381776207972,
+      3.8753663454842906
+    ]
+  },
+  "outputs": {
+    "X_train_final.npy": "ai-service/dataset/final_stage1_ssot/X_train_final.npy",
+    "train_input_unscaled.csv": "ai-service/dataset/final_stage1_ssot/train_input_unscaled.csv",
+    "train_metadata.csv": "ai-service/dataset/final_stage1_ssot/train_metadata.csv",
+    "X_validation_final.npy": "ai-service/dataset/final_stage1_ssot/X_validation_final.npy",
+    "validation_input_unscaled.csv": "ai-service/dataset/final_stage1_ssot/validation_input_unscaled.csv",
+    "validation_metadata.csv": "ai-service/dataset/final_stage1_ssot/validation_metadata.csv",
+    "X_test_final.npy": "ai-service/dataset/final_stage1_ssot/X_test_final.npy",
+    "test_input_unscaled.csv": "ai-service/dataset/final_stage1_ssot/test_input_unscaled.csv",
+    "test_metadata.csv": "ai-service/dataset/final_stage1_ssot/test_metadata.csv",
+    "final_train_scaler.pkl": "ai-service/dataset/final_stage1_ssot/final_train_scaler.pkl"
+  },
+  "output_sha256": {
+    "X_train_final.npy": "3d933c4ef4a77d79c7b60e3c00c9122886cd1d00968e055ace647b1395c6e2f9",
+    "train_input_unscaled.csv": "60148412f4280544538f6d7252d604a6ca3f1ea7977f06a487b405a8505eb8d6",
+    "train_metadata.csv": "f3f329f494f849d0ccf82c9283bd1c455526c85f0e756d2ec4b0dc521b604f4b",
+    "X_validation_final.npy": "10deb47805ff1f7be799e4bf0aa9c26c6492c92231ec2b5b5c7fabbd1b4d79a0",
+    "validation_input_unscaled.csv": "6de92a49d17564df099b9b7e6649aa95628a2018aedd82fbb4cc5724acf27448",
+    "validation_metadata.csv": "266d9d2328b2d3c432b3c30a124959b1938bbdf12e981097d30a59bd4f911d07",
+    "X_test_final.npy": "e8e4835c0a0f70c126f445d3369ef2a3c66ca7d369037167fd808a5bf7651adb",
+    "test_input_unscaled.csv": "3ed0a3e4eaa2b68020183143982943e7973726f95ebd1157da7469508c0aacd5",
+    "test_metadata.csv": "0dcc1cf2769a01a74591ae1f195206a939fbb6f746609c531f17036f7f8cbec7",
+    "final_train_scaler.pkl": "b97f0115a7658899fb5ce217c5daf162c71943611f43e069156a2bad8f767558"
+  },
+  "legacy_artifacts": {
+    "count": 46,
+    "unchanged": true
+  },
+  "validation": {
+    "checks": [
+      {
+        "name": "source_exists_audit_log_dataset_stage6.csv",
+        "passed": true,
+        "detail": "ai-service/dataset/generator/raw/audit_log_dataset_stage6.csv"
+      },
+      {
+        "name": "source_exists_audit_log_dataset_stage9_encoded_unscaled.csv",
+        "passed": true,
+        "detail": "ai-service/dataset/encoded/audit_log_dataset_stage9_encoded_unscaled.csv"
+      },
+      {
+        "name": "source_exists_stage9_metadata.json",
+        "passed": true,
+        "detail": "ai-service/dataset/encoded/stage9_metadata.json"
+      },
+      {
+        "name": "stage6_source_hash_matches_forensic_record",
+        "passed": true,
+        "detail": "5e9bf0d5ce8b8552356291da59f35877ad745e78e748f82d42fa9f3255f9e966"
+      },
+      {
+        "name": "source_row_alignment",
+        "passed": true,
+        "detail": "raw=15000, encoded=15000"
+      },
+      {
+        "name": "source_row_count_15000",
+        "passed": true,
+        "detail": "15000"
+      },
+      {
+        "name": "source_feature_order",
+        "passed": true,
+        "detail": "user_id, activity, status, device, ip_address, duration_ms, object_count, hour, day_of_week"
+      },
+      {
+        "name": "source_feature_count_9",
+        "passed": true,
+        "detail": "9"
+      },
+      {
+        "name": "source_feature_numeric",
+        "passed": true,
+        "detail": "all numeric"
+      },
+      {
+        "name": "source_no_nan_or_inf",
+        "passed": true,
+        "detail": "NaN=0, Inf=0"
+      },
+      {
+        "name": "stage9_feature_contract_matches",
+        "passed": true,
+        "detail": "user_id, activity, status, device, ip_address, duration_ms, object_count, hour, day_of_week"
+      },
+      {
+        "name": "raw_required_metadata_present",
+        "passed": true,
+        "detail": "timestamp, session_id, user_id, username, role, activity, status, ip_address, device, duration_ms, object_count, risk_level, anomaly_type"
+      },
+      {
+        "name": "raw_encoded_user_alignment",
+        "passed": true,
+        "detail": "row-for-row user_id"
+      },
+      {
+        "name": "deterministic_session_assignment",
+        "passed": true,
+        "detail": "seed=42"
+      },
+      {
+        "name": "session_sets_disjoint",
+        "passed": true,
+        "detail": "{\"train_validation\": 0, \"train_test\": 0, \"validation_test\": 0}"
+      },
+      {
+        "name": "each_row_in_exactly_one_split",
+        "passed": true,
+        "detail": "assigned=15000/15000"
+      },
+      {
+        "name": "train_contains_only_normal_labels",
+        "passed": true,
+        "detail": "0"
+      },
+      {
+        "name": "train_contains_only_normal_sessions",
+        "passed": true,
+        "detail": "train_sessions=1623"
+      },
+      {
+        "name": "all_labelled_anomalies_reserved_for_evaluation",
+        "passed": true,
+        "detail": "evaluation=1500, total=1500"
+      },
+      {
+        "name": "normal_session_ratio_70_15_15",
+        "passed": true,
+        "detail": "{\"actual\": {\"train\": 1623, \"validation\": 348, \"test\": 347}, \"expected\": {\"train\": 1623, \"validation\": 348, \"test\": 347}}"
+      },
+      {
+        "name": "anomalous_sessions_only_validation_test_50_50",
+        "passed": true,
+        "detail": "{\"actual\": {\"train\": 0, \"validation\": 638, \"test\": 639}, \"expected\": {\"train\": 0, \"validation\": 638, \"test\": 639}}"
+      },
+      {
+        "name": "forbidden_metadata_fields_not_input_features",
+        "passed": true,
+        "detail": "none"
+      },
+      {
+        "name": "train_matrix_has_9_features",
+        "passed": true,
+        "detail": "(6692, 9)"
+      },
+      {
+        "name": "train_matrix_float32",
+        "passed": true,
+        "detail": "float32"
+      },
+      {
+        "name": "train_matrix_no_nan_or_inf",
+        "passed": true,
+        "detail": "NaN=0, Inf=0"
+      },
+      {
+        "name": "train_input_csv_exactly_9_features",
+        "passed": true,
+        "detail": "user_id, activity, status, device, ip_address, duration_ms, object_count, hour, day_of_week"
+      },
+      {
+        "name": "validation_matrix_has_9_features",
+        "passed": true,
+        "detail": "(4168, 9)"
+      },
+      {
+        "name": "validation_matrix_float32",
+        "passed": true,
+        "detail": "float32"
+      },
+      {
+        "name": "validation_matrix_no_nan_or_inf",
+        "passed": true,
+        "detail": "NaN=0, Inf=0"
+      },
+      {
+        "name": "validation_input_csv_exactly_9_features",
+        "passed": true,
+        "detail": "user_id, activity, status, device, ip_address, duration_ms, object_count, hour, day_of_week"
+      },
+      {
+        "name": "test_matrix_has_9_features",
+        "passed": true,
+        "detail": "(4140, 9)"
+      },
+      {
+        "name": "test_matrix_float32",
+        "passed": true,
+        "detail": "float32"
+      },
+      {
+        "name": "test_matrix_no_nan_or_inf",
+        "passed": true,
+        "detail": "NaN=0, Inf=0"
+      },
+      {
+        "name": "test_input_csv_exactly_9_features",
+        "passed": true,
+        "detail": "user_id, activity, status, device, ip_address, duration_ms, object_count, hour, day_of_week"
+      },
+      {
+        "name": "scaler_fitted_on_train_normal_only",
+        "passed": true,
+        "detail": "fit_rows=6692"
+      },
+      {
+        "name": "train_scaled_mean_zero",
+        "passed": true,
+        "detail": "StandardScaler train mean"
+      },
+      {
+        "name": "train_scaled_nonconstant_features",
+        "passed": true,
+        "detail": "minimum std=0.9999999403953552"
+      },
+      {
+        "name": "cross_split_exact_feature_row_overlap",
+        "passed": true,
+        "detail": "{\"train_validation\": 0, \"train_test\": 0, \"validation_test\": 0}"
+      },
+      {
+        "name": "train_saved_matrix_matches_validated_input",
+        "passed": true,
+        "detail": "(6692, 9)"
+      },
+      {
+        "name": "train_saved_input_csv_matches_contract",
+        "passed": true,
+        "detail": "rows=6692, columns=['user_id', 'activity', 'status', 'device', 'ip_address', 'duration_ms', 'object_count', 'hour', 'day_of_week']"
+      },
+      {
+        "name": "train_saved_metadata_preserves_labels_and_session",
+        "passed": true,
+        "detail": "rows=6692"
+      },
+      {
+        "name": "validation_saved_matrix_matches_validated_input",
+        "passed": true,
+        "detail": "(4168, 9)"
+      },
+      {
+        "name": "validation_saved_input_csv_matches_contract",
+        "passed": true,
+        "detail": "rows=4168, columns=['user_id', 'activity', 'status', 'device', 'ip_address', 'duration_ms', 'object_count', 'hour', 'day_of_week']"
+      },
+      {
+        "name": "validation_saved_metadata_preserves_labels_and_session",
+        "passed": true,
+        "detail": "rows=4168"
+      },
+      {
+        "name": "test_saved_matrix_matches_validated_input",
+        "passed": true,
+        "detail": "(4140, 9)"
+      },
+      {
+        "name": "test_saved_input_csv_matches_contract",
+        "passed": true,
+        "detail": "rows=4140, columns=['user_id', 'activity', 'status', 'device', 'ip_address', 'duration_ms', 'object_count', 'hour', 'day_of_week']"
+      },
+      {
+        "name": "test_saved_metadata_preserves_labels_and_session",
+        "passed": true,
+        "detail": "rows=4140"
+      },
+      {
+        "name": "legacy_and_production_artifacts_unchanged",
+        "passed": true,
+        "detail": "checked_files=46"
+      }
+    ],
+    "passed": 48,
+    "failed": 0
+  }
+}

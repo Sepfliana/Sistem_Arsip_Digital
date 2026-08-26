@@ -1,0 +1,245 @@
+{
+  "status": "PASS",
+  "checks": [
+    {
+      "name": "source_exists_audit_log_dataset_stage6.csv",
+      "passed": true,
+      "detail": "ai-service/dataset/generator/raw/audit_log_dataset_stage6.csv"
+    },
+    {
+      "name": "source_exists_audit_log_dataset_stage9_encoded_unscaled.csv",
+      "passed": true,
+      "detail": "ai-service/dataset/encoded/audit_log_dataset_stage9_encoded_unscaled.csv"
+    },
+    {
+      "name": "source_exists_stage9_metadata.json",
+      "passed": true,
+      "detail": "ai-service/dataset/encoded/stage9_metadata.json"
+    },
+    {
+      "name": "stage6_source_hash_matches_forensic_record",
+      "passed": true,
+      "detail": "5e9bf0d5ce8b8552356291da59f35877ad745e78e748f82d42fa9f3255f9e966"
+    },
+    {
+      "name": "source_row_alignment",
+      "passed": true,
+      "detail": "raw=15000, encoded=15000"
+    },
+    {
+      "name": "source_row_count_15000",
+      "passed": true,
+      "detail": "15000"
+    },
+    {
+      "name": "source_feature_order",
+      "passed": true,
+      "detail": "user_id, activity, status, device, ip_address, duration_ms, object_count, hour, day_of_week"
+    },
+    {
+      "name": "source_feature_count_9",
+      "passed": true,
+      "detail": "9"
+    },
+    {
+      "name": "source_feature_numeric",
+      "passed": true,
+      "detail": "all numeric"
+    },
+    {
+      "name": "source_no_nan_or_inf",
+      "passed": true,
+      "detail": "NaN=0, Inf=0"
+    },
+    {
+      "name": "stage9_feature_contract_matches",
+      "passed": true,
+      "detail": "user_id, activity, status, device, ip_address, duration_ms, object_count, hour, day_of_week"
+    },
+    {
+      "name": "raw_required_metadata_present",
+      "passed": true,
+      "detail": "timestamp, session_id, user_id, username, role, activity, status, ip_address, device, duration_ms, object_count, risk_level, anomaly_type"
+    },
+    {
+      "name": "raw_encoded_user_alignment",
+      "passed": true,
+      "detail": "row-for-row user_id"
+    },
+    {
+      "name": "deterministic_session_assignment",
+      "passed": true,
+      "detail": "seed=42"
+    },
+    {
+      "name": "session_sets_disjoint",
+      "passed": true,
+      "detail": "{\"train_validation\": 0, \"train_test\": 0, \"validation_test\": 0}"
+    },
+    {
+      "name": "each_row_in_exactly_one_split",
+      "passed": true,
+      "detail": "assigned=15000/15000"
+    },
+    {
+      "name": "train_contains_only_normal_labels",
+      "passed": true,
+      "detail": "0"
+    },
+    {
+      "name": "train_contains_only_normal_sessions",
+      "passed": true,
+      "detail": "train_sessions=1623"
+    },
+    {
+      "name": "all_labelled_anomalies_reserved_for_evaluation",
+      "passed": true,
+      "detail": "evaluation=1500, total=1500"
+    },
+    {
+      "name": "normal_session_ratio_70_15_15",
+      "passed": true,
+      "detail": "{\"actual\": {\"train\": 1623, \"validation\": 348, \"test\": 347}, \"expected\": {\"train\": 1623, \"validation\": 348, \"test\": 347}}"
+    },
+    {
+      "name": "anomalous_sessions_only_validation_test_50_50",
+      "passed": true,
+      "detail": "{\"actual\": {\"train\": 0, \"validation\": 638, \"test\": 639}, \"expected\": {\"train\": 0, \"validation\": 638, \"test\": 639}}"
+    },
+    {
+      "name": "forbidden_metadata_fields_not_input_features",
+      "passed": true,
+      "detail": "none"
+    },
+    {
+      "name": "train_matrix_has_9_features",
+      "passed": true,
+      "detail": "(6692, 9)"
+    },
+    {
+      "name": "train_matrix_float32",
+      "passed": true,
+      "detail": "float32"
+    },
+    {
+      "name": "train_matrix_no_nan_or_inf",
+      "passed": true,
+      "detail": "NaN=0, Inf=0"
+    },
+    {
+      "name": "train_input_csv_exactly_9_features",
+      "passed": true,
+      "detail": "user_id, activity, status, device, ip_address, duration_ms, object_count, hour, day_of_week"
+    },
+    {
+      "name": "validation_matrix_has_9_features",
+      "passed": true,
+      "detail": "(4168, 9)"
+    },
+    {
+      "name": "validation_matrix_float32",
+      "passed": true,
+      "detail": "float32"
+    },
+    {
+      "name": "validation_matrix_no_nan_or_inf",
+      "passed": true,
+      "detail": "NaN=0, Inf=0"
+    },
+    {
+      "name": "validation_input_csv_exactly_9_features",
+      "passed": true,
+      "detail": "user_id, activity, status, device, ip_address, duration_ms, object_count, hour, day_of_week"
+    },
+    {
+      "name": "test_matrix_has_9_features",
+      "passed": true,
+      "detail": "(4140, 9)"
+    },
+    {
+      "name": "test_matrix_float32",
+      "passed": true,
+      "detail": "float32"
+    },
+    {
+      "name": "test_matrix_no_nan_or_inf",
+      "passed": true,
+      "detail": "NaN=0, Inf=0"
+    },
+    {
+      "name": "test_input_csv_exactly_9_features",
+      "passed": true,
+      "detail": "user_id, activity, status, device, ip_address, duration_ms, object_count, hour, day_of_week"
+    },
+    {
+      "name": "scaler_fitted_on_train_normal_only",
+      "passed": true,
+      "detail": "fit_rows=6692"
+    },
+    {
+      "name": "train_scaled_mean_zero",
+      "passed": true,
+      "detail": "StandardScaler train mean"
+    },
+    {
+      "name": "train_scaled_nonconstant_features",
+      "passed": true,
+      "detail": "minimum std=0.9999999403953552"
+    },
+    {
+      "name": "cross_split_exact_feature_row_overlap",
+      "passed": true,
+      "detail": "{\"train_validation\": 0, \"train_test\": 0, \"validation_test\": 0}"
+    },
+    {
+      "name": "train_saved_matrix_matches_validated_input",
+      "passed": true,
+      "detail": "(6692, 9)"
+    },
+    {
+      "name": "train_saved_input_csv_matches_contract",
+      "passed": true,
+      "detail": "rows=6692, columns=['user_id', 'activity', 'status', 'device', 'ip_address', 'duration_ms', 'object_count', 'hour', 'day_of_week']"
+    },
+    {
+      "name": "train_saved_metadata_preserves_labels_and_session",
+      "passed": true,
+      "detail": "rows=6692"
+    },
+    {
+      "name": "validation_saved_matrix_matches_validated_input",
+      "passed": true,
+      "detail": "(4168, 9)"
+    },
+    {
+      "name": "validation_saved_input_csv_matches_contract",
+      "passed": true,
+      "detail": "rows=4168, columns=['user_id', 'activity', 'status', 'device', 'ip_address', 'duration_ms', 'object_count', 'hour', 'day_of_week']"
+    },
+    {
+      "name": "validation_saved_metadata_preserves_labels_and_session",
+      "passed": true,
+      "detail": "rows=4168"
+    },
+    {
+      "name": "test_saved_matrix_matches_validated_input",
+      "passed": true,
+      "detail": "(4140, 9)"
+    },
+    {
+      "name": "test_saved_input_csv_matches_contract",
+      "passed": true,
+      "detail": "rows=4140, columns=['user_id', 'activity', 'status', 'device', 'ip_address', 'duration_ms', 'object_count', 'hour', 'day_of_week']"
+    },
+    {
+      "name": "test_saved_metadata_preserves_labels_and_session",
+      "passed": true,
+      "detail": "rows=4140"
+    },
+    {
+      "name": "legacy_and_production_artifacts_unchanged",
+      "passed": true,
+      "detail": "checked_files=46"
+    }
+  ]
+}

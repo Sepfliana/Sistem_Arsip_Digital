@@ -1,0 +1,46 @@
+{
+  "stage": "STAGE 2",
+  "status": "ARTIFACTS_READY_FOR_VALIDATION",
+  "fit_operations": {
+    "categorical_encoder": "train only",
+    "standard_scaler": "train only",
+    "training_rows": 6692,
+    "training_anomaly_rows": 0
+  },
+  "source_sha256": {
+    "train_metadata.csv": "f3f329f494f849d0ccf82c9283bd1c455526c85f0e756d2ec4b0dc521b604f4b",
+    "validation_metadata.csv": "266d9d2328b2d3c432b3c30a124959b1938bbdf12e981097d30a59bd4f911d07",
+    "test_metadata.csv": "0dcc1cf2769a01a74591ae1f195206a939fbb6f746609c531f17036f7f8cbec7",
+    "stage1_final_dataset_metadata.json": "4301e50e0a84d51a326c8c2a690e7de39042b652c223ae1da9ce036b23a49442"
+  },
+  "outputs": {
+    "X_train_unscaled.npy": "ai-service/dataset/final_stage1_ssot/preprocessing_stage2/X_train_unscaled.npy",
+    "X_train_final.npy": "ai-service/dataset/final_stage1_ssot/preprocessing_stage2/X_train_final.npy",
+    "X_validation_unscaled.npy": "ai-service/dataset/final_stage1_ssot/preprocessing_stage2/X_validation_unscaled.npy",
+    "X_validation_final.npy": "ai-service/dataset/final_stage1_ssot/preprocessing_stage2/X_validation_final.npy",
+    "X_test_unscaled.npy": "ai-service/dataset/final_stage1_ssot/preprocessing_stage2/X_test_unscaled.npy",
+    "X_test_final.npy": "ai-service/dataset/final_stage1_ssot/preprocessing_stage2/X_test_final.npy",
+    "categorical_encoder.pkl": "ai-service/dataset/final_stage1_ssot/preprocessing_stage2/categorical_encoder.pkl",
+    "train_only_scaler.pkl": "ai-service/dataset/final_stage1_ssot/preprocessing_stage2/train_only_scaler.pkl",
+    "feature_contract.json": "ai-service/dataset/final_stage1_ssot/preprocessing_stage2/feature_contract.json"
+  },
+  "output_sha256": {
+    "X_train_unscaled.npy": "cd840c4255a9667d6e18e5c6e269abfd0f01aa46193230b7dfa52a7ad75e7a39",
+    "X_train_final.npy": "0cd2cd3607b2c5cb2d2beb73a7fc89f1fa0818f5e099a050f32189bc4643d228",
+    "X_validation_unscaled.npy": "0c76f7c786c01b8a649ea03aafd9d9e92cd52bdcc27ef767149379b8f42f76df",
+    "X_validation_final.npy": "09833721f7890b0520a8a19433322d44786c692abca61e6dd86dc99d87b76c84",
+    "X_test_unscaled.npy": "38a322412ef9d101ad0a2b512079e583ab8c6dbb6548506d4fa7f5a55c119d71",
+    "X_test_final.npy": "06e82821877a8b9734adab7952bd1b9a07c7ce777e8d89057fe6103cfd52fe12",
+    "categorical_encoder.pkl": "a7f29b4420e327dd3baecff82021eb643b4922025db728b6d6fdeff4725cf0bf",
+    "train_only_scaler.pkl": "e5f95d4bdc9d5b450f7ac4a134756db84770dc523584e26eb920318752283c96",
+    "feature_contract.json": "fa55b6af82e144238cc97fb4509bf7f38975a4a152ee063a0215fddf549e7cea"
+  },
+  "protected_artifacts": {
+    "count": 44,
+    "unchanged": true
+  },
+  "stage1_core_artifacts": {
+    "count": 13,
+    "unchanged": true
+  }
+}

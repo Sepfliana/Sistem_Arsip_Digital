@@ -1,0 +1,79 @@
+{
+  "status": "TRAINED_AND_EVALUATED_PENDING_FINAL_AUDIT",
+  "created_at": "2026-08-24T22:59:35.627662+00:00",
+  "feature_order": [
+    "user_id",
+    "activity",
+    "status",
+    "device",
+    "ip_address",
+    "duration_ms",
+    "object_count",
+    "hour",
+    "day_of_week"
+  ],
+  "architecture": {
+    "input_dimension": 9,
+    "latent_dimension": 8,
+    "hidden_layers": {
+      "encoder": [
+        64,
+        32
+      ],
+      "decoder": [
+        32,
+        64
+      ]
+    },
+    "activation": "ReLU",
+    "dropout": 0.2,
+    "optimizer": "Adam",
+    "learning_rate": 0.001,
+    "epochs": 100,
+    "batch_size": 30004,
+    "training_strategy": "KL capacity annealing",
+    "capacity_target": 0.5,
+    "capacity_warmup_epochs": 60,
+    "capacity_loss_weight": 1.0,
+    "inference_latent": "mu (deterministic posterior mean)"
+  },
+  "seed": {
+    "python": 42,
+    "numpy": 42,
+    "torch": 42
+  },
+  "training": {
+    "train_rows": 6692,
+    "train_anomaly_rows": 0,
+    "epochs_run": 100,
+    "validation_and_test_not_used_for_fitting": true
+  },
+  "threshold": {
+    "method": "P95 train normal",
+    "path": "D:\\Download\\Sistem_Arsip_Digital\\Sistem_Arsip_Digital\\ai-service\\models\\final_vae\\threshold.json",
+    "value": 1.6426611317633713
+  },
+  "preprocessing": {
+    "contract": "stage2-final-v1",
+    "artifact_dir": "D:\\Download\\Sistem_Arsip_Digital\\Sistem_Arsip_Digital\\ai-service\\dataset\\final_stage1_ssot\\preprocessing_stage2",
+    "artifacts_sha256": {
+      "categorical_encoder.pkl": "a7f29b4420e327dd3baecff82021eb643b4922025db728b6d6fdeff4725cf0bf",
+      "train_only_scaler.pkl": "e5f95d4bdc9d5b450f7ac4a134756db84770dc523584e26eb920318752283c96",
+      "feature_contract.json": "fa55b6af82e144238cc97fb4509bf7f38975a4a152ee063a0215fddf549e7cea",
+      "artifact_manifest.json": "4a8e7e3d31aa536314c36e91132dbdfc57a0f8db88aa02378efc00b580ab3726"
+    }
+  },
+  "artifacts_sha256": {
+    "model": "2ab5c299c90fbf5cb1a44d12751443f28182989f3d56fe9d03c5bc9880f71831",
+    "config": "ee6cef6a1834b7d0719fa134a34d11348d11996f48fa7cbd59aa8deba00284d9",
+    "threshold": "557ab4ab3f86322c2bfcf9dbc06727003ecffbd3596f5c2cf7b2e13c5376e08c",
+    "history": "8624ba940f05acdb3e32270491f1462381364b306cd4084a1e0ce4d9b8748f9c",
+    "evaluation": "9975eea5e0161c9923205d999304788c72dc787f3384ced957732c7974d0ecc1",
+    "training_metadata": "c865aff87878790e57245f7f6dd6741908547b7decb662afe56cdb3709593bfd"
+  },
+  "runtime": {
+    "torch": "2.13.0+cpu",
+    "python": "3.11.5",
+    "device": "cpu"
+  }
+}

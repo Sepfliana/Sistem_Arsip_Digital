@@ -1,0 +1,157 @@
+{
+  "stage": "STAGE 2",
+  "status": "STAGE 2 — PASS",
+  "contract_version": "stage2-final-v2-bounded-ip-zscore",
+  "tolerance": {
+    "atol": 1e-07,
+    "rtol": 0
+  },
+  "parity": {
+    "max_abs_diff": 0.0,
+    "records": 9
+  },
+  "checks_pass": 28,
+  "checks_fail": 0,
+  "checks": [
+    {
+      "name": "artifact_exists_categorical_encoder.pkl",
+      "passed": true,
+      "detail": "D:\\Download\\Sistem_Arsip_Digital\\Sistem_Arsip_Digital\\ai-service\\dataset\\final_stage1_ssot\\preprocessing_stage2\\categorical_encoder.pkl"
+    },
+    {
+      "name": "artifact_exists_train_only_scaler.pkl",
+      "passed": true,
+      "detail": "D:\\Download\\Sistem_Arsip_Digital\\Sistem_Arsip_Digital\\ai-service\\dataset\\final_stage1_ssot\\preprocessing_stage2\\train_only_scaler.pkl"
+    },
+    {
+      "name": "artifact_exists_feature_contract.json",
+      "passed": true,
+      "detail": "D:\\Download\\Sistem_Arsip_Digital\\Sistem_Arsip_Digital\\ai-service\\dataset\\final_stage1_ssot\\preprocessing_stage2\\feature_contract.json"
+    },
+    {
+      "name": "artifact_exists_artifact_manifest.json",
+      "passed": true,
+      "detail": "D:\\Download\\Sistem_Arsip_Digital\\Sistem_Arsip_Digital\\ai-service\\dataset\\final_stage1_ssot\\preprocessing_stage2\\artifact_manifest.json"
+    },
+    {
+      "name": "contract_version_final_bounded_ip",
+      "passed": true,
+      "detail": "stage2-final-v2-bounded-ip-zscore"
+    },
+    {
+      "name": "feature_order_exact_9",
+      "passed": true,
+      "detail": "user_id, activity, status, device, ip_address, duration_ms, object_count, hour, day_of_week"
+    },
+    {
+      "name": "non_input_fields_not_in_matrix",
+      "passed": true,
+      "detail": "metadata/labels excluded"
+    },
+    {
+      "name": "encoder_train_only_three_categoricals",
+      "passed": true,
+      "detail": "['activity', 'status', 'device']"
+    },
+    {
+      "name": "scaler_train_normal_only",
+      "passed": true,
+      "detail": "6692 train / 0 anomaly"
+    },
+    {
+      "name": "v1_unbounded_artifact_preserved",
+      "passed": true,
+      "detail": "D:\\Download\\Sistem_Arsip_Digital\\Sistem_Arsip_Digital\\ai-service\\dataset\\final_stage1_ssot\\preprocessing_stage2_v1_unbounded_legacy"
+    },
+    {
+      "name": "train_reproducible",
+      "passed": true,
+      "detail": "shape=(6692, 9)"
+    },
+    {
+      "name": "train_finite_shape",
+      "passed": true,
+      "detail": "shape=(6692, 9)"
+    },
+    {
+      "name": "train_ip_zscore_bounded",
+      "passed": true,
+      "detail": "min=-1.572258, max=1.816552"
+    },
+    {
+      "name": "validation_reproducible",
+      "passed": true,
+      "detail": "shape=(4168, 9)"
+    },
+    {
+      "name": "validation_finite_shape",
+      "passed": true,
+      "detail": "shape=(4168, 9)"
+    },
+    {
+      "name": "validation_ip_zscore_bounded",
+      "passed": true,
+      "detail": "min=-3.000000, max=1.816552"
+    },
+    {
+      "name": "test_reproducible",
+      "passed": true,
+      "detail": "shape=(4140, 9)"
+    },
+    {
+      "name": "test_finite_shape",
+      "passed": true,
+      "detail": "shape=(4140, 9)"
+    },
+    {
+      "name": "test_ip_zscore_bounded",
+      "passed": true,
+      "detail": "min=-3.000000, max=1.816552"
+    },
+    {
+      "name": "scaler_parameters_from_train_raw_only",
+      "passed": true,
+      "detail": "mean/variance exact from train raw matrix"
+    },
+    {
+      "name": "training_inference_parity_same_raw",
+      "passed": true,
+      "detail": "max_abs_diff=0; atol=1e-07; rtol=0"
+    },
+    {
+      "name": "special_all_categorical_values_parity",
+      "passed": true,
+      "detail": "activity/status/device train and unseen evaluation values"
+    },
+    {
+      "name": "special_ipv4_integer_and_bounded_parity",
+      "passed": true,
+      "detail": "normal_private=192.168.1.8->3232235784,z=-1.572; loopback=127.0.0.1->2130706433,z=-3.000; other_private=10.0.0.1->167772161,z=-3.000; public=8.8.8.8->134744072,z=-3.000"
+    },
+    {
+      "name": "special_timestamp_14_wib",
+      "passed": true,
+      "detail": "(14, 0)"
+    },
+    {
+      "name": "special_timestamp_19_wib",
+      "passed": true,
+      "detail": "(19, 0)"
+    },
+    {
+      "name": "special_timestamp_midnight_day",
+      "passed": true,
+      "detail": "Sunday 23:59 -> Monday 00:00"
+    },
+    {
+      "name": "special_numeric_raw",
+      "passed": true,
+      "detail": "duration_ms/object_count unchanged before scaling"
+    },
+    {
+      "name": "manifest_output_checksums",
+      "passed": true,
+      "detail": "count=9"
+    }
+  ]
+}

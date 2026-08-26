@@ -1,6 +1,21 @@
 const pool = require("../config/database");
+const axios = require("axios");
 const { verifyAuditChain } = require("../services/auditLogService");
-const { createAuditLog } = require("../services/auditLogService");
+const { createAuditLog, updateAuditLogAnalysis } = require("../services/auditLogService");
+
+const configuredAiServiceUrl = process.env.AI_SERVICE_URL || "http://127.0.0.1:8000";
+const AI_BATCH_URL = new URL("/predict-batch", configuredAiServiceUrl).toString();
+const AI_PREDICT_URL = new URL("/predict", configuredAiServiceUrl).toString();
+const TRAINING_MEAN_IP = "192.168.1.122";
+
+const net = require("net");
+const normalizeIpForAi = (ip) => {
+    if (!ip || ip === "unknown") return TRAINING_MEAN_IP;
+    const cleaned = String(ip).replace(/^::ffff:/, "");
+    if (cleaned === "::1") return "127.0.0.1";
+    if (net.isIP(cleaned) === 4) return cleaned;
+    return TRAINING_MEAN_IP;
+};
 
 const getAllAuditLogs = async (req, res) => {
     try {
@@ -25,6 +40,11 @@ const getAllAuditLogs = async (req, res) => {
                 END AS integrity_status,
                 audit_log.ip_address,
                 audit_log.device,
+                audit_log.status_analisis,
+                audit_log.anomaly_score,
+                audit_log.analysis_threshold,
+                audit_log.risk_level,
+                audit_log.analysis_detail,
                 audit_log.hash_sebelumnya,
                 audit_log.hash_entri
             FROM audit_log
@@ -68,11 +88,15 @@ const getAnomalyReports = async (req, res) => {
                 laporan_anomali.skor_anomali,
                 laporan_anomali.tingkat_risiko,
                 laporan_anomali.status_keputusan,
+                laporan_anomali.penjelasan,
                 audit_log.aksi,
                 audit_log.target_tipe,
                 audit_log.target_id,
                 audit_log.waktu,
                 audit_log.status,
+                audit_log.ip_address,
+                audit_log.device,
+                audit_log.status_analisis,
                 CASE
                     WHEN audit_log.aksi = 'VERIFIKASI_INTEGRITAS_BERKAS'
                         THEN audit_log.status
@@ -96,6 +120,7 @@ const getAnomalyReports = async (req, res) => {
 };
 
 const updateAnomalyDecision = async (req, res) => {
+    const operationStart = Date.now();
     try {
         const { id } = req.params;
         const { decision, reason } = req.body;
@@ -135,7 +160,8 @@ const updateAnomalyDecision = async (req, res) => {
             `KEPUTUSAN_ANOMALI_${normalizedDecision}`,
             "LAPORAN_ANOMALI",
             id,
-            { reason: reason || null }
+            { reason: reason || null },
+            0, 1, "SUCCESS", null, null, operationStart
         );
 
         return res.status(200).json({
@@ -150,9 +176,200 @@ const updateAnomalyDecision = async (req, res) => {
     }
 };
 
+const runBackfillAnalysis = async () => {
+    const BATCH_SIZE = 50;
+
+    const { rows: allAuditLogs } = await pool.query(
+        "SELECT id FROM audit_log"
+    );
+
+    const allIds = allAuditLogs.map((r) => r.id);
+    if (allIds.length > 0) {
+        const delResult = await pool.query(
+            `DELETE FROM laporan_anomali WHERE sumber_audit_log_id = ANY($1)`,
+            [allIds]
+        );
+        console.log(`[BACKFILL] Cleared ALL ${delResult.rowCount} existing laporan_anomali entries.`);
+    }
+
+    const { rows: records } = await pool.query(`
+        SELECT id, user_id, aksi, target_tipe, target_id, waktu, durasi_ms,
+               jumlah_objek, status, ip_address, device, status_analisis,
+               anomaly_score
+        FROM audit_log
+        ORDER BY id
+    `);
+
+    if (records.length === 0) {
+        console.log("[BACKFILL] Tidak ada audit log yang memiliki IP valid untuk dianalisis.");
+        return { total: allAuditLogs.length, processed: 0, errors: 0, skippedNoIp: unanalyzableLogs.length };
+    }
+
+    let useBatchMode = true;
+    try {
+        const healthCheck = await axios.get(AI_BATCH_URL.replace("/predict-batch", "/health"), { timeout: 5000 });
+        console.log(`[BACKFILL] AI service status: ${healthCheck.data.model}`);
+    } catch (e) {
+        console.error("[BACKFILL] AI service unreachable:", e.message);
+        return { total: allAuditLogs.length, processed: 0, errors: records.length, skippedNoIp: unanalyzableLogs.length };
+    }
+
+    try {
+        await axios.post(AI_BATCH_URL, { records: [] }, { timeout: 5000 });
+    } catch (e) {
+        if (e.response && e.response.status === 404) {
+            console.log("[BACKFILL] /predict-batch not available, falling back to individual /predict calls.");
+            useBatchMode = false;
+        } else if (e.response && e.response.status === 422) {
+            useBatchMode = true;
+        } else {
+            console.log("[BACKFILL] /predict-batch check failed:", e.message, "- falling back to individual /predict calls.");
+            useBatchMode = false;
+        }
+    }
+
+    console.log(`[BACKFILL] Starting re-analysis of ${records.length} records through final VAE pipeline...`);
+    let totalProcessed = 0;
+    let totalErrors = 0;
+
+    if (useBatchMode) {
+        for (let i = 0; i < records.length; i += BATCH_SIZE) {
+            const batch = records.slice(i, i + BATCH_SIZE);
+                const payload = {
+                    records: batch.map((r) => ({
+                        audit_log_id: r.id,
+                        waktu: new Date(r.waktu).toISOString(),
+                        user_id: r.user_id,
+                        aksi: r.aksi,
+                        status: r.status,
+                        device: r.device || "unknown",
+                        ip_address: normalizeIpForAi(r.ip_address),
+                        durasi_ms: Number(r.durasi_ms || 0),
+                        jumlah_objek: Number(r.jumlah_objek || 1),
+                    }))
+            };
+
+            try {
+                const aiResponse = await axios.post(AI_BATCH_URL, payload, {
+                    headers: { "Content-Type": "application/json" },
+                    timeout: 120000,
+                });
+
+                const results = aiResponse.data.results || [];
+                for (const result of results) {
+                    if (result.status === "ERROR") {
+                        totalErrors++;
+                        await pool.query(
+                            `UPDATE audit_log SET status_analisis = 'AI_ERROR' WHERE id = $1`,
+                            [result.audit_log_id]
+                        );
+                        continue;
+                    }
+                    try {
+                        await updateAuditLogAnalysis(result.audit_log_id, {
+                            score: result.anomaly_score,
+                            threshold: result.threshold,
+                            risk_level: result.risk_level,
+                            status: result.status,
+                            is_anomaly: result.is_anomaly,
+                            feature_errors: result.feature_errors,
+                            feature_contributions: result.feature_contributions,
+                            dominant_features: result.dominant_features,
+                            explanation: result.explanation,
+                            preprocessing_contract: result.preprocessing_contract,
+                        }, batch.find((r) => r.id === result.audit_log_id)?.user_id);
+                        totalProcessed++;
+                    } catch (updateErr) {
+                        totalErrors++;
+                        console.error(`[BACKFILL] Failed to update audit_log ${result.audit_log_id}:`, updateErr.message);
+                    }
+                }
+            } catch (batchErr) {
+                totalErrors += batch.length;
+                console.error(`[BACKFILL] Batch error for records ${i}-${i + batch.length}:`, batchErr.message);
+                for (const r of batch) {
+                    await pool.query(
+                        `UPDATE audit_log SET status_analisis = 'AI_ERROR' WHERE id = $1`,
+                        [r.id]
+                    );
+                }
+            }
+
+            console.log(`[BACKFILL] Progress: ${Math.min(i + BATCH_SIZE, records.length)}/${records.length} (processed=${totalProcessed}, errors=${totalErrors})`);
+        }
+    } else {
+        for (let i = 0; i < records.length; i++) {
+            const r = records[i];
+            const aiPayload = {
+                waktu: new Date(r.waktu).toISOString(),
+                user_id: r.user_id,
+                aksi: r.aksi,
+                status: r.status,
+                device: r.device || "unknown",
+                ip_address: normalizeIpForAi(r.ip_address),
+                durasi_ms: Number(r.durasi_ms || 0),
+                jumlah_objek: Number(r.jumlah_objek || 1),
+            };
+
+            try {
+                const aiResponse = await axios.post(AI_PREDICT_URL, aiPayload, {
+                    headers: { "Content-Type": "application/json" },
+                    timeout: 30000,
+                });
+                const result = aiResponse.data;
+                await updateAuditLogAnalysis(r.id, {
+                    score: result.score || result.anomaly_score || 0,
+                    threshold: result.threshold,
+                    risk_level: result.risk_level,
+                    status: result.status,
+                    is_anomaly: result.is_anomaly,
+                    feature_errors: result.feature_errors,
+                    feature_contributions: result.feature_contributions,
+                    dominant_features: result.dominant_features,
+                    explanation: result.explanation,
+                    preprocessing_contract: result.preprocessing_contract,
+                }, r.user_id);
+                totalProcessed++;
+            } catch (err) {
+                totalErrors++;
+                console.error(`[BACKFILL] Individual predict failed for audit_log ${r.id}:`, err.message);
+                await pool.query(
+                    `UPDATE audit_log SET status_analisis = 'AI_ERROR' WHERE id = $1`,
+                    [r.id]
+                );
+            }
+
+            if ((i + 1) % 50 === 0 || i === records.length - 1) {
+                console.log(`[BACKFILL] Progress: ${i + 1}/${records.length} (processed=${totalProcessed}, errors=${totalErrors})`);
+            }
+        }
+    }
+
+    console.log(`[BACKFILL] Complete. total=${records.length} processed=${totalProcessed} errors=${totalErrors}`);
+    return { total: records.length, processed: totalProcessed, errors: totalErrors };
+};
+
+const backfillAnalyze = async (req, res) => {
+    try {
+        const result = await runBackfillAnalysis();
+        return res.status(200).json({
+            message: "Backfill re-analisis seluruh audit log dengan final VAE pipeline selesai.",
+            ...result,
+        });
+    } catch (error) {
+        console.error("[BACKFILL] Fatal error:", error.message);
+        return res.status(500).json({
+            message: "Gagal melakukan backfill analisis",
+            error: error.message,
+        });
+    }
+};
+
 module.exports = {
     getAllAuditLogs,
     verifyAuditLogs,
     getAnomalyReports,
-    updateAnomalyDecision
+    updateAnomalyDecision,
+    backfillAnalyze,
+    runBackfillAnalysis,
 };

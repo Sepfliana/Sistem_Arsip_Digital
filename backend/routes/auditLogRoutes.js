@@ -5,7 +5,8 @@ const {
     getAllAuditLogs,
     verifyAuditLogs,
     getAnomalyReports,
-    updateAnomalyDecision
+    updateAnomalyDecision,
+    backfillAnalyze,
 } = require("../controllers/auditLogController");
 
 const {
@@ -42,6 +43,13 @@ router.get(
     verifyToken,
     authorizeRoles("Admin"),
     verifyAuditLogs
+);
+
+router.post(
+    "/backfill-analyze",
+    verifyToken,
+    authorizeRoles("Admin"),
+    backfillAnalyze
 );
 
 module.exports = router;

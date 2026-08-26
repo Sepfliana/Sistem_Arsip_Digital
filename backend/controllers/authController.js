@@ -151,6 +151,7 @@ const login = async (req, res) => {
 };
 
 const verifyLoginOTP = async (req, res) => {
+    const operationStart = Date.now();
     console.log("[OTP] Endpoint hit: /auth/verify-login-otp");
     try {
         const { userId, token, pendingToken } = req.body || {};
@@ -274,7 +275,8 @@ const verifyLoginOTP = async (req, res) => {
             user.id,
             "LOGIN_SUCCESS",
             "USER",
-            user.id
+            user.id,
+            null, 0, 1, "SUCCESS", null, null, operationStart
         );
 
         const successResp = {
@@ -300,12 +302,14 @@ const verifyLoginOTP = async (req, res) => {
 };
 
 const logout = async (req, res) => {
+    const operationStart = Date.now();
     try {
         await createAuditLog(
             req.user.id,
             "LOGOUT",
             "USER",
-            req.user.id
+            req.user.id,
+            null, 0, 1, "SUCCESS", null, null, operationStart
         );
 
         res.status(200).json({
@@ -320,6 +324,7 @@ const logout = async (req, res) => {
 };
 
 const requestPasswordReset = async (req, res) => {
+    const operationStart = Date.now();
     try {
         const { username, email } = req.body || {};
 
@@ -377,7 +382,8 @@ const requestPasswordReset = async (req, res) => {
             user.id,
             "REQUEST_RESET_PASSWORD",
             "USER",
-            user.id
+            user.id,
+            null, 0, 1, "SUCCESS", null, null, operationStart
         );
 
         return res.status(200).json({
@@ -393,6 +399,7 @@ const requestPasswordReset = async (req, res) => {
 };
 
 const resetPassword = async (req, res) => {
+    const operationStart = Date.now();
     try {
         const { resetToken, password } = req.body || {};
 
@@ -473,7 +480,8 @@ const resetPassword = async (req, res) => {
             payload.id,
             "RESET_PASSWORD",
             "USER",
-            payload.id
+            payload.id,
+            null, 0, 1, "SUCCESS", null, null, operationStart
         );
 
         return res.status(200).json({

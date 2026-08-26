@@ -26,6 +26,7 @@ const createLoginToken = (user) => {
 };
 
 const generate2FA = async (req, res) => {
+    const operationStart = Date.now();
     try {
 
         const userId = req.user.id;
@@ -112,7 +113,8 @@ const generate2FA = async (req, res) => {
             userId,
             "SETUP_2FA_GENERATE",
             "USER",
-            userId
+            userId,
+            null, 0, 1, "SUCCESS", null, null, operationStart
         );
 
         const qrCode = await QRCode.toDataURL(
@@ -135,6 +137,7 @@ const generate2FA = async (req, res) => {
 
 const verify2FA = async (req, res) => {
     console.log("[OTP] Endpoint hit: /totp/verify");
+    const operationStart = Date.now();
     try {
 
         const userId = req.user.id;
@@ -249,7 +252,8 @@ const verify2FA = async (req, res) => {
             userId,
             "AKTIVASI_OTP",
             "USER",
-            userId
+            userId,
+            null, 0, 1, "SUCCESS", null, null, operationStart
         );
 
         const jwtToken = createLoginToken(user);

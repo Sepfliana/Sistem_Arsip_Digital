@@ -1,0 +1,25 @@
+{
+  "input_dimension": 9,
+  "latent_dimension": 8,
+  "hidden_layers": {
+    "encoder": [
+      64,
+      32
+    ],
+    "decoder": [
+      32,
+      64
+    ]
+  },
+  "activation": "ReLU",
+  "dropout": 0.2,
+  "optimizer": "Adam",
+  "learning_rate": 0.001,
+  "epochs": 100,
+  "batch_size": 30004,
+  "training_strategy": "KL capacity annealing",
+  "capacity_target": 0.5,
+  "capacity_warmup_epochs": 60,
+  "capacity_loss_weight": 1.0,
+  "inference_latent": "mu (deterministic posterior mean)"
+}

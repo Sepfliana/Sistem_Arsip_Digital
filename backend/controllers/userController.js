@@ -114,6 +114,7 @@ const getUserById = async (req, res) => {
 
 // POST tambah user
 const createUser = async (req, res) => {
+    const operationStart = Date.now();
     try {
         const {
             role_id,
@@ -189,7 +190,8 @@ const createUser = async (req, res) => {
             req.user.id,
             "CREATE_USER",
             "USER",
-            result.rows[0].id
+            result.rows[0].id,
+            null, 0, 1, "SUCCESS", null, null, operationStart
         );
 
     } catch (error) {
@@ -209,6 +211,7 @@ const createUser = async (req, res) => {
 
 // PUT update user
 const updateUser = async (req, res) => {
+    const operationStart = Date.now();
     try {
         const { id } = req.params;
 
@@ -309,7 +312,8 @@ const updateUser = async (req, res) => {
             req.user.id,
             "UPDATE_USER",
             "USER",
-            id
+            id,
+            null, 0, 1, "SUCCESS", null, null, operationStart
         );
 
         if (isEmailChanged) {
@@ -317,7 +321,8 @@ const updateUser = async (req, res) => {
                 req.user.id,
                 "DISABLE_2FA_EMAIL_CHANGED",
                 "USER",
-                id
+                id,
+                null, 0, 1, "SUCCESS", null, null, operationStart
             );
         }
 
@@ -338,6 +343,7 @@ const updateUser = async (req, res) => {
 
 // DELETE user (soft delete)
 const deleteUser = async (req, res) => {
+    const operationStart = Date.now();
     try {
         const { id } = req.params;
 
@@ -368,7 +374,8 @@ const deleteUser = async (req, res) => {
             req.user.id,
             "DELETE_USER",
             "USER",
-            id
+            id,
+            null, 0, 1, "SUCCESS", null, null, operationStart
         );
 
     } catch (error) {

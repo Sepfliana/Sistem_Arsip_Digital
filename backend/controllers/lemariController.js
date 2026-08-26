@@ -136,6 +136,7 @@ const getLemariById = async (req, res) => {
 
 // POST tambah lemari
 const createLemari = async (req, res) => {
+    const operationStart = Date.now();
     try {
         const nama_lemari = normalizeText(req.body.nama_lemari);
         const lokasi = normalizeText(req.body.lokasi);
@@ -232,7 +233,8 @@ const createLemari = async (req, res) => {
             data: detailResult.rows[0]
         });
 
-        await createAuditLog(req.user.id, "CREATE_LEMARI", "LEMARI", createdLemari.id);
+        await createAuditLog(req.user.id, "CREATE_LEMARI", "LEMARI", createdLemari.id,
+            null, 0, 1, "SUCCESS", null, null, operationStart);
 
     } catch (error) {
         res.status(500).json({
@@ -244,6 +246,7 @@ const createLemari = async (req, res) => {
 
 // PUT update lemari
 const updateLemari = async (req, res) => {
+    const operationStart = Date.now();
     try {
         const id = normalizePositiveInteger(req.params.id);
         const nama_lemari = normalizeText(req.body.nama_lemari);
@@ -407,7 +410,8 @@ const updateLemari = async (req, res) => {
             data: detailResult.rows[0] || updatedLemari
         });
 
-        await createAuditLog(req.user.id, "UPDATE_LEMARI", "LEMARI", id);
+        await createAuditLog(req.user.id, "UPDATE_LEMARI", "LEMARI", id,
+            null, 0, 1, "SUCCESS", null, null, operationStart);
 
     } catch (error) {
         res.status(500).json({
@@ -419,6 +423,7 @@ const updateLemari = async (req, res) => {
 
 // DELETE lemari
 const deleteLemari = async (req, res) => {
+    const operationStart = Date.now();
     try {
         const id = normalizePositiveInteger(req.params.id);
 
@@ -495,7 +500,8 @@ const deleteLemari = async (req, res) => {
             });
         }
 
-        await createAuditLog(req.user.id, "DELETE_LEMARI", "LEMARI", id);
+        await createAuditLog(req.user.id, "DELETE_LEMARI", "LEMARI", id,
+            null, 0, 1, "SUCCESS", null, null, operationStart);
 
         res.status(200).json({
             message: "Lemari berhasil dihapus",

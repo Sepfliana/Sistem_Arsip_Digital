@@ -132,6 +132,7 @@ const createRak = async (req, res) => {
 
 // PUT update rak
 const updateRak = async (req, res) => {
+    const operationStart = Date.now();
     try {
         const id = normalizePositiveInteger(req.params.id);
         const kapasitas = normalizePositiveInteger(req.body.kapasitas);
@@ -183,7 +184,8 @@ const updateRak = async (req, res) => {
             data: updatedRak
         });
 
-        await createAuditLog(req.user.id, "UPDATE_RAK", "RAK", id);
+        await createAuditLog(req.user.id, "UPDATE_RAK", "RAK", id,
+            null, 0, 1, "SUCCESS", null, null, operationStart);
 
     } catch (error) {
 
@@ -196,6 +198,7 @@ const updateRak = async (req, res) => {
 
 // DELETE rak
 const deleteRak = async (req, res) => {
+    const operationStart = Date.now();
     try {
         const id = normalizePositiveInteger(req.params.id);
 
@@ -268,7 +271,8 @@ const deleteRak = async (req, res) => {
             }
         }
 
-        await createAuditLog(req.user.id, "DELETE_RAK", "RAK", id);
+        await createAuditLog(req.user.id, "DELETE_RAK", "RAK", id,
+            null, 0, 1, "SUCCESS", null, null, operationStart);
 
     } catch (error) {
         res.status(500).json({

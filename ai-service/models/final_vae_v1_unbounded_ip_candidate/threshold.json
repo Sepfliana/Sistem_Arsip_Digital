@@ -1,0 +1,11 @@
+{
+  "method": "percentile-95 of train-normal reconstruction scores",
+  "threshold": 1.6426611317633713,
+  "fit_split": "train",
+  "train_rows": 6692,
+  "train_anomaly_rows": 0,
+  "validation_used_for_threshold": false,
+  "test_used": false,
+  "mean_plus_3std_reference_not_selected": 2.904550884906616,
+  "selection_rationale": "P95 train reconstruction score is the locked existing-production method reaffirmed by the Stage 11 forensic decision."
+}

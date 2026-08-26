@@ -1,0 +1,35 @@
+{
+  "stage": "STAGE 2",
+  "status": "ARTIFACTS_READY_FOR_VALIDATION",
+  "contract_version": "stage2-final-v2-bounded-ip-zscore",
+  "fit_operations": {
+    "categorical_encoder": "train normal only",
+    "standard_scaler": "train normal only",
+    "training_rows": 6692,
+    "training_anomaly_rows": 0
+  },
+  "outputs": {
+    "X_train_unscaled.npy": "ai-service/dataset/final_stage1_ssot/preprocessing_stage2/X_train_unscaled.npy",
+    "X_train_final.npy": "ai-service/dataset/final_stage1_ssot/preprocessing_stage2/X_train_final.npy",
+    "X_validation_unscaled.npy": "ai-service/dataset/final_stage1_ssot/preprocessing_stage2/X_validation_unscaled.npy",
+    "X_validation_final.npy": "ai-service/dataset/final_stage1_ssot/preprocessing_stage2/X_validation_final.npy",
+    "X_test_unscaled.npy": "ai-service/dataset/final_stage1_ssot/preprocessing_stage2/X_test_unscaled.npy",
+    "X_test_final.npy": "ai-service/dataset/final_stage1_ssot/preprocessing_stage2/X_test_final.npy",
+    "categorical_encoder.pkl": "ai-service/dataset/final_stage1_ssot/preprocessing_stage2/categorical_encoder.pkl",
+    "train_only_scaler.pkl": "ai-service/dataset/final_stage1_ssot/preprocessing_stage2/train_only_scaler.pkl",
+    "feature_contract.json": "ai-service/dataset/final_stage1_ssot/preprocessing_stage2/feature_contract.json"
+  },
+  "output_sha256": {
+    "X_train_unscaled.npy": "cd840c4255a9667d6e18e5c6e269abfd0f01aa46193230b7dfa52a7ad75e7a39",
+    "X_train_final.npy": "0cd2cd3607b2c5cb2d2beb73a7fc89f1fa0818f5e099a050f32189bc4643d228",
+    "X_validation_unscaled.npy": "0c76f7c786c01b8a649ea03aafd9d9e92cd52bdcc27ef767149379b8f42f76df",
+    "X_validation_final.npy": "5474ed0303c19deabda8b201cf78342143927dd4b7f2b3ab1abdb41bb0233482",
+    "X_test_unscaled.npy": "38a322412ef9d101ad0a2b512079e583ab8c6dbb6548506d4fa7f5a55c119d71",
+    "X_test_final.npy": "77d2be62d033be18a14694aca660d619c29fcce9323d83c37e371c142725dd19",
+    "categorical_encoder.pkl": "a7f29b4420e327dd3baecff82021eb643b4922025db728b6d6fdeff4725cf0bf",
+    "train_only_scaler.pkl": "e5f95d4bdc9d5b450f7ac4a134756db84770dc523584e26eb920318752283c96",
+    "feature_contract.json": "dfcecd16ed19fffbb3d3a51399917cb8f1f71b464acbcb2c0a6a1fdb791b3cce"
+  },
+  "stage1_core_preserved": true,
+  "v1_unbounded_artifacts_preserved": "ai-service/dataset/final_stage1_ssot/preprocessing_stage2_v1_unbounded_legacy"
+}

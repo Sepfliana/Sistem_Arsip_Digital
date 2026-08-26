@@ -1,0 +1,116 @@
+{
+  "contract_version": "stage2-final-v1",
+  "source_ssot": "ai-service/dataset/final_stage1_ssot",
+  "feature_order": [
+    "user_id",
+    "activity",
+    "status",
+    "device",
+    "ip_address",
+    "duration_ms",
+    "object_count",
+    "hour",
+    "day_of_week"
+  ],
+  "categorical": {
+    "columns": [
+      "activity",
+      "status",
+      "device"
+    ],
+    "encoder": "sklearn.preprocessing.OrdinalEncoder",
+    "fit_subset": "train metadata from Stage 1 SSOT only",
+    "classes": {
+      "activity": [
+        "Cari Berkas",
+        "Dashboard",
+        "Input Berkas",
+        "Kelola Kode Klasifikasi",
+        "Kelola User",
+        "Lihat Berkas",
+        "Lihat Perkara",
+        "Login",
+        "Logout",
+        "Verifikasi"
+      ],
+      "status": [
+        "Berhasil",
+        "Gagal"
+      ],
+      "device": [
+        "Android",
+        "Laptop Windows",
+        "PC Windows",
+        "Windows",
+        "iPhone"
+      ]
+    },
+    "unknown_policy": "same fitted encoder emits -1 for values absent from training",
+    "unknown_code": -1
+  },
+  "ip_address": {
+    "representation": "unsigned IPv4 32-bit integer via int(ipaddress.ip_address(value))",
+    "ipv6_policy": "reject"
+  },
+  "numeric": {
+    "duration_ms": "raw finite non-negative value; no log1p",
+    "object_count": "raw finite non-negative value; no log1p"
+  },
+  "temporal": {
+    "timezone": "Asia/Jakarta",
+    "naive_timestamp_policy": "already WIB; no UTC conversion",
+    "aware_timestamp_policy": "convert to Asia/Jakarta",
+    "day_of_week": "Monday=0 through Sunday=6"
+  },
+  "scaler": {
+    "type": "sklearn.preprocessing.StandardScaler",
+    "fit_subset": "train only",
+    "fit_rows": 6692,
+    "fit_anomaly_rows": 0,
+    "n_features": 9,
+    "mean": [
+      50.55304841601913,
+      5.298117154811716,
+      0.02973699940227137,
+      2.2023311416616855,
+      3232235898.133144,
+      2240.653466826061,
+      3.323819485953377,
+      11.588015540944411,
+      3.0026897788404066
+    ],
+    "scale": [
+      21.05232915931929,
+      3.056360800742384,
+      0.16986085561075512,
+      1.2571400165644893,
+      72.5918553347764,
+      1845.5006613875646,
+      3.0642473709998024,
+      2.8787813005172516,
+      1.9685950181498173
+    ],
+    "var": [
+      443.20056303232514,
+      9.341341344314628,
+      0.0288527102688178,
+      1.5804010212477644,
+      5269.577460945104,
+      3405872.691181938,
+      9.3896119506792,
+      8.287381776207798,
+      3.87536634548428
+    ]
+  },
+  "inference_trace": {
+    "adapter": "utils.final_preprocessing_contract.preprocess_for_inference",
+    "behaviour": "loads Stage 2 encoder and scaler; transform only; never fit",
+    "endpoint_or_deployment_changed": false
+  },
+  "source_sha256": {
+    "train_metadata.csv": "f3f329f494f849d0ccf82c9283bd1c455526c85f0e756d2ec4b0dc521b604f4b",
+    "validation_metadata.csv": "266d9d2328b2d3c432b3c30a124959b1938bbdf12e981097d30a59bd4f911d07",
+    "test_metadata.csv": "0dcc1cf2769a01a74591ae1f195206a939fbb6f746609c531f17036f7f8cbec7",
+    "stage1_final_dataset_metadata.json": "4301e50e0a84d51a326c8c2a690e7de39042b652c223ae1da9ce036b23a49442"
+  }
+}

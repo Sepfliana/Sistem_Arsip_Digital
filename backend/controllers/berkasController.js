@@ -381,6 +381,7 @@ const getBerkasRetensiSelesai = async (req, res) => {
 };
 
 const prosesRetensiOtomatis = async (req, res) => {
+    const operationStart = Date.now();
     try {
         const result = await pool.query(`
             SELECT *
@@ -408,7 +409,8 @@ const prosesRetensiOtomatis = async (req, res) => {
                 ["INAKTIF", retensiInfo.tanggal_akhir_aktif, berkas.id]
             );
 
-            await createAuditLog(req.user.id, "RETENSI_INAKTIF", "BERKAS", berkas.id);
+            await createAuditLog(req.user.id, "RETENSI_INAKTIF", "BERKAS", berkas.id,
+                null, 0, 1, "SUCCESS", null, null, operationStart);
             totalDiproses++;
         }
 
@@ -513,6 +515,7 @@ const validateBerkasPayload = ({ perkara_id, jenis_berkas, nomor_berkas, nama_be
 };
 
 const createBerkas = async (req, res) => {
+    const operationStart = Date.now();
     try {
         const {
             perkara_id,
@@ -619,7 +622,7 @@ const createBerkas = async (req, res) => {
         await createAuditLog(req.user.id, "CREATE_BERKAS", "BERKAS", result.rows[0].id, {
             jenis_berkas: result.rows[0].jenis_berkas,
             hash_sha256
-        });
+        }, 0, 1, "SUCCESS", null, null, operationStart);
 
         res.status(201).json({
             message: "Berkas berhasil ditambahkan",
@@ -634,6 +637,7 @@ const createBerkas = async (req, res) => {
 };
 
 const updateBerkas = async (req, res) => {
+    const operationStart = Date.now();
     try {
         const { id } = req.params;
         const {
@@ -755,10 +759,11 @@ const updateBerkas = async (req, res) => {
         await createAuditLog(req.user.id, "UPDATE_BERKAS", "BERKAS", id, {
             jenis_berkas: result.rows[0].jenis_berkas,
             hash_sha256
-        });
+        }, 0, 1, "SUCCESS", null, null, operationStart);
 
         if (existingBerkas.status_berkas !== finalStatus) {
-            await createAuditLog(req.user.id, "PERUBAHAN_STATUS_ARSIP", "BERKAS", id);
+            await createAuditLog(req.user.id, "PERUBAHAN_STATUS_ARSIP", "BERKAS", id,
+                null, 0, 1, "SUCCESS", null, null, operationStart);
         }
 
         res.status(200).json({
@@ -774,6 +779,7 @@ const updateBerkas = async (req, res) => {
 };
 
 const deleteBerkas = async (req, res) => {
+    const operationStart = Date.now();
     try {
         const { id } = req.params;
 
@@ -808,7 +814,8 @@ const deleteBerkas = async (req, res) => {
             });
         }
 
-        await createAuditLog(req.user.id, "DELETE_BERKAS", "BERKAS", id);
+        await createAuditLog(req.user.id, "DELETE_BERKAS", "BERKAS", id,
+            null, 0, 1, "SUCCESS", null, null, operationStart);
 
         res.status(200).json({
             message: "Berkas berhasil dihapus",
@@ -823,6 +830,7 @@ const deleteBerkas = async (req, res) => {
 };
 
 const getBerkasFile = async (req, res) => {
+    const operationStart = Date.now();
     try {
         const { id } = req.params;
 
@@ -864,7 +872,8 @@ const getBerkasFile = async (req, res) => {
                 {
                     expected: berkas.hash_sha256,
                     actual: currentHash
-                }
+                },
+                0, 1, "SUCCESS", null, null, operationStart
             );
 
             return res.status(409).json({
@@ -874,7 +883,7 @@ const getBerkasFile = async (req, res) => {
             });
         }
 
-        await createAuditLog(req.user.id, "ACCESS_BERKAS_FILE", "BERKAS", id);
+        await createAuditLog(req.user.id, "ACCESS_BERKAS_FILE", "BERKAS", id, null, 0, 1, "SUCCESS", null, null, operationStart);
 
         res.download(
             path.resolve(berkas.path_file),
@@ -889,6 +898,7 @@ const getBerkasFile = async (req, res) => {
 };
 
 const verifyBerkasIntegrity = async (req, res) => {
+    const operationStart = Date.now();
     try {
         const { id } = req.params;
 
@@ -977,7 +987,7 @@ const verifyBerkasIntegrity = async (req, res) => {
                 integrity_status: integrityStatus,
                 hasil_hash: integrityStatus
             },
-            0,
+            Date.now() - operationStart,
             1,
             integrityStatus,
             auditContext.ipAddress,
@@ -1017,6 +1027,7 @@ const verifyBerkasIntegrity = async (req, res) => {
 };
 
 const exportVerificationReport = async (req, res) => {
+    const operationStart = Date.now();
     try {
         const { id } = req.params;
         const { hash_database, hash_file, status, verified_at } = req.body;
@@ -1045,7 +1056,8 @@ const exportVerificationReport = async (req, res) => {
             `Hasil: ${reportStatus === "VALID" ? "Integritas Valid" : "Integritas Tidak Valid"}`
         ]);
 
-        await createAuditLog(req.user.id, "EXPORT_VERIFICATION_REPORT", "BERKAS", id, { status: reportStatus });
+        await createAuditLog(req.user.id, "EXPORT_VERIFICATION_REPORT", "BERKAS", id, { status: reportStatus },
+            0, 1, "SUCCESS", null, null, operationStart);
 
         res.setHeader("Content-Type", "application/pdf");
         res.setHeader("Content-Disposition", `attachment; filename=verification-report-${id}.pdf`);
