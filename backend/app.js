@@ -13,7 +13,7 @@ const replicationRoutes = require("./routes/replicationRoutes");
 const masterDataRoutes = require("./routes/masterDataRoutes");
 const { requestAuditContext } = require("./utils/auditRequestContext");
 const cors = require("cors");
-const { runBackfillAnalysis } = require("./controllers/auditLogController");
+const { startWorker } = require("./services/aiBackfillWorker");
 
 const app = express();
 
@@ -95,26 +95,12 @@ const ensureIntegrityColumns = async () => {
     }
 };
 
-ensureIntegrityColumns().then(async () => {
-    const MAX_RETRIES = 5;
-    const RETRY_DELAY_MS = 5000;
-    for (let attempt = 1; attempt <= MAX_RETRIES; attempt++) {
-        try {
-            console.log(`[STARTUP] Auto-backfill attempt ${attempt}/${MAX_RETRIES}: re-analyzing all audit logs with final VAE pipeline...`);
-            const result = await runBackfillAnalysis();
-            console.log(`[STARTUP] Auto-backfill complete: total=${result.total} processed=${result.processed} errors=${result.errors}`);
-            return;
-        } catch (err) {
-            console.error(`[STARTUP] Auto-backfill attempt ${attempt}/${MAX_RETRIES} failed:`, err.message);
-            if (attempt < MAX_RETRIES) {
-                console.log(`[STARTUP] Retrying in ${RETRY_DELAY_MS / 1000}s...`);
-                await new Promise((resolve) => setTimeout(resolve, RETRY_DELAY_MS));
-            }
-        }
-    }
-    console.error("[STARTUP] Auto-backfill gave up after max retries. Use POST /audit-log/backfill-analyze to retry manually.");
+ensureIntegrityColumns().then(() => {
+    console.log("[STARTUP] Database columns ensured.");
+    startWorker();
 }).catch((err) => {
     console.error("[STARTUP] Column ensure failed (non-fatal):", err.message);
+    startWorker();
 });
 
 app.use(cors());

@@ -39,15 +39,22 @@ const getAnalysisStatus = (item) => {
     return item.anomalyId ? "ANOMALY" : "NORMAL";
 };
 
+const FINAL_VAE_THRESHOLD = 1.6426611317633713;
+
 const getRiskCategory = (item) => {
     if (!item) return "Normal";
     const s = String(item.status_analisis || "").toUpperCase();
     if (s === "NOT_ANALYZED" || s === "AI_ERROR") return null;
-    if (!item.anomalyId) return "Normal";
 
-    const risk = String(item.tingkat_risiko || "").toUpperCase();
+    const risk = String(item.tingkat_risiko || item.risk_level || "").toUpperCase();
     if (risk.includes("HIGH") || risk.includes("TINGGI")) return "High Risk";
-    return "Perlu Ditinjau";
+    if (risk.includes("MEDIUM") || risk.includes("SEDANG")) return "Perlu Ditinjau";
+    if (risk.includes("LOW") || risk.includes("NORMAL")) return "Normal";
+
+    const score = Number(item.skor_anomali ?? item.anomaly_score ?? 0);
+    if (score > FINAL_VAE_THRESHOLD * 1.5) return "High Risk";
+    if (score > FINAL_VAE_THRESHOLD) return "Perlu Ditinjau";
+    return "Normal";
 };
 
 const getCategoryBadge = (category) => {
@@ -262,6 +269,19 @@ function Anomali() {
     useEffect(() => {
         Promise.resolve().then(loadReports);
     }, [loadReports]);
+
+    useEffect(() => {
+        const hasUnanalyzed = analysisRows.some((item) => {
+            const s = String(item.status_analisis || "").toUpperCase();
+            return s === "NOT_ANALYZED" || s === "AI_ERROR";
+        });
+        if (!hasUnanalyzed) return undefined;
+
+        const intervalId = setInterval(() => {
+            if (!loading) loadReports();
+        }, 30000);
+        return () => clearInterval(intervalId);
+    }, [analysisRows, loading, loadReports]);
 
     const closeDetail = useCallback(() => {
         setSelectedReport(null);

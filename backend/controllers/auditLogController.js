@@ -2,6 +2,7 @@ const pool = require("../config/database");
 const axios = require("axios");
 const { verifyAuditChain } = require("../services/auditLogService");
 const { createAuditLog, updateAuditLogAnalysis } = require("../services/auditLogService");
+const backfillState = require("../services/backfillState");
 
 const configuredAiServiceUrl = process.env.AI_SERVICE_URL || "http://127.0.0.1:8000";
 const AI_BATCH_URL = new URL("/predict-batch", configuredAiServiceUrl).toString();
@@ -179,56 +180,51 @@ const updateAnomalyDecision = async (req, res) => {
 const runBackfillAnalysis = async () => {
     const BATCH_SIZE = 50;
 
-    const { rows: allAuditLogs } = await pool.query(
-        "SELECT id FROM audit_log"
-    );
-
-    const allIds = allAuditLogs.map((r) => r.id);
-    if (allIds.length > 0) {
-        const delResult = await pool.query(
-            `DELETE FROM laporan_anomali WHERE sumber_audit_log_id = ANY($1)`,
-            [allIds]
-        );
-        console.log(`[BACKFILL] Cleared ALL ${delResult.rowCount} existing laporan_anomali entries.`);
-    }
-
     const { rows: records } = await pool.query(`
         SELECT id, user_id, aksi, target_tipe, target_id, waktu, durasi_ms,
                jumlah_objek, status, ip_address, device, status_analisis,
                anomaly_score
         FROM audit_log
+        WHERE status_analisis IN ('NOT_ANALYZED', 'AI_ERROR')
+           OR (
+               status_analisis IN ('ANALYZED_NORMAL', 'ANALYZED_ANOMALY')
+               AND (anomaly_score IS NULL OR risk_level IS NULL OR analysis_detail IS NULL)
+           )
         ORDER BY id
     `);
 
     if (records.length === 0) {
-        console.log("[BACKFILL] Tidak ada audit log yang memiliki IP valid untuk dianalisis.");
-        return { total: allAuditLogs.length, processed: 0, errors: 0, skippedNoIp: unanalyzableLogs.length };
+        console.log("[AI-BACKFILL] Tidak ada audit log yang perlu dianalisis.");
+        const { rows: stats } = await pool.query(
+            "SELECT COUNT(*) AS total, COUNT(anomaly_score) AS analyzed FROM audit_log"
+        );
+        return { total: Number(stats[0].total), processed: 0, errors: 0 };
     }
 
     let useBatchMode = true;
     try {
         const healthCheck = await axios.get(AI_BATCH_URL.replace("/predict-batch", "/health"), { timeout: 5000 });
-        console.log(`[BACKFILL] AI service status: ${healthCheck.data.model}`);
+        console.log(`[AI-BACKFILL] AI service status: ${healthCheck.data.model}`);
     } catch (e) {
-        console.error("[BACKFILL] AI service unreachable:", e.message);
-        return { total: allAuditLogs.length, processed: 0, errors: records.length, skippedNoIp: unanalyzableLogs.length };
+        console.error("[AI-BACKFILL] AI service unreachable:", e.message);
+        return { total: records.length, processed: 0, errors: records.length };
     }
 
     try {
         await axios.post(AI_BATCH_URL, { records: [] }, { timeout: 5000 });
     } catch (e) {
         if (e.response && e.response.status === 404) {
-            console.log("[BACKFILL] /predict-batch not available, falling back to individual /predict calls.");
+            console.log("[AI-BACKFILL] /predict-batch not available, falling back to individual /predict calls.");
             useBatchMode = false;
         } else if (e.response && e.response.status === 422) {
             useBatchMode = true;
         } else {
-            console.log("[BACKFILL] /predict-batch check failed:", e.message, "- falling back to individual /predict calls.");
+            console.log("[AI-BACKFILL] /predict-batch check failed:", e.message, "- falling back to individual /predict calls.");
             useBatchMode = false;
         }
     }
 
-    console.log(`[BACKFILL] Starting re-analysis of ${records.length} records through final VAE pipeline...`);
+    console.log(`[AI-BACKFILL] Starting re-analysis of ${records.length} records through final VAE pipeline...`);
     let totalProcessed = 0;
     let totalErrors = 0;
 
@@ -277,16 +273,16 @@ const runBackfillAnalysis = async () => {
                             dominant_features: result.dominant_features,
                             explanation: result.explanation,
                             preprocessing_contract: result.preprocessing_contract,
-                        }, batch.find((r) => r.id === result.audit_log_id)?.user_id);
+                        }, batch.find((r) => String(r.id) === String(result.audit_log_id))?.user_id);
                         totalProcessed++;
                     } catch (updateErr) {
                         totalErrors++;
-                        console.error(`[BACKFILL] Failed to update audit_log ${result.audit_log_id}:`, updateErr.message);
+                        console.error(`[AI-BACKFILL] Failed to update audit_log ${result.audit_log_id}:`, updateErr.message);
                     }
                 }
             } catch (batchErr) {
                 totalErrors += batch.length;
-                console.error(`[BACKFILL] Batch error for records ${i}-${i + batch.length}:`, batchErr.message);
+                console.error(`[AI-BACKFILL] Batch error for records ${i}-${i + batch.length}:`, batchErr.message);
                 for (const r of batch) {
                     await pool.query(
                         `UPDATE audit_log SET status_analisis = 'AI_ERROR' WHERE id = $1`,
@@ -295,7 +291,7 @@ const runBackfillAnalysis = async () => {
                 }
             }
 
-            console.log(`[BACKFILL] Progress: ${Math.min(i + BATCH_SIZE, records.length)}/${records.length} (processed=${totalProcessed}, errors=${totalErrors})`);
+            console.log(`[AI-BACKFILL] Progress: ${Math.min(i + BATCH_SIZE, records.length)}/${records.length} (processed=${totalProcessed}, errors=${totalErrors})`);
         }
     } else {
         for (let i = 0; i < records.length; i++) {
@@ -332,7 +328,7 @@ const runBackfillAnalysis = async () => {
                 totalProcessed++;
             } catch (err) {
                 totalErrors++;
-                console.error(`[BACKFILL] Individual predict failed for audit_log ${r.id}:`, err.message);
+                console.error(`[AI-BACKFILL] Individual predict failed for audit_log ${r.id}:`, err.message);
                 await pool.query(
                     `UPDATE audit_log SET status_analisis = 'AI_ERROR' WHERE id = $1`,
                     [r.id]
@@ -340,16 +336,21 @@ const runBackfillAnalysis = async () => {
             }
 
             if ((i + 1) % 50 === 0 || i === records.length - 1) {
-                console.log(`[BACKFILL] Progress: ${i + 1}/${records.length} (processed=${totalProcessed}, errors=${totalErrors})`);
+                console.log(`[AI-BACKFILL] Progress: ${i + 1}/${records.length} (processed=${totalProcessed}, errors=${totalErrors})`);
             }
         }
     }
 
-    console.log(`[BACKFILL] Complete. total=${records.length} processed=${totalProcessed} errors=${totalErrors}`);
+    console.log(`[AI-BACKFILL] Complete. total=${records.length} processed=${totalProcessed} errors=${totalErrors}`);
     return { total: records.length, processed: totalProcessed, errors: totalErrors };
 };
 
 const backfillAnalyze = async (req, res) => {
+    if (backfillState.isBackfillRunning) {
+        return res.status(409).json({
+            message: "Backfill sedang berjalan secara otomatis oleh worker. Coba lagi nanti.",
+        });
+    }
     try {
         const result = await runBackfillAnalysis();
         return res.status(200).json({
@@ -357,7 +358,7 @@ const backfillAnalyze = async (req, res) => {
             ...result,
         });
     } catch (error) {
-        console.error("[BACKFILL] Fatal error:", error.message);
+        console.error("[AI-BACKFILL] Fatal error:", error.message);
         return res.status(500).json({
             message: "Gagal melakukan backfill analisis",
             error: error.message,

@@ -49,7 +49,26 @@ const createAuditLog = async (
             console.log(`[AI-TRACE] audit_log_id=${auditLogId} | REQUEST → ${AI_SERVICE_URL}`);
             console.log(`[AI-TRACE] payload:`, JSON.stringify(aiPayload, null, 2));
 
-            const aiResponse = await axios.post(AI_SERVICE_URL, aiPayload, { headers: { "Content-Type": "application/json" } });
+            const AI_TIMEOUT_MS = Number(process.env.AI_TIMEOUT_MS || 30000);
+            const AI_RETRY_COUNT = Number(process.env.AI_RETRY_COUNT || 1);
+            let aiResponse = null;
+            let lastAiError = null;
+            for (let attempt = 0; attempt <= AI_RETRY_COUNT; attempt++) {
+                try {
+                    aiResponse = await axios.post(AI_SERVICE_URL, aiPayload, {
+                        headers: { "Content-Type": "application/json" },
+                        timeout: AI_TIMEOUT_MS,
+                    });
+                    break;
+                } catch (retryErr) {
+                    lastAiError = retryErr;
+                    if (attempt < AI_RETRY_COUNT) {
+                        console.log(`[AI-TRACE] audit_log_id=${auditLogId} | Attempt ${attempt + 1} failed, retrying in 2s... (${retryErr.message})`);
+                        await new Promise((resolve) => setTimeout(resolve, 2000));
+                    }
+                }
+            }
+            if (!aiResponse) throw lastAiError;
 
             const aiData = aiResponse.data;
             console.log(`[AI-TRACE] audit_log_id=${auditLogId} | RESPONSE: status=${aiData.status} score=${aiData.score} anomaly_score=${aiData.anomaly_score} threshold=${aiData.threshold} risk_level=${aiData.risk_level}`);
