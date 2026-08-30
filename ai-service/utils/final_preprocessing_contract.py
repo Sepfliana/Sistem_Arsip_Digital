@@ -109,20 +109,29 @@ def _normalize_device(raw: str) -> str:
     """Map a raw device/User-Agent string to one of the five training classes.
 
     Training device classes: Android, Laptop Windows, PC Windows, Windows,
-    iPhone.  The User-Agent is matched against the training classes using
-    substring checks.  Unrecognised values (Mac, Linux, empty, unknown) fall
-    back to "Windows" — the most common training class and the most general
-    Windows category — because the system is a web application accessed from
-    browsers and the training distribution is dominated by Windows clients.
+    iPhone — exactly the values produced by the dataset generator
+    (`dataset/generator/utils.py` `random_device()`).  The backend sends the
+    raw User-Agent header, which is matched against those classes with
+    substring checks.
+
+    Unrecognised values (Mac, Linux, X11, Virtual Machine, unknown) are
+    returned unchanged so the fitted OrdinalEncoder resolves them to the
+    unknown value -1 instead of silently treating them as the dominant
+    training class.  Any device outside the learned distribution therefore
+    keeps producing an anomaly signal at the device feature.
     """
     upper = raw.upper()
     if "IPHONE" in upper or "IPAD" in upper or "IOS" in upper:
         return "iPhone"
     if "ANDROID" in upper:
         return "Android"
+    if "LAPTOP WINDOWS" in upper:
+        return "Laptop Windows"
+    if "PC WINDOWS" in upper:
+        return "PC Windows"
     if "WINDOWS" in upper or "WIN64" in upper or "WIN32" in upper:
         return "Windows"
-    return "Windows"
+    return raw
 
 
 def _normalize_activity(raw: str) -> str:

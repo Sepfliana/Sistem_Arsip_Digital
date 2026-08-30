@@ -1,5 +1,5 @@
 /* eslint-disable react-refresh/only-export-components */
-import { useEffect, useRef, useState } from "react";
+import { Fragment, useEffect, useRef, useState } from "react";
 import { Document, Page, pdfjs } from "react-pdf";
 import { api } from "../services/apiService";
 import "react-pdf/dist/Page/AnnotationLayer.css";
@@ -152,17 +152,16 @@ export function BerkasDetailModal({ berkas, canVerify = false, verifying = false
                     <div className="berkas-detail-info-col">
                         <div className="berkas-info-card">
                             <h3>Informasi Berkas</h3>
-                            <dl className="detail-grid berkas-horizontal-grid">
+                            <div className="berkas-meta-grid">
                                 {fields.map(([label, value, className]) => (
-                                    <div className="detail-row" key={label}>
-                                        <dt className="detail-label">{label}</dt>
-                                        <span className="detail-colon">:</span>
-                                        <dd className="detail-value">
+                                    <Fragment key={label}>
+                                        <div className="berkas-meta-label">{label}</div>
+                                        <div className="berkas-meta-value">
                                             {className ? <span className={`badge ${className}`}>{value}</span> : value || "-"}
-                                        </dd>
-                                    </div>
+                                        </div>
+                                    </Fragment>
                                 ))}
-                            </dl>
+                            </div>
 
                             {/* AKSI */}
                             <div className="berkas-detail-actions">
@@ -223,18 +222,17 @@ function BerkasCard({ title, berkas, readOnly = false, canVerify = false, verify
                     <PdfViewer berkas={berkas} />
                 </div>
                 <div className="berkas-detail-info-col">
-                    <div className="berkas-info-card">
-                        <h3>Informasi Berkas</h3>
-                        <dl className="detail-grid berkas-horizontal-grid">
-                            {fields.map(([label, value, className]) => (
-                                <div className="detail-row" key={label}>
-                                    <dt className="detail-label">{label}</dt>
-                                    <span className="detail-colon">:</span>
-                                    <dd className="detail-value">{className ? <span className={`badge ${className}`}>{value}</span> : value || "-"}</dd>
-                                </div>
-                            ))}
-                        </dl>
-                        <div className="berkas-detail-actions">
+                        <div className="berkas-info-card">
+                            <h3>Informasi Berkas</h3>
+                            <div className="berkas-meta-grid">
+                                {fields.map(([label, value, className]) => (
+                                    <Fragment key={label}>
+                                        <div className="berkas-meta-label">{label}</div>
+                                        <div className="berkas-meta-value">{className ? <span className={`badge ${className}`}>{value}</span> : value || "-"}</div>
+                                    </Fragment>
+                                ))}
+                            </div>
+                            <div className="berkas-detail-actions">
                             {onOpenPdf && <button className="primary-button" type="button" onClick={() => onOpenPdf(berkas)}>Buka PDF</button>}
                             {canVerify && normalizeIntegrityStatus(berkas.status_integritas) === "BELUM_DIVERIFIKASI" && (
                                 <button className="secondary-button" type="button" disabled={verifying} onClick={() => onVerifyIntegrity?.(berkas)}>

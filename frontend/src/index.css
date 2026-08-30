@@ -1404,3 +1404,99 @@ tbody tr:last-child td {
     gap: 4px;
   }
 }
+
+/* ==========================================================================
+   Berkas Detail — Informasi Berkas panel
+   ========================================================================== */
+
+.berkas-detail-grid-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
+  gap: 24px;
+  padding: 24px;
+  overflow-y: auto;
+}
+
+.berkas-detail-preview-col {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.berkas-detail-info-col {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 20px;
+  min-width: 0;
+}
+
+.berkas-info-card {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 20px;
+  background: #FFFFFF;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+}
+
+.berkas-info-card h3 {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--text, #0F172A);
+  margin: 0 0 4px 0;
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--line);
+}
+
+.berkas-meta-grid {
+  display: grid;
+  grid-template-columns: 140px minmax(0, 1fr);
+  row-gap: 12px;
+  column-gap: 24px;
+  margin: 0;
+  align-items: start;
+}
+
+.berkas-meta-label {
+  color: var(--text-muted, #64748B);
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 1.5;
+  min-width: 0;
+}
+
+.berkas-meta-value {
+  color: var(--text, #0F172A);
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1.6;
+  min-width: 0;
+  overflow-wrap: anywhere;
+  word-break: break-word;
+}
+
+.berkas-detail-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  padding-top: 16px;
+  border-top: 1px solid var(--line);
+  margin-top: auto;
+}
+
+@media (max-width: 840px) {
+  .berkas-detail-grid-layout {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+}
+
+@media (max-width: 700px) {
+  .berkas-meta-grid {
+    grid-template-columns: 120px minmax(0, 1fr);
+    column-gap: 16px;
+  }
+}
